@@ -73,35 +73,128 @@
           linear-gradient(90deg, rgba(88, 166, 255, 0.03) 1px, transparent 1px);
         background-size: 50px 50px;
       }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      header.scrolled {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+      }
+
+      header.scrolled .logo-img {
+        height: 3rem;
+        width: 3rem;
+      }
+
+      header.scrolled h1 {
+        font-size: 1.5rem;
+      }
+
+      header.scrolled .header-subtitle {
+        display: none;
+      }
+
+      header.scrolled .header-info {
+        display: none;
+      }
+
+      header .header-stats {
+        display: none;
+      }
+
+      header.scrolled .header-stats {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .header-stat-item {
+        text-align: center;
+      }
+
+      .header-stat-number {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      .header-stat-label {
+        font-size: 0.75rem;
+        color: #6b7280;
+      }
+
+      .logo-img {
+        transition: all 0.3s ease;
+      }
+
+      h1 {
+        transition: all 0.3s ease;
+      }
     </style>
   </head>
   <body class="min-h-screen text-gray-100 grid-pattern">
     <!-- Header -->
-    <header class="py-8 px-6 border-b border-gray-800 bg-[#0d1117] mb-12">
+    <header
+      id="main-header"
+      class="py-4 px-6 border-b border-gray-800 bg-[#0d1117] mb-12"
+    >
       <div class="max-w-7xl mx-auto">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-4">
-            <img
-              src="https://viet.edu.in/img/footer-imgs/viet-logo.png"
-              alt="VIET Logo"
-              class="h-20 w-20 rounded-full p-1"
-            />
+            <a href="/">
+              <img
+                src="https://viet.edu.in/img/footer-imgs/viet-logo.png"
+                alt="VIET Logo"
+                class="logo-img h-20 w-20 rounded-full p-1"
+              />
+            </a>
             <div>
               <h1 class="text-3xl font-bold text-white">
                 VIET Tech Initiatives
               </h1>
-              <p class="text-gray-300 mt-1">
+              <p class="header-subtitle text-gray-300 mt-1">
                 Comprehensive Technology Partnership Presentations
               </p>
             </div>
           </div>
           <div class="text-right">
-            <p class="text-sm text-gray-300">
-              Visakha Institute of Engineering & Technology
-            </p>
-            <p class="text-xs text-gray-400 mt-1">
-              Department of Computer Science & Engineering
-            </p>
+            <div class="header-stats">
+              <div class="header-stat-item">
+                <div
+                  class="header-stat-number text-green-400"
+                  id="header-active-count"
+                >
+                  0
+                </div>
+                <div class="header-stat-label">Active</div>
+              </div>
+              <div class="header-stat-item">
+                <div
+                  class="header-stat-number text-blue-400"
+                  id="header-coming-soon-count"
+                >
+                  0
+                </div>
+                <div class="header-stat-label">Coming Soon</div>
+              </div>
+              <div class="header-stat-item">
+                <div
+                  class="header-stat-number text-purple-400"
+                  id="header-total-count"
+                >
+                  0
+                </div>
+                <div class="header-stat-label">Total</div>
+              </div>
+            </div>
+            <div class="header-info">
+              <p class="text-sm text-gray-300">
+                Visakha Institute of Engineering & Technology
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -440,6 +533,29 @@
         document.getElementById("coming-soon-count").textContent =
           comingSoonCount;
         document.getElementById("total-count").textContent = totalCount;
+
+        // Update header stats
+        document.getElementById("header-active-count").textContent =
+          activeCount;
+        document.getElementById("header-coming-soon-count").textContent =
+          comingSoonCount;
+        document.getElementById("header-total-count").textContent = totalCount;
+
+        // Sticky header with scroll effect
+        const header = document.getElementById("main-header");
+        let lastScroll = 0;
+
+        window.addEventListener("scroll", function () {
+          const currentScroll = window.pageYOffset;
+
+          if (currentScroll > 50) {
+            header.classList.add("scrolled");
+          } else {
+            header.classList.remove("scrolled");
+          }
+
+          lastScroll = currentScroll;
+        });
       });
     </script>
   </body>
