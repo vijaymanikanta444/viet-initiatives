@@ -1,0 +1,1035 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Learning Platform | VIET</title>
+    <link
+      rel="icon"
+      href="https://viet.edu.in/img/footer-imgs/viet-logo.png"
+      type="image/png"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family:
+          "SF Pro Display",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+        background: #f7f9fa;
+      }
+
+      .navbar {
+        background: #1c1d1f;
+        border-bottom: 1px solid #2d2f31;
+      }
+
+      .sidebar {
+        background: white;
+        border-right: 1px solid #d1d7dc;
+        height: calc(100vh - 72px);
+        overflow-y: auto;
+      }
+
+      .topic-item {
+        border-bottom: 1px solid #d1d7dc;
+        transition: background 0.2s;
+      }
+
+      .topic-item:hover {
+        background: #f7f9fa;
+      }
+
+      .topic-item.active {
+        background: #f7f9fa;
+        border-left: 4px solid #a435f0;
+      }
+
+      .topic-item.completed {
+        border-left: 4px solid #5cb85c;
+      }
+
+      .progress-bar {
+        height: 4px;
+        background: #d1d7dc;
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #a435f0, #ec5252);
+        transition: width 0.3s ease;
+      }
+
+      .video-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        background: #000;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .btn-primary {
+        background: #a435f0;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 4px;
+        font-weight: 600;
+        transition: all 0.2s;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn-primary:hover {
+        background: #8710d8;
+      }
+
+      .btn-secondary {
+        background: white;
+        color: #1c1d1f;
+        padding: 12px 24px;
+        border-radius: 4px;
+        font-weight: 600;
+        border: 1px solid #1c1d1f;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .btn-secondary:hover {
+        background: #f7f9fa;
+      }
+
+      .btn-success {
+        background: #5cb85c;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 4px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn-success:hover {
+        background: #4cae4c;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .badge-success {
+        background: #ecf9f2;
+        color: #5cb85c;
+      }
+
+      .badge-warning {
+        background: #fff4e5;
+        color: #f4a261;
+      }
+
+      .badge-info {
+        background: #e8f5fe;
+        color: #0d6efd;
+      }
+
+      .content-area {
+        background: white;
+        padding: 32px;
+        margin: 24px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .assignment-card {
+        border: 1px solid #d1d7dc;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 16px;
+        transition: all 0.2s;
+      }
+
+      .assignment-card:hover {
+        border-color: #a435f0;
+        box-shadow: 0 4px 12px rgba(164, 53, 240, 0.15);
+      }
+
+      .stats-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 24px;
+        border-radius: 8px;
+        text-align: center;
+      }
+
+      .stats-card h3 {
+        font-size: 36px;
+        font-weight: 700;
+        margin: 8px 0;
+      }
+
+      .tab-button {
+        padding: 12px 24px;
+        background: transparent;
+        border: none;
+        border-bottom: 3px solid transparent;
+        cursor: pointer;
+        font-weight: 600;
+        color: #6a6f73;
+        transition: all 0.2s;
+      }
+
+      .tab-button:hover {
+        color: #1c1d1f;
+      }
+
+      .tab-button.active {
+        color: #1c1d1f;
+        border-bottom-color: #1c1d1f;
+      }
+
+      .qna-locked {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      .pulse-animation {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav
+      class="navbar px-6 py-4 flex items-center justify-between sticky top-0 z-50"
+    >
+      <div class="flex items-center gap-6">
+        <img
+          src="https://viet.edu.in/img/footer-imgs/viet-logo.png"
+          alt="VIET Logo"
+          class="h-10 w-10 rounded-full"
+        />
+        <h1 class="text-white text-xl font-bold">React Learning Platform</h1>
+      </div>
+      <div class="flex items-center gap-6">
+        <div class="text-white">
+          <i class="fas fa-bell text-xl cursor-pointer hover:text-gray-300"></i>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="text-right">
+            <div class="text-white text-sm font-semibold">Student Name</div>
+            <div class="text-gray-400 text-xs">220701XXXX</div>
+          </div>
+          <div
+            class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold"
+          >
+            S
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="flex">
+      <!-- Sidebar - Course Curriculum -->
+      <aside class="sidebar w-80 scrollbar-hide">
+        <div class="p-6 border-b border-gray-200">
+          <h2 class="font-bold text-xl mb-2">Course Content</h2>
+          <div
+            class="flex items-center justify-between text-sm text-gray-600 mb-3"
+          >
+            <span
+              ><span id="completed-count">2</span> of
+              <span id="total-count">8</span> completed</span
+            >
+            <span><span id="progress-percentage">25</span>%</span>
+          </div>
+          <div class="progress-bar">
+            <div
+              class="progress-fill"
+              style="width: 25%"
+              id="progress-bar"
+            ></div>
+          </div>
+        </div>
+
+        <!-- Topics List -->
+        <div id="topics-list">
+          <!-- Topic 1 -->
+          <div class="topic-item completed cursor-pointer" data-topic="1">
+            <div class="p-4">
+              <div class="flex items-start justify-between">
+                <div class="flex-1">
+                  <div class="flex items-center gap-2 mb-1">
+                    <i class="fas fa-check-circle text-green-500"></i>
+                    <h3 class="font-semibold text-sm">1. HTML Fundamentals</h3>
+                  </div>
+                  <div class="text-xs text-gray-600 ml-6">
+                    <i class="fas fa-play-circle mr-1"></i>45 min
+                    <span class="mx-2">•</span>
+                    <i class="fas fa-code mr-1"></i>Assignment
+                  </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 text-xs"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Topic 2 -->
+          <div class="topic-item completed cursor-pointer" data-topic="2">
+            <div class="p-4">
+              <div class="flex items-start justify-between">
+                <div class="flex-1">
+                  <div class="flex items-center gap-2 mb-1">
+                    <i class="fas fa-check-circle text-green-500"></i>
+                    <h3 class="font-semibold text-sm">
+                      2. CSS Styling & Layout
+                    </h3>
+                  </div>
+                  <div class="text-xs text-gray-600 ml-6">
+                    <i class="fas fa-play-circle mr-1"></i>60 min
+                    <span class="mx-2">•</span>
+                    <i class="fas fa-code mr-1"></i>Assignment
+                  </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 text-xs"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Topic 3 - Active -->
+          <div class="topic-item active cursor-pointer" data-topic="3">
+            <div class="p-4">
+              <div class="flex items-start justify-between">
+                <div class="flex-1">
+                  <div class="flex items-center gap-2 mb-1">
+                    <i class="fas fa-play-circle text-purple-600"></i>
+                    <h3 class="font-semibold text-sm">3. HTML + CSS Project</h3>
+                  </div>
+                  <div class="text-xs text-gray-600 ml-6">
+                    <i class="fas fa-play-circle mr-1"></i>90 min
+                    <span class="mx-2">•</span>
+                    <i class="fas fa-code mr-1"></i>Assignment
+                  </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 text-xs"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Topic 4 -->
+          <div class="topic-item cursor-pointer" data-topic="4">
+            <div class="p-4">
+              <div class="flex items-start justify-between">
+                <div class="flex-1">
+                  <div class="flex items-center gap-2 mb-1">
+                    <i class="fas fa-circle text-gray-300"></i>
+                    <h3 class="font-semibold text-sm text-gray-500">
+                      4. JavaScript Basics
+                    </h3>
+                  </div>
+                  <div class="text-xs text-gray-600 ml-6">
+                    <i class="fas fa-lock mr-1"></i>Locked
+                  </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 text-xs"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Topic 5 -->
+          <div class="topic-item cursor-pointer" data-topic="5">
+            <div class="p-4">
+              <div class="flex items-start justify-between">
+                <div class="flex-1">
+                  <div class="flex items-center gap-2 mb-1">
+                    <i class="fas fa-circle text-gray-300"></i>
+                    <h3 class="font-semibold text-sm text-gray-500">
+                      5. Advanced JavaScript
+                    </h3>
+                  </div>
+                  <div class="text-xs text-gray-600 ml-6">
+                    <i class="fas fa-lock mr-1"></i>Locked
+                  </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 text-xs"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Topic 6 -->
+          <div class="topic-item cursor-pointer" data-topic="6">
+            <div class="p-4">
+              <div class="flex items-start justify-between">
+                <div class="flex-1">
+                  <div class="flex items-center gap-2 mb-1">
+                    <i class="fas fa-circle text-gray-300"></i>
+                    <h3 class="font-semibold text-sm text-gray-500">
+                      6. React Fundamentals
+                    </h3>
+                  </div>
+                  <div class="text-xs text-gray-600 ml-6">
+                    <i class="fas fa-lock mr-1"></i>Locked
+                  </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 text-xs"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Topic 7 -->
+          <div class="topic-item cursor-pointer" data-topic="7">
+            <div class="p-4">
+              <div class="flex items-start justify-between">
+                <div class="flex-1">
+                  <div class="flex items-center gap-2 mb-1">
+                    <i class="fas fa-circle text-gray-300"></i>
+                    <h3 class="font-semibold text-sm text-gray-500">
+                      7. React Hooks & State
+                    </h3>
+                  </div>
+                  <div class="text-xs text-gray-600 ml-6">
+                    <i class="fas fa-lock mr-1"></i>Locked
+                  </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 text-xs"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Topic 8 -->
+          <div class="topic-item cursor-pointer" data-topic="8">
+            <div class="p-4">
+              <div class="flex items-start justify-between">
+                <div class="flex-1">
+                  <div class="flex items-center gap-2 mb-1">
+                    <i class="fas fa-circle text-gray-300"></i>
+                    <h3 class="font-semibold text-sm text-gray-500">
+                      8. Advanced React & Project
+                    </h3>
+                  </div>
+                  <div class="text-xs text-gray-600 ml-6">
+                    <i class="fas fa-lock mr-1"></i>Locked
+                  </div>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 text-xs"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="flex-1">
+        <div class="content-area">
+          <!-- Topic Header -->
+          <div class="mb-6">
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <h1 class="text-3xl font-bold mb-2">HTML + CSS Project</h1>
+                <div class="flex items-center gap-4 text-sm text-gray-600">
+                  <span> <i class="fas fa-clock mr-1"></i>90 minutes </span>
+                  <span> <i class="fas fa-signal mr-1"></i>Intermediate </span>
+                  <span>
+                    <i class="fas fa-user mr-1"></i>Prerequisites: HTML, CSS
+                  </span>
+                </div>
+              </div>
+              <span class="badge badge-warning">In Progress</span>
+            </div>
+          </div>
+
+          <!-- Tabs -->
+          <div class="border-b border-gray-200 mb-6">
+            <div class="flex gap-2">
+              <button class="tab-button active" onclick="showTab('overview')">
+                <i class="fas fa-book mr-2"></i>Overview
+              </button>
+              <button class="tab-button" onclick="showTab('video')">
+                <i class="fas fa-play mr-2"></i>Video Tutorial
+              </button>
+              <button class="tab-button" onclick="showTab('assignment')">
+                <i class="fas fa-code mr-2"></i>Assignment
+              </button>
+              <button class="tab-button" onclick="showTab('qna')">
+                <i class="fas fa-comments mr-2"></i>Q&A Session
+              </button>
+            </div>
+          </div>
+
+          <!-- Tab Content -->
+          <div id="tab-content">
+            <!-- Overview Tab -->
+            <div id="overview-tab" class="tab-content">
+              <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                <div class="stats-card">
+                  <i class="fas fa-video text-4xl mb-2"></i>
+                  <h3>90min</h3>
+                  <p class="text-sm opacity-90">Video Duration</p>
+                </div>
+                <div
+                  class="stats-card"
+                  style="
+                    background: linear-gradient(
+                      135deg,
+                      #f093fb 0%,
+                      #f5576c 100%
+                    );
+                  "
+                >
+                  <i class="fas fa-tasks text-4xl mb-2"></i>
+                  <h3>1</h3>
+                  <p class="text-sm opacity-90">Assignment</p>
+                </div>
+                <div
+                  class="stats-card"
+                  style="
+                    background: linear-gradient(
+                      135deg,
+                      #4facfe 0%,
+                      #00f2fe 100%
+                    );
+                  "
+                >
+                  <i class="fas fa-comments text-4xl mb-2"></i>
+                  <h3>Live</h3>
+                  <p class="text-sm opacity-90">Q&A Available</p>
+                </div>
+              </div>
+
+              <h2 class="text-2xl font-bold mb-4">What you'll learn</h2>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check text-green-500 mt-1"></i>
+                  <span>Build a complete responsive website from scratch</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check text-green-500 mt-1"></i>
+                  <span
+                    >Implement modern CSS layout techniques (Flexbox,
+                    Grid)</span
+                  >
+                </div>
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check text-green-500 mt-1"></i>
+                  <span>Create navigation menus and interactive elements</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check text-green-500 mt-1"></i>
+                  <span>Apply CSS animations and transitions</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check text-green-500 mt-1"></i>
+                  <span>Follow web development best practices</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <i class="fas fa-check text-green-500 mt-1"></i>
+                  <span>Deploy your project using GitHub Pages</span>
+                </div>
+              </div>
+
+              <h2 class="text-2xl font-bold mb-4">Requirements</h2>
+              <ul class="list-disc list-inside space-y-2 text-gray-700 mb-8">
+                <li>Completion of HTML Fundamentals topic</li>
+                <li>Completion of CSS Styling & Layout topic</li>
+                <li>VS Code or any code editor installed</li>
+                <li>Basic understanding of file management</li>
+              </ul>
+
+              <h2 class="text-2xl font-bold mb-4">Description</h2>
+              <p class="text-gray-700 leading-relaxed mb-4">
+                In this comprehensive project-based topic, you'll combine your
+                HTML and CSS knowledge to create a fully functional, responsive
+                website. This hands-on experience will solidify your
+                understanding of web development fundamentals and prepare you
+                for JavaScript integration.
+              </p>
+              <p class="text-gray-700 leading-relaxed mb-4">
+                You'll learn how to structure complex layouts, implement
+                responsive design patterns, and create visually appealing user
+                interfaces that work seamlessly across different devices and
+                screen sizes.
+              </p>
+              <p class="text-gray-700 leading-relaxed">
+                By the end of this topic, you'll have a portfolio-ready project
+                deployed on GitHub Pages and a solid foundation for advancing to
+                JavaScript and React development.
+              </p>
+            </div>
+
+            <!-- Video Tab -->
+            <div id="video-tab" class="tab-content" style="display: none">
+              <div class="video-container mb-6">
+                <iframe
+                  src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                  title="HTML + CSS Project Tutorial"
+                  frameborder="0"
+                  allow="
+                    accelerometer;
+                    autoplay;
+                    clipboard-write;
+                    encrypted-media;
+                    gyroscope;
+                    picture-in-picture;
+                  "
+                  allowfullscreen
+                ></iframe>
+              </div>
+
+              <div class="flex items-center justify-between mb-6">
+                <button class="btn-success" onclick="markVideoComplete()">
+                  <i class="fas fa-check-circle mr-2"></i>Mark as Watched
+                </button>
+                <div class="text-sm text-gray-600">
+                  <i class="fas fa-eye mr-2"></i>
+                  <span id="video-status" class="font-semibold"
+                    >Not watched yet</span
+                  >
+                </div>
+              </div>
+
+              <h3 class="text-xl font-bold mb-4">Video Resources</h3>
+              <div class="space-y-3">
+                <div
+                  class="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
+                >
+                  <div class="flex items-center gap-3">
+                    <i class="fas fa-file-pdf text-red-500 text-xl"></i>
+                    <span>Project Starter Files</span>
+                  </div>
+                  <button
+                    class="text-purple-600 font-semibold hover:text-purple-700"
+                  >
+                    <i class="fas fa-download mr-2"></i>Download
+                  </button>
+                </div>
+                <div
+                  class="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
+                >
+                  <div class="flex items-center gap-3">
+                    <i class="fas fa-file-code text-blue-500 text-xl"></i>
+                    <span>Code Snippets</span>
+                  </div>
+                  <button
+                    class="text-purple-600 font-semibold hover:text-purple-700"
+                  >
+                    <i class="fas fa-download mr-2"></i>Download
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Assignment Tab -->
+            <div id="assignment-tab" class="tab-content" style="display: none">
+              <div class="bg-purple-50 border-l-4 border-purple-600 p-4 mb-6">
+                <div class="flex items-center gap-2 mb-2">
+                  <i class="fas fa-info-circle text-purple-600"></i>
+                  <h3 class="font-bold text-purple-900">
+                    Assignment Instructions
+                  </h3>
+                </div>
+                <p class="text-purple-800 text-sm">
+                  Complete the assignment locally in your IDE and push your code
+                  to the GitHub Classroom repository. Your progress will be
+                  automatically tracked.
+                </p>
+              </div>
+
+              <div class="assignment-card">
+                <div class="flex items-start justify-between mb-4">
+                  <div>
+                    <h3 class="text-xl font-bold mb-2">
+                      Build a Responsive Portfolio Website
+                    </h3>
+                    <div class="flex items-center gap-4 text-sm text-gray-600">
+                      <span
+                        ><i class="fas fa-clock mr-1"></i>Est. 3-4 hours</span
+                      >
+                      <span><i class="fas fa-star mr-1"></i>100 points</span>
+                      <span class="badge badge-warning">Not Started</span>
+                    </div>
+                  </div>
+                </div>
+
+                <h4 class="font-bold mb-2">Requirements:</h4>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 mb-4">
+                  <li>
+                    Create a multi-page portfolio with Home, About, Projects,
+                    and Contact pages
+                  </li>
+                  <li>
+                    Implement responsive navigation menu (mobile hamburger menu)
+                  </li>
+                  <li>Use CSS Grid and Flexbox for layouts</li>
+                  <li>Add CSS animations and transitions</li>
+                  <li>
+                    Ensure mobile-responsive design (test on multiple screen
+                    sizes)
+                  </li>
+                  <li>
+                    Include at least 3 project cards with images and
+                    descriptions
+                  </li>
+                  <li>
+                    Create a contact form (HTML structure, no backend required)
+                  </li>
+                  <li>Deploy to GitHub Pages</li>
+                </ul>
+
+                <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                  <h4 class="font-bold mb-2">GitHub Repository:</h4>
+                  <div class="flex items-center justify-between">
+                    <code class="text-sm bg-white px-3 py-2 rounded border">
+                      viet-college-react/html-css-project-student123
+                    </code>
+                    <button
+                      class="text-purple-600 font-semibold hover:text-purple-700"
+                    >
+                      <i class="fab fa-github mr-2"></i>View on GitHub
+                    </button>
+                  </div>
+                </div>
+
+                <div class="flex gap-4">
+                  <button class="btn-primary" onclick="enrollInAssignment()">
+                    <i class="fas fa-play mr-2"></i>Start Assignment
+                  </button>
+                  <button class="btn-secondary">
+                    <i class="fas fa-book mr-2"></i>View Instructions
+                  </button>
+                </div>
+              </div>
+
+              <div class="mt-6">
+                <h3 class="text-xl font-bold mb-4">Submission Guidelines</h3>
+                <div class="space-y-3">
+                  <div class="flex items-start gap-3">
+                    <div
+                      class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0"
+                    >
+                      <span class="text-purple-600 font-bold">1</span>
+                    </div>
+                    <div>
+                      <h4 class="font-semibold mb-1">
+                        Accept GitHub Classroom Assignment
+                      </h4>
+                      <p class="text-sm text-gray-600">
+                        Click "Start Assignment" to create your repository
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <div
+                      class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0"
+                    >
+                      <span class="text-purple-600 font-bold">2</span>
+                    </div>
+                    <div>
+                      <h4 class="font-semibold mb-1">
+                        Clone Repository Locally
+                      </h4>
+                      <p class="text-sm text-gray-600">
+                        Use VS Code or terminal to clone and work on your local
+                        machine
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <div
+                      class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0"
+                    >
+                      <span class="text-purple-600 font-bold">3</span>
+                    </div>
+                    <div>
+                      <h4 class="font-semibold mb-1">
+                        Complete the Assignment
+                      </h4>
+                      <p class="text-sm text-gray-600">
+                        Follow the requirements and best practices covered in
+                        videos
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <div
+                      class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0"
+                    >
+                      <span class="text-purple-600 font-bold">4</span>
+                    </div>
+                    <div>
+                      <h4 class="font-semibold mb-1">Commit and Push</h4>
+                      <p class="text-sm text-gray-600">
+                        Regular commits show your progress; push final code to
+                        submit
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <div
+                      class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0"
+                    >
+                      <span class="text-purple-600 font-bold">5</span>
+                    </div>
+                    <div>
+                      <h4 class="font-semibold mb-1">Deploy to GitHub Pages</h4>
+                      <p class="text-sm text-gray-600">
+                        Enable GitHub Pages in repository settings and submit
+                        live URL
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Q&A Tab -->
+            <div id="qna-tab" class="tab-content" style="display: none">
+              <div class="bg-green-50 border-l-4 border-green-600 p-4 mb-6">
+                <div class="flex items-center gap-2 mb-2">
+                  <i class="fas fa-check-circle text-green-600"></i>
+                  <h3 class="font-bold text-green-900">
+                    Prerequisites Completed!
+                  </h3>
+                </div>
+                <p class="text-green-800 text-sm">
+                  You've completed the required topics. You can now join the
+                  live Q&A session.
+                </p>
+              </div>
+
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                <div class="border border-gray-200 rounded-lg p-6">
+                  <div class="flex items-center gap-3 mb-4">
+                    <div
+                      class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center"
+                    >
+                      <i class="fas fa-video text-purple-600 text-xl"></i>
+                    </div>
+                    <div>
+                      <h3 class="font-bold text-lg">Live Q&A Session</h3>
+                      <p class="text-sm text-gray-600">
+                        Interactive discussion with instructor
+                      </p>
+                    </div>
+                  </div>
+                  <div class="space-y-3 mb-4">
+                    <div class="flex items-center gap-2 text-sm">
+                      <i class="fas fa-calendar text-gray-400"></i>
+                      <span>Friday, February 14, 2026</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-sm">
+                      <i class="fas fa-clock text-gray-400"></i>
+                      <span>4:00 PM - 5:30 PM IST</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-sm">
+                      <i class="fas fa-user text-gray-400"></i>
+                      <span>Prof. Vijay VJ</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-sm">
+                      <i class="fas fa-users text-gray-400"></i>
+                      <span>32 students enrolled</span>
+                    </div>
+                  </div>
+                  <button class="btn-primary w-full">
+                    <i class="fas fa-sign-in-alt mr-2"></i>Join Q&A Session
+                  </button>
+                </div>
+
+                <div class="border border-gray-200 rounded-lg p-6">
+                  <h3 class="font-bold text-lg mb-4">Session Agenda</h3>
+                  <ul class="space-y-3">
+                    <li class="flex items-start gap-3">
+                      <i class="fas fa-chevron-right text-purple-600 mt-1"></i>
+                      <span>Review common challenges in the assignment</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                      <i class="fas fa-chevron-right text-purple-600 mt-1"></i>
+                      <span>Best practices for responsive design</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                      <i class="fas fa-chevron-right text-purple-600 mt-1"></i>
+                      <span>CSS Grid vs Flexbox - when to use what</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                      <i class="fas fa-chevron-right text-purple-600 mt-1"></i>
+                      <span>GitHub Pages deployment troubleshooting</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                      <i class="fas fa-chevron-right text-purple-600 mt-1"></i>
+                      <span>Open Q&A - Ask anything!</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Past Sessions -->
+              <h3 class="text-xl font-bold mb-4">Previous Sessions</h3>
+              <div class="space-y-4">
+                <div
+                  class="border border-gray-200 rounded-lg p-4 flex items-center justify-between"
+                >
+                  <div>
+                    <h4 class="font-semibold mb-1">
+                      CSS Styling & Layout - Q&A
+                    </h4>
+                    <p class="text-sm text-gray-600">
+                      <i class="fas fa-calendar mr-2"></i>February 5, 2026
+                      <span class="mx-2">•</span>
+                      <i class="fas fa-clock mr-2"></i>90 minutes
+                    </p>
+                  </div>
+                  <button
+                    class="text-purple-600 font-semibold hover:text-purple-700"
+                  >
+                    <i class="fas fa-play-circle mr-2"></i>Watch Recording
+                  </button>
+                </div>
+                <div
+                  class="border border-gray-200 rounded-lg p-4 flex items-center justify-between"
+                >
+                  <div>
+                    <h4 class="font-semibold mb-1">HTML Fundamentals - Q&A</h4>
+                    <p class="text-sm text-gray-600">
+                      <i class="fas fa-calendar mr-2"></i>February 1, 2026
+                      <span class="mx-2">•</span>
+                      <i class="fas fa-clock mr-2"></i>60 minutes
+                    </p>
+                  </div>
+                  <button
+                    class="text-purple-600 font-semibold hover:text-purple-700"
+                  >
+                    <i class="fas fa-play-circle mr-2"></i>Watch Recording
+                  </button>
+                </div>
+              </div>
+
+              <!-- Locked Example (for topics not yet completed) -->
+              <!-- <div class="qna-locked">
+                <div class="bg-orange-50 border-l-4 border-orange-400 p-4 mb-6">
+                  <div class="flex items-center gap-2 mb-2">
+                    <i class="fas fa-lock text-orange-400"></i>
+                    <h3 class="font-bold text-orange-900">Prerequisites Not Completed</h3>
+                  </div>
+                  <p class="text-orange-800 text-sm">
+                    Complete the required topics and assignments to unlock Q&A sessions.
+                  </p>
+                </div>
+              </div> -->
+            </div>
+          </div>
+
+          <!-- Navigation Buttons -->
+          <div
+            class="flex items-center justify-between mt-8 pt-6 border-t border-gray-200"
+          >
+            <button class="btn-secondary">
+              <i class="fas fa-arrow-left mr-2"></i>Previous Topic
+            </button>
+            <button class="btn-primary">
+              Next Topic
+              <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      // Tab switching functionality
+      function showTab(tabName) {
+        // Hide all tabs
+        document.querySelectorAll(".tab-content").forEach((tab) => {
+          tab.style.display = "none";
+        });
+
+        // Remove active class from all buttons
+        document.querySelectorAll(".tab-button").forEach((btn) => {
+          btn.classList.remove("active");
+        });
+
+        // Show selected tab
+        document.getElementById(tabName + "-tab").style.display = "block";
+
+        // Add active class to clicked button
+        event.target.classList.add("active");
+      }
+
+      // Topic switching in sidebar
+      document.querySelectorAll(".topic-item").forEach((item) => {
+        item.addEventListener("click", function () {
+          // Remove active class from all topics
+          document.querySelectorAll(".topic-item").forEach((t) => {
+            t.classList.remove("active");
+          });
+          // Add active class to clicked topic
+          this.classList.add("active");
+        });
+      });
+
+      // Mark video as watched
+      function markVideoComplete() {
+        document.getElementById("video-status").textContent = "Watched ✓";
+        document.getElementById("video-status").classList.add("text-green-600");
+        alert("Video marked as watched! Great job!");
+      }
+
+      // Enroll in assignment
+      function enrollInAssignment() {
+        alert("Redirecting to GitHub Classroom to accept assignment...");
+        // In real implementation, this would call GitHub Classroom API
+      }
+
+      // Initialize counts
+      document.addEventListener("DOMContentLoaded", function () {
+        const completedCount = document.querySelectorAll(
+          ".topic-item.completed",
+        ).length;
+        const totalCount = document.querySelectorAll(".topic-item").length;
+        const percentage = Math.round((completedCount / totalCount) * 100);
+
+        document.getElementById("completed-count").textContent = completedCount;
+        document.getElementById("total-count").textContent = totalCount;
+        document.getElementById("progress-percentage").textContent = percentage;
+        document.getElementById("progress-bar").style.width = percentage + "%";
+      });
+    </script>
+  </body>
+</html>

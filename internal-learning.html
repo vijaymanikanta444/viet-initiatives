@@ -1,0 +1,1391 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Internal Learning Portal Proposal | VIET</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="https://viet.edu.in/img/footer-imgs/viet-logo.png"
+      type="image/png"
+    />
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --udemy-purple: #a435f0;
+        --udemy-purple-dark: #8710d8;
+        --udemy-dark: #1c1d1f;
+        --udemy-gray: #2d2f31;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: linear-gradient(135deg, #0d0221 0%, #1a0933 100%);
+        color: #fff;
+        margin: 0;
+        overflow: hidden;
+        overflow-x: hidden;
+      }
+
+      .slides {
+        height: 100vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        scroll-snap-type: y mandatory;
+        scroll-behavior: smooth;
+      }
+
+      .slide {
+        min-height: 100vh;
+        height: 100vh;
+        scroll-snap-align: start;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 0;
+        position: relative;
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+        overflow: hidden;
+      }
+
+      .slide.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .slide-content {
+        max-width: 1200px;
+        width: 100%;
+        z-index: 10;
+        overflow-y: auto;
+        max-height: calc(100vh - 200px);
+        padding: 0 2rem;
+      }
+
+      .slide-content::-webkit-scrollbar {
+        width: 4px;
+      }
+
+      .slide-content::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .slide-content::-webkit-scrollbar-thumb {
+        background: rgba(164, 53, 240, 0.5);
+        border-radius: 2px;
+      }
+
+      .slide-number {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        background: rgba(164, 53, 240, 0.2);
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+      }
+
+      .gradient-text {
+        background: linear-gradient(135deg, #a435f0 0%, #ec5252 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 1rem;
+        padding: 2rem;
+        transition: all 0.3s ease;
+      }
+
+      .card:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: var(--udemy-purple);
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(164, 53, 240, 0.3);
+      }
+
+      .phase-card {
+        background: linear-gradient(
+          135deg,
+          rgba(164, 53, 240, 0.1) 0%,
+          rgba(236, 82, 82, 0.1) 100%
+        );
+        border-left: 4px solid var(--udemy-purple);
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .benefit-item {
+        display: flex;
+        align-items: start;
+        gap: 1rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 0.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .benefit-icon {
+        width: 48px;
+        height: 48px;
+        background: linear-gradient(
+          135deg,
+          var(--udemy-purple) 0%,
+          var(--udemy-purple-dark) 100%
+        );
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .stat-card {
+        background: linear-gradient(
+          135deg,
+          rgba(164, 53, 240, 0.2) 0%,
+          rgba(236, 82, 82, 0.2) 100%
+        );
+        padding: 2rem;
+        border-radius: 1rem;
+        text-align: center;
+        border: 1px solid rgba(164, 53, 240, 0.3);
+      }
+
+      .stat-number {
+        font-size: 3rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #a435f0 0%, #ec5252 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .tech-stack {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+        margin: 2rem 0;
+      }
+
+      .tech-item {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .tech-item:hover {
+        border-color: var(--udemy-purple);
+        transform: scale(1.05);
+      }
+
+      .timeline {
+        position: relative;
+        padding-left: 2rem;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(
+          180deg,
+          var(--udemy-purple) 0%,
+          transparent 100%
+        );
+      }
+
+      .timeline-item {
+        position: relative;
+        padding-bottom: 2rem;
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -2.5rem;
+        top: 0.5rem;
+        width: 1rem;
+        height: 1rem;
+        background: var(--udemy-purple);
+        border-radius: 50%;
+        border: 3px solid #0d0221;
+      }
+
+      .comparison-table {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin: 2rem 0;
+      }
+
+      .comparison-col {
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+      }
+
+      .comparison-col.before {
+        background: rgba(236, 82, 82, 0.1);
+        border: 1px solid rgba(236, 82, 82, 0.3);
+      }
+
+      .comparison-col.after {
+        background: rgba(92, 184, 92, 0.1);
+        border: 1px solid rgba(92, 184, 92, 0.3);
+      }
+
+      .roi-item {
+        background: rgba(92, 184, 92, 0.1);
+        border-left: 4px solid #5cb85c;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .logo-section {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .viet-logo {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 3px solid var(--udemy-purple);
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-in {
+        animation: fadeInUp 0.6s ease-out;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .feature-card {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 2rem;
+        border-radius: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .feature-card:hover {
+        border-color: var(--udemy-purple);
+        transform: translateY(-5px);
+      }
+
+      .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #a435f0 0%, #ec5252 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .progress {
+        position: fixed;
+        right: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+
+      .dot:hover {
+        background: rgba(164, 53, 240, 0.5);
+        transform: scale(1.2);
+      }
+
+      .dot.active {
+        background: var(--udemy-purple);
+        transform: scale(1.4);
+        box-shadow: 0 0 15px rgba(164, 53, 240, 0.8);
+      }
+
+      .phase-flow {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        overflow-x: auto;
+        padding: 2rem 0;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .phase-box {
+        min-width: 250px;
+        padding: 2rem 1.5rem;
+        border-radius: 1rem;
+        border: 2px solid;
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+        position: relative;
+        text-align: center;
+      }
+
+      .phase-box.green {
+        background: linear-gradient(
+          135deg,
+          rgba(34, 197, 94, 0.15) 0%,
+          rgba(34, 197, 94, 0.05) 100%
+        );
+        border-color: #22c55e;
+      }
+
+      .phase-box.purple {
+        background: linear-gradient(
+          135deg,
+          rgba(168, 85, 247, 0.15) 0%,
+          rgba(168, 85, 247, 0.05) 100%
+        );
+        border-color: #a855f7;
+      }
+
+      .phase-box.blue {
+        background: linear-gradient(
+          135deg,
+          rgba(59, 130, 246, 0.15) 0%,
+          rgba(59, 130, 246, 0.05) 100%
+        );
+        border-color: #3b82f6;
+      }
+
+      .phase-box.pink {
+        background: linear-gradient(
+          135deg,
+          rgba(236, 72, 153, 0.15) 0%,
+          rgba(236, 72, 153, 0.05) 100%
+        );
+        border-color: #ec4899;
+      }
+
+      .phase-box.yellow {
+        background: linear-gradient(
+          135deg,
+          rgba(251, 191, 36, 0.15) 0%,
+          rgba(251, 191, 36, 0.05) 100%
+        );
+        border-color: #fbbf24;
+      }
+
+      .phase-box:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(164, 53, 240, 0.2);
+      }
+
+      .phase-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .phase-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+
+      .phase-duration {
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .phase-tasks {
+        text-align: left;
+        font-size: 0.85rem;
+        line-height: 1.6;
+        color: #d1d5db;
+      }
+
+      .phase-tasks li {
+        margin-bottom: 0.5rem;
+      }
+
+      .phase-arrow {
+        font-size: 2rem;
+        color: rgba(164, 53, 240, 0.4);
+        flex-shrink: 0;
+        display: none;
+      }
+
+      @media (max-width: 1200px) {
+        .phase-flow {
+          gap: 1rem;
+        }
+
+        .phase-box {
+          min-width: 220px;
+          padding: 1.5rem 1rem;
+        }
+
+        .phase-arrow {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Progress Dots -->
+    <div class="progress">
+      <div class="dot" onclick="goToSlide(1)"></div>
+      <div class="dot" onclick="goToSlide(2)"></div>
+      <div class="dot" onclick="goToSlide(3)"></div>
+      <div class="dot" onclick="goToSlide(4)"></div>
+      <div class="dot" onclick="goToSlide(5)"></div>
+      <div class="dot" onclick="goToSlide(6)"></div>
+      <div class="dot" onclick="goToSlide(7)"></div>
+      <div class="dot" onclick="goToSlide(8)"></div>
+      <div class="dot" onclick="goToSlide(9)"></div>
+    </div>
+
+    <div class="slides" id="slides">
+      <!-- Slide 1: Title -->
+      <section class="slide" id="slide-1">
+        <div class="slide-number">1 / 9</div>
+
+        <!-- Header -->
+        <div
+          class="relative z-10 w-full p-8 flex justify-between items-center border-b border-gray-800 bg-[#0d0221]/80 backdrop-blur-sm"
+        >
+          <div class="flex items-center space-x-4">
+            <img
+              src="https://viet.edu.in/img/footer-imgs/viet-logo.png"
+              alt="VIET Logo"
+              class="h-12 w-12 rounded-full p-1"
+            />
+            <span class="text-2xl font-bold text-gray-400">•</span>
+            <i
+              class="fas fa-graduation-cap text-3xl"
+              style="color: #a435f0"
+            ></i>
+          </div>
+          <div
+            class="font-mono text-xs text-gray-400 border border-gray-700 rounded-full px-3 py-1"
+          >
+            <i class="fas fa-lightbulb mr-2"></i>Internal Learning Portal
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div
+          class="relative z-10 flex-1 flex flex-col justify-center items-center px-24"
+        >
+          <h1 class="text-6xl font-bold mb-6 text-center">
+            Internal <span class="gradient-text">Learning Portal</span>
+          </h1>
+          <h2 class="text-3xl font-light mb-8 text-gray-300 text-center">
+            Interactive React Learning Platform for Students
+          </h2>
+          <p class="text-xl text-gray-400 text-center max-w-3xl">
+            Strategic Initiative for Enhanced Learning & Student Engagement
+          </p>
+        </div>
+
+        <!-- Footer -->
+        <div
+          class="relative z-10 w-full px-24 py-8 border-t border-gray-800 bg-[#161b22]/50 backdrop-blur-md"
+        >
+          <div class="flex justify-between items-end">
+            <div>
+              <p
+                class="text-xs uppercase tracking-wider text-gray-500 font-semibold mb-1"
+              >
+                Presented By
+              </p>
+              <div class="flex items-center space-x-4">
+                <div
+                  class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-700 to-purple-600 flex items-center justify-center text-white font-bold border border-purple-500"
+                >
+                  <i class="fas fa-user"></i>
+                </div>
+                <div>
+                  <p class="text-white font-medium text-lg">
+                    Vijaya Manikanta Thikkani
+                  </p>
+                  <p class="text-sm text-gray-400">
+                    Department of Computer Science &amp; Engineering
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="text-xs text-gray-500 mb-1">Date</p>
+              <p class="text-gray-300 font-mono text-sm" id="dynamicDate">
+                February 8, 2026
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 2: Executive Summary -->
+      <section class="slide" id="slide-2">
+        <div class="slide-number">2 / 9</div>
+
+        <!-- Header -->
+        <div
+          class="relative z-10 w-full px-16 py-6 border-b border-gray-800 bg-[#0d0221]/80 backdrop-blur-sm flex justify-between items-center"
+        >
+          <h2 class="text-3xl font-bold">📋 Executive Summary</h2>
+          <div class="text-sm text-gray-400 font-mono">Strategic Overview</div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="relative z-10 flex-1 px-16 py-10 overflow-y-auto">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="card">
+              <h3 class="text-2xl font-bold mb-4 gradient-text">
+                <i class="fas fa-target mr-2"></i>Objective
+              </h3>
+              <p class="text-lg text-gray-300 leading-relaxed">
+                Create an interactive internal learning platform for students to
+                learn React JS and web technologies effectively through video
+                tutorials, coding assignments, and progress tracking.
+              </p>
+            </div>
+            <div class="card">
+              <h3 class="text-2xl font-bold mb-4 gradient-text">
+                <i class="fas fa-bullseye mr-2"></i>Goal
+              </h3>
+              <p class="text-lg text-gray-300 leading-relaxed">
+                Enhance student engagement, provide structured learning
+                pathways, and generate measurable outcomes that boost college
+                reputation and admission rates.
+              </p>
+            </div>
+            <div class="card">
+              <h3 class="text-2xl font-bold mb-4 gradient-text">
+                <i class="fas fa-users mr-2"></i>Target Audience
+              </h3>
+              <p class="text-lg text-gray-300 leading-relaxed">
+                Students (Primary), Faculty Members, and College Management
+                seeking data-driven insights on learning effectiveness.
+              </p>
+            </div>
+            <div class="card">
+              <h3 class="text-2xl font-bold mb-4 gradient-text">
+                <i class="fas fa-chart-line mr-2"></i>Impact
+              </h3>
+              <p class="text-lg text-gray-300 leading-relaxed">
+                Improved learning outcomes, higher placement readiness, YouTube
+                revenue generation, and enhanced college competitive
+                positioning.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+          class="relative z-10 w-full px-16 py-4 border-t border-gray-800 bg-[#161b22] flex justify-between items-center text-xs text-gray-500 font-mono"
+        >
+          <p>VIET // Internal Learning Portal</p>
+          <p>Slide 02/09</p>
+        </div>
+      </section>
+
+      <!-- Slide 3: Current Challenges -->
+      <section class="slide" id="slide-3">
+        <div class="slide-number">3 / 9</div>
+
+        <!-- Header -->
+        <div
+          class="relative z-10 w-full px-16 py-6 border-b border-gray-800 bg-[#0d0221]/80 backdrop-blur-sm flex justify-between items-center"
+        >
+          <h2 class="text-3xl font-bold">⚠️ Current Challenges</h2>
+          <div class="text-sm text-gray-400 font-mono">Problem Analysis</div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="relative z-10 flex-1 px-16 py-10 overflow-y-auto">
+          <div class="comparison-table">
+            <div class="comparison-col before">
+              <h3 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                <i class="fas fa-times-circle text-red-400"></i>
+                Without Portal
+              </h3>
+              <ul class="space-y-3 text-lg">
+                <li class="flex items-start gap-2">
+                  <i class="fas fa-minus text-red-400 mt-1"></i>
+                  <span
+                    >Fragmented learning resources scattered across
+                    platforms</span
+                  >
+                </li>
+                <li class="flex items-start gap-2">
+                  <i class="fas fa-minus text-red-400 mt-1"></i>
+                  <span>No structured learning pathway or prerequisites</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i class="fas fa-minus text-red-400 mt-1"></i>
+                  <span
+                    >Manual tracking of student progress and assignments</span
+                  >
+                </li>
+                <li class="flex items-start gap-2">
+                  <i class="fas fa-minus text-red-400 mt-1"></i>
+                  <span>Q&A sessions open to all, reducing effectiveness</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i class="fas fa-minus text-red-400 mt-1"></i>
+                  <span>Difficult to measure learning outcomes</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i class="fas fa-minus text-red-400 mt-1"></i>
+                  <span>Students lack motivation and engagement</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i class="fas fa-minus text-red-400 mt-1"></i>
+                  <span>No integration with industry tools (GitHub)</span>
+                </li>
+              </ul>
+            </div>
+            <div class="comparison-col after">
+              <h3 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                <i class="fas fa-check-circle text-green-400"></i>
+                With Portal
+              </h3>
+              <ul class="space-y-3 text-lg">
+                <li class="flex items-start gap-2">
+                  <i class="fas fa-check text-green-400 mt-1"></i>
+                  <span>Centralized platform with all learning resources</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i class="fas fa-check text-green-400 mt-1"></i>
+                  <span
+                    >Step-by-step curriculum with enforced prerequisites</span
+                  >
+                </li>
+                <li class="flex items-start gap-2">
+                  <i class="fas fa-check text-green-400 mt-1"></i>
+                  <span>Automatic progress tracking via GitHub Classroom</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i class="fas fa-check text-green-400 mt-1"></i>
+                  <span>Q&A eligibility based on topic completion</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i class="fas fa-check text-green-400 mt-1"></i>
+                  <span>Comprehensive analytics dashboard for insights</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i class="fas fa-check text-green-400 mt-1"></i>
+                  <span>Gamification with badges and leaderboards</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i class="fas fa-check text-green-400 mt-1"></i>
+                  <span>Real-world GitHub workflow experience</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+          class="relative z-10 w-full px-16 py-4 border-t border-gray-800 bg-[#161b22] flex justify-between items-center text-xs text-gray-500 font-mono"
+        >
+          <p>VIET // Internal Learning Portal</p>
+          <p>Slide 03/09</p>
+        </div>
+      </section>
+
+      <!-- Slide 4: Platform Features -->
+      <section class="slide" id="slide-4">
+        <div class="slide-number">4 / 9</div>
+
+        <!-- Header -->
+        <div
+          class="relative z-10 w-full px-16 py-6 border-b border-gray-800 bg-[#0d0221]/80 backdrop-blur-sm flex justify-between items-center"
+        >
+          <h2 class="text-3xl font-bold">✨ Platform Features</h2>
+          <div class="text-sm text-gray-400 font-mono">Core Capabilities</div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="relative z-10 flex-1 px-16 py-4">
+          <div class="feature-grid">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-video"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2">Video Tutorials</h3>
+              <p class="text-gray-400">
+                Curated YouTube videos embedded per topic with completion
+                tracking and playback analytics.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fab fa-github"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2">GitHub Classroom</h3>
+              <p class="text-gray-400">
+                Automated assignment creation, private repos per student, commit
+                tracking, and submission management.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2">Progress Tracking</h3>
+              <p class="text-gray-400">
+                Real-time dashboards showing topic completion, assignment
+                status, and learning milestones.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-comments"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2">Q&A Sessions</h3>
+              <p class="text-gray-400">
+                Live discussion sessions with eligibility control based on
+                prerequisite completion.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-trophy"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2">Gamification</h3>
+              <p class="text-gray-400">
+                Badges, leaderboards, and achievement tracking to boost student
+                motivation and engagement.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-lock"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2">SSO Authentication</h3>
+              <p class="text-gray-400">
+                Secure login with college email credentials and role-based
+                access control.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+          class="relative z-10 w-full px-16 py-4 border-t border-gray-800 bg-[#161b22] flex justify-between items-center text-xs text-gray-500 font-mono"
+        >
+          <p>VIET // Internal Learning Portal</p>
+          <p>Slide 04/09</p>
+        </div>
+      </section>
+
+      <!-- Slide 5: Implementation Roadmap -->
+      <section class="slide" id="slide-5">
+        <div class="slide-number">5 / 9</div>
+
+        <!-- Header -->
+        <div
+          class="relative z-10 w-full px-16 py-6 border-b border-gray-800 bg-[#0d0221]/80 backdrop-blur-sm flex justify-between items-center"
+        >
+          <h2 class="text-3xl font-bold">🚀 Implementation Roadmap</h2>
+          <div class="text-sm text-gray-400 font-mono">10-Week Timeline</div>
+        </div>
+
+        <!-- Main Content -->
+        <div
+          class="relative z-10 flex-1 px-16 py-10 flex flex-col items-center justify-center"
+        >
+          <div class="phase-flow">
+            <!-- Phase 1 -->
+            <div class="phase-box green">
+              <div class="phase-icon">🔧</div>
+              <div class="phase-title">GitHub Setup</div>
+              <div class="phase-duration">1 Week</div>
+              <ul class="phase-tasks">
+                <li>✓ Create Organization</li>
+                <li>✓ Configure Classroom</li>
+                <li>✓ Design Templates</li>
+              </ul>
+            </div>
+
+            <div class="phase-arrow">→</div>
+
+            <!-- Phase 2 -->
+            <div class="phase-box purple">
+              <div class="phase-icon">💻</div>
+              <div class="phase-title">Portal Development</div>
+              <div class="phase-duration">4 Weeks</div>
+              <ul class="phase-tasks">
+                <li>✓ Build Dashboard</li>
+                <li>✓ Auth System</li>
+                <li>✓ Analytics</li>
+              </ul>
+            </div>
+
+            <div class="phase-arrow">→</div>
+
+            <!-- Phase 3 -->
+            <div class="phase-box blue">
+              <div class="phase-icon">📹</div>
+              <div class="phase-title">Content Integration</div>
+              <div class="phase-duration">2 Weeks</div>
+              <ul class="phase-tasks">
+                <li>✓ Upload Videos</li>
+                <li>✓ Embed Content</li>
+                <li>✓ Track Completion</li>
+              </ul>
+            </div>
+
+            <div class="phase-arrow">→</div>
+
+            <!-- Phase 4 -->
+            <div class="phase-box pink">
+              <div class="phase-icon">💬</div>
+              <div class="phase-title">Q&A Management</div>
+              <div class="phase-duration">1 Week</div>
+              <ul class="phase-tasks">
+                <li>✓ Zoom Integration</li>
+                <li>✓ Access Control</li>
+                <li>✓ Recording Setup</li>
+              </ul>
+            </div>
+
+            <div class="phase-arrow">→</div>
+
+            <!-- Phase 5 -->
+            <div class="phase-box yellow">
+              <div class="phase-icon">📊</div>
+              <div class="phase-title">Analytics & Launch</div>
+              <div class="phase-duration">2 Weeks</div>
+              <ul class="phase-tasks">
+                <li>✓ Build Analytics</li>
+                <li>✓ Gamification</li>
+                <li>✓ Pilot Launch</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+          class="relative z-10 w-full px-16 py-4 border-t border-gray-800 bg-[#161b22] flex justify-between items-center text-xs text-gray-500 font-mono"
+        >
+          <p>VIET // Internal Learning Portal</p>
+          <p>Slide 05/09</p>
+        </div>
+      </section>
+
+      <!-- Slide 6: Benefits to College -->
+      <section class="slide" id="slide-6">
+        <div class="slide-number">6 / 9</div>
+
+        <!-- Header -->
+        <div
+          class="relative z-10 w-full px-16 py-6 border-b border-gray-800 bg-[#0d0221]/80 backdrop-blur-sm flex justify-between items-center"
+        >
+          <h2 class="text-3xl font-bold">🎯 Benefits to College</h2>
+          <div class="text-sm text-gray-400 font-mono">Institutional Value</div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="relative z-10 flex-1 px-16 py-10 overflow-y-auto">
+          <div class="space-y-4">
+            <div class="benefit-item">
+              <div class="benefit-icon">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-1">
+                  Enhanced Student Outcomes
+                </h3>
+                <p class="text-gray-400">
+                  Structured learning improves skill development, leading to
+                  better placement rates and higher package offers.
+                </p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-1">Improved Admission Rates</h3>
+                <p class="text-gray-400">
+                  Showcase advanced learning infrastructure during campus tours
+                  and admission campaigns to attract top students.
+                </p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">
+                <i class="fas fa-trophy"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-1">Competitive Advantage</h3>
+                <p class="text-gray-400">
+                  Stand out from other institutions with modern, tech-driven
+                  learning infrastructure similar to top universities.
+                </p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">
+                <i class="fab fa-youtube"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-1">
+                  YouTube Revenue Generation
+                </h3>
+                <p class="text-gray-400">
+                  College YouTube channel gains views from embedded tutorials,
+                  potentially generating monetization revenue.
+                </p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">
+                <i class="fas fa-analytics"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-1">Data-Driven Insights</h3>
+                <p class="text-gray-400">
+                  Analytics dashboard provides actionable insights on course
+                  effectiveness, student engagement, and learning gaps.
+                </p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">
+                <i class="fas fa-building"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-1">Industry Alignment</h3>
+                <p class="text-gray-400">
+                  GitHub workflow integration prepares students for real-world
+                  development practices, making them industry-ready.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+          class="relative z-10 w-full px-16 py-4 border-t border-gray-800 bg-[#161b22] flex justify-between items-center text-xs text-gray-500 font-mono"
+        >
+          <p>VIET // Internal Learning Portal</p>
+          <p>Slide 06/09</p>
+        </div>
+      </section>
+
+      <!-- Slide 7: Benefits to Students -->
+      <section class="slide" id="slide-7">
+        <div class="slide-number">7 / 9</div>
+
+        <!-- Header -->
+        <div
+          class="relative z-10 w-full px-16 py-6 border-b border-gray-800 bg-[#0d0221]/80 backdrop-blur-sm flex justify-between items-center"
+        >
+          <h2 class="text-3xl font-bold">👨‍🎓 Benefits to Students</h2>
+          <div class="text-sm text-gray-400 font-mono">Student Impact</div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="relative z-10 flex-1 px-16 py-10 overflow-y-auto">
+          <div class="space-y-4">
+            <div class="benefit-item">
+              <div class="benefit-icon">
+                <i class="fas fa-route"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-1">Structured Learning Path</h3>
+                <p class="text-gray-400">
+                  Clear progression from HTML to Advanced React with enforced
+                  prerequisites ensures solid foundation building.
+                </p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">
+                <i class="fas fa-laptop-code"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-1">Hands-On Coding Practice</h3>
+                <p class="text-gray-400">
+                  Local IDE workflow with GitHub integration builds real-world
+                  development skills and portfolio projects.
+                </p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">
+                <i class="fas fa-tachometer-alt"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-1">
+                  Real-Time Progress Tracking
+                </h3>
+                <p class="text-gray-400">
+                  Visual dashboards show learning progress, completed topics,
+                  and upcoming milestones for motivation.
+                </p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">
+                <i class="fas fa-comments"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-1">Quality Q&A Sessions</h3>
+                <p class="text-gray-400">
+                  Targeted discussions with only prepared students lead to
+                  deeper learning and better problem-solving.
+                </p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">
+                <i class="fas fa-briefcase"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-1">Portfolio Development</h3>
+                <p class="text-gray-400">
+                  GitHub-hosted projects serve as proof of skills for internship
+                  and job applications.
+                </p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-1">Learn at Your Own Pace</h3>
+                <p class="text-gray-400">
+                  24/7 access to videos and assignments allows flexible learning
+                  schedule without classroom constraints.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+          class="relative z-10 w-full px-16 py-4 border-t border-gray-800 bg-[#161b22] flex justify-between items-center text-xs text-gray-500 font-mono"
+        >
+          <p>VIET // Internal Learning Portal</p>
+          <p>Slide 07/09</p>
+        </div>
+      </section>
+
+      <!-- Slide 8: ROI & Impact Metrics -->
+      <section class="slide" id="slide-8">
+        <div class="slide-number">8 / 9</div>
+
+        <!-- Header -->
+        <div
+          class="relative z-10 w-full px-16 py-6 border-b border-gray-800 bg-[#0d0221]/80 backdrop-blur-sm flex justify-between items-center"
+        >
+          <h2 class="text-3xl font-bold">💰 ROI & Impact Metrics</h2>
+          <div class="text-sm text-gray-400 font-mono">Expected Outcomes</div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="relative z-10 flex-1 px-16 py-10 overflow-y-auto">
+          <div class="stats-grid mb-8">
+            <div class="stat-card">
+              <i class="fas fa-users text-4xl mb-3"></i>
+              <div class="stat-number">500+</div>
+              <p class="text-gray-300">Students Enrolled (Year 1)</p>
+            </div>
+            <div class="stat-card">
+              <i class="fas fa-percentage text-4xl mb-3"></i>
+              <div class="stat-number">40%</div>
+              <p class="text-gray-300">Expected Completion Rate</p>
+            </div>
+            <div class="stat-card">
+              <i class="fas fa-arrow-up text-4xl mb-3"></i>
+              <div class="stat-number">25%</div>
+              <p class="text-gray-300">Placement Rate Increase</p>
+            </div>
+            <div class="stat-card">
+              <i class="fas fa-dollar-sign text-4xl mb-3"></i>
+              <div class="stat-number">₹5L+</div>
+              <p class="text-gray-300">Avg Package Improvement</p>
+            </div>
+          </div>
+
+          <h3 class="text-3xl font-bold mb-4">Measurable Outcomes</h3>
+          <div class="space-y-3">
+            <div class="roi-item">
+              <h4 class="font-bold text-lg mb-1">
+                <i class="fas fa-check-circle mr-2"></i>Student Engagement
+              </h4>
+              <p class="text-gray-300">
+                Track video completion rates, assignment submissions, and Q&A
+                attendance to measure active learning.
+              </p>
+            </div>
+            <div class="roi-item">
+              <h4 class="font-bold text-lg mb-1">
+                <i class="fas fa-check-circle mr-2"></i>Skill Development
+              </h4>
+              <p class="text-gray-300">
+                Monitor GitHub commits, project quality, and topic completion to
+                assess technical growth.
+              </p>
+            </div>
+            <div class="roi-item">
+              <h4 class="font-bold text-lg mb-1">
+                <i class="fas fa-check-circle mr-2"></i>Brand Value
+              </h4>
+              <p class="text-gray-300">
+                Showcase portal during admissions, leading to 15-20% increase in
+                applications from tech-savvy students.
+              </p>
+            </div>
+            <div class="roi-item">
+              <h4 class="font-bold text-lg mb-1">
+                <i class="fas fa-check-circle mr-2"></i>Revenue Impact
+              </h4>
+              <p class="text-gray-300">
+                YouTube channel monetization + increased admissions = potential
+                ₹10-15L annual benefit.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+          class="relative z-10 w-full px-16 py-4 border-t border-gray-800 bg-[#161b22] flex justify-between items-center text-xs text-gray-500 font-mono"
+        >
+          <p>VIET // Internal Learning Portal</p>
+          <p>Slide 08/09</p>
+        </div>
+      </section>
+
+      <!-- Slide 9: Call to Action -->
+      <section class="slide" id="slide-9">
+        <div class="slide-number">9 / 9</div>
+
+        <!-- Header -->
+        <div
+          class="relative z-10 w-full px-16 py-6 border-b border-gray-800 bg-[#0d0221]/80 backdrop-blur-sm flex justify-between items-center"
+        >
+          <h2 class="text-3xl font-bold">🚀 Call to Action</h2>
+          <div class="text-sm text-gray-400 font-mono">Next Steps</div>
+        </div>
+
+        <!-- Main Content -->
+        <div
+          class="relative z-10 flex-1 px-16 py-10 flex items-center justify-center"
+        >
+          <div class="grid grid-cols-2 gap-10 w-full max-w-5xl">
+            <!-- Left: Required Approvals -->
+            <div class="flex flex-col justify-center space-y-6">
+              <h3 class="text-4xl font-bold text-white">
+                Required <span class="gradient-text">Approvals</span>
+              </h3>
+              <p class="text-gray-300 text-lg leading-relaxed">
+                To move forward with the Internal Learning Portal, we need
+                approval on the following items:
+              </p>
+              <div class="space-y-3">
+                <div
+                  class="flex items-center gap-3 p-3 bg-black bg-opacity-30 rounded"
+                >
+                  <i class="fas fa-check-square text-2xl text-purple-400"></i>
+                  <span class="text-gray-200"
+                    >GitHub Organization creation</span
+                  >
+                </div>
+                <div
+                  class="flex items-center gap-3 p-3 bg-black bg-opacity-30 rounded"
+                >
+                  <i class="fas fa-check-square text-2xl text-purple-400"></i>
+                  <span class="text-gray-200">YouTube channel integration</span>
+                </div>
+                <div
+                  class="flex items-center gap-3 p-3 bg-black bg-opacity-30 rounded"
+                >
+                  <i class="fas fa-check-square text-2xl text-purple-400"></i>
+                  <span class="text-gray-200">Student onboarding sessions</span>
+                </div>
+              </div>
+              <p class="text-gray-400 text-sm">
+                You can also share feedback anonymously using the QR code.
+              </p>
+            </div>
+            <!-- Right: QR Code -->
+            <div class="flex items-center justify-center">
+              <div class="card text-center">
+                <p class="text-gray-300 text-sm mb-4 font-mono uppercase">
+                  Scan for Feedback
+                </p>
+                <div
+                  class="w-56 h-56 bg-white rounded-xl p-3 mx-auto flex items-center justify-center"
+                >
+                  <img
+                    src="assets/feedback-qr/internal_Learning_portal.png"
+                    alt="Feedback QR Code"
+                    class="w-full h-full object-contain"
+                  />
+                </div>
+                <p class="text-gray-400 text-xs mt-4">
+                  Your feedback helps us improve and tailor the portal to better
+                  serve our students and faculty. Thank you for your input!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+          class="relative z-10 w-full px-16 py-4 border-t border-gray-800 bg-[#161b22] flex justify-between items-center text-xs text-gray-500 font-mono"
+        >
+          <p>VIET // Internal Learning Portal</p>
+          <p>Slide 09/09</p>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const slides = document.querySelectorAll(".slide");
+      const dots = document.querySelectorAll(".dot");
+
+      function setActive(index) {
+        slides.forEach((s, i) => {
+          s.classList.toggle("active", i === index);
+          dots[i].classList.toggle("active", i === index);
+        });
+      }
+
+      function goToSlide(n) {
+        slides[n - 1].scrollIntoView({ behavior: "smooth" });
+      }
+
+      // Intersection Observer for scroll-based activation
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActive([...slides].indexOf(entry.target));
+            }
+          });
+        },
+        { threshold: 0.6 },
+      );
+
+      slides.forEach((s) => observer.observe(s));
+
+      // Dynamic date
+      const today = new Date();
+      const monthNames = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+      const month = monthNames[today.getMonth()];
+      const day = today.getDate();
+      const year = today.getFullYear();
+      document.getElementById("dynamicDate").textContent =
+        `${month} ${day}, ${year}`;
+
+      // Keyboard navigation
+      window.addEventListener("keydown", (e) => {
+        const current = [...slides].findIndex((s) =>
+          s.classList.contains("active"),
+        );
+        if (e.key === "ArrowDown" && current < slides.length - 1) {
+          slides[current + 1].scrollIntoView({ behavior: "smooth" });
+        }
+        if (e.key === "ArrowUp" && current > 0) {
+          slides[current - 1].scrollIntoView({ behavior: "smooth" });
+        }
+      });
+    </script>
+  </body>
+</html>
