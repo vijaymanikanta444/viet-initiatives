@@ -1,0 +1,1881 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Official College YouTube Channel | VIET</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background: #0d1117;
+        color: #c9d1d9;
+        margin: 0;
+        overflow: hidden;
+        overflow-x: hidden;
+      }
+
+      .font-mono {
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .slides {
+        height: 100vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        scroll-snap-type: y mandatory;
+        scroll-behavior: smooth;
+      }
+
+      .slide {
+        height: 100vh;
+        scroll-snap-align: start;
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+        overflow: hidden;
+        width: 100%;
+      }
+
+      .slide.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .progress {
+        position: fixed;
+        right: 24px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #30363d;
+        transition: all 0.3s;
+      }
+
+      .dot.active {
+        background: #ff0000;
+        transform: scale(1.4);
+        box-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+      }
+
+      .glass-panel-strong {
+        background: rgba(22, 27, 34, 0.85);
+        backdrop-filter: blur(12px);
+        border: 1px solid #30363d;
+      }
+
+      .primary-btn {
+        background: #ff0000;
+        color: white;
+        border: none;
+        transition: all 0.3s;
+      }
+
+      .primary-btn:hover {
+        background: #cc0000;
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+  <body class="bg-[#0d1117]">
+    <div class="slides" id="slides">
+      <!-- ================= SLIDE 1: TITLE ================= -->
+      <section class="slide relative flex flex-col justify-between">
+        <div
+          class="absolute inset-0 z-0 opacity-20"
+          style="
+            background-image: url(&quot;data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%2330363d'/%3E%3C/svg%3E&quot;);
+          "
+        ></div>
+        <div
+          class="absolute top-[-100px] right-[-100px] w-[500px] h-[500px] bg-red-600 opacity-10 rounded-full blur-3xl z-0"
+        ></div>
+        <div
+          class="absolute bottom-[-100px] left-[-100px] w-[400px] h-[400px] bg-red-500 opacity-10 rounded-full blur-3xl z-0"
+        ></div>
+
+        <!-- Header -->
+        <div
+          class="relative z-10 w-full px-16 py-8 flex justify-between items-center border-b border-gray-800 bg-[#0d1117]/80 backdrop-blur-sm"
+        >
+          <div class="flex items-center space-x-4">
+            <img
+              src="https://viet.edu.in/img/footer-imgs/viet-logo.png"
+              alt="VIET Logo"
+              class="h-12 w-12 rounded-full p-1"
+            />
+            <div>
+              <h1 class="text-white font-bold text-2xl">
+                Official College YouTube Channel
+              </h1>
+              <p class="text-gray-400 text-sm">Strategic Initiative</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="text-xs text-gray-500 font-mono uppercase tracking-wider">
+              Visakha Institute of Engineering &amp; Technology
+            </p>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div
+          class="relative z-10 flex-1 px-16 py-8 flex items-center justify-center"
+        >
+          <div class="text-center max-w-4xl">
+            <div
+              class="inline-flex items-center justify-center w-24 h-24 rounded-2xl bg-red-600 mb-8 shadow-2xl"
+            >
+              <i class="fab fa-youtube text-white text-5xl"></i>
+            </div>
+            <h2 class="text-6xl font-bold text-white mb-4">
+              Official College YouTube Channel
+            </h2>
+            <p class="text-3xl text-red-500 mb-6 font-semibold">
+              A Knowledge, Branding & Revenue Platform
+            </p>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              Leveraging student & faculty expertise<br />
+              to build a sustainable digital learning ecosystem
+            </p>
+
+            <div class="mt-12">
+              <p class="text-gray-400 text-sm mb-2">Presented by</p>
+              <p class="text-white text-xl font-semibold">
+                Vijaya Manikanta Thikkani
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+          class="relative z-10 w-full px-16 py-4 border-t border-gray-800 bg-[#161b22] flex justify-between items-center text-xs text-gray-500 font-mono"
+        >
+          <p>VIET // YouTube Initiative</p>
+          <p>Slide 01/13</p>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 2: PROBLEM & OPPORTUNITY ================= -->
+      <section class="slide relative flex flex-col justify-between">
+        <div
+          class="absolute inset-0 z-0 opacity-10"
+          style="
+            background-image: url(&quot;data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23ff0000'/%3E%3C/svg%3E&quot;);
+          "
+        ></div>
+
+        <!-- Header -->
+        <div
+          class="relative z-10 w-full px-16 py-6 flex justify-between items-center border-b border-gray-800 bg-[#0d1117]"
+        >
+          <div class="flex items-center space-x-4">
+            <div
+              class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center"
+            >
+              <i class="fas fa-exclamation-triangle text-white text-xl"></i>
+            </div>
+            <div class="flex flex-col">
+              <h1 class="text-white font-bold tracking-tight text-xl">
+                Problem & Opportunity - WHY
+              </h1>
+              <p
+                class="text-xs text-gray-500 font-mono uppercase tracking-wider"
+              >
+                Why We Need This Platform
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div
+          class="relative z-10 flex-1 px-16 py-8 flex flex-col justify-center"
+        >
+          <div class="grid grid-cols-2 gap-10 max-w-6xl">
+            <!-- Current Situation -->
+            <div class="glass-panel-strong rounded-xl p-8">
+              <h3
+                class="text-red-500 font-bold text-2xl mb-6 flex items-center"
+              >
+                <i class="fas fa-times-circle mr-3"></i> Current Situation
+              </h3>
+              <ul class="space-y-4 text-gray-300 text-base">
+                <li class="flex items-start">
+                  <i class="fas fa-angle-right text-red-500 mr-3 mt-1"></i>
+                  <span>Students spend significant time on social media</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-angle-right text-red-500 mr-3 mt-1"></i>
+                  <span>Faculty repeatedly explain the same topics & labs</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-angle-right text-red-500 mr-3 mt-1"></i>
+                  <span
+                    >College knowledge is not preserved or scaled
+                    digitally</span
+                  >
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-angle-right text-red-500 mr-3 mt-1"></i>
+                  <span>Limited long-term publicity impact</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Opportunity -->
+            <div class="glass-panel-strong rounded-xl p-8">
+              <h3
+                class="text-green-500 font-bold text-2xl mb-6 flex items-center"
+              >
+                <i class="fas fa-lightbulb mr-3"></i> Opportunity
+              </h3>
+              <div
+                class="bg-gradient-to-r from-green-900/20 to-green-600/10 border border-green-700 rounded-lg p-6"
+              >
+                <p class="text-white text-lg leading-relaxed">
+                  Convert existing
+                  <span class="text-green-400 font-bold">time</span>,
+                  <span class="text-green-400 font-bold">talent</span>, and
+                  <span class="text-green-400 font-bold">content</span><br />
+                  into <span class="text-green-400 font-bold">learning</span>,
+                  <span class="text-green-400 font-bold">visibility</span>, and
+                  <span class="text-green-400 font-bold">value</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+          class="relative z-10 w-full px-16 py-4 border-t border-gray-800 bg-[#161b22] flex justify-between items-center text-xs text-gray-500 font-mono"
+        >
+          <p>VIET // Problem Statement</p>
+          <p>Slide 02/13</p>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 3: PROPOSED SOLUTION ================= -->
+      <section class="slide relative flex flex-col justify-between">
+        <!-- Header -->
+        <div
+          class="relative z-10 w-full px-16 py-6 flex justify-between items-center border-b border-gray-800 bg-[#0d1117]"
+        >
+          <div class="flex items-center space-x-4">
+            <div
+              class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center"
+            >
+              <i class="fas fa-check-circle text-white text-xl"></i>
+            </div>
+            <div class="flex flex-col">
+              <h1 class="text-white font-bold tracking-tight text-xl">
+                Proposed Solution - HOW
+              </h1>
+              <p
+                class="text-xs text-gray-500 font-mono uppercase tracking-wider"
+              >
+                What We Are Building
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div
+          class="relative z-10 flex-1 px-16 py-8 flex items-center justify-center"
+        >
+          <div class="max-w-5xl w-full">
+            <h2 class="text-4xl font-bold text-white mb-8 text-center">
+              An Official College-Owned YouTube Channel
+            </h2>
+
+            <div class="grid grid-cols-3 gap-6 mb-8">
+              <!-- Knowledge Database -->
+              <div class="glass-panel-strong rounded-xl p-6 text-center">
+                <div
+                  class="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center mx-auto mb-4"
+                >
+                  <i class="fas fa-book text-white text-2xl"></i>
+                </div>
+                <h3 class="text-red-500 font-bold text-lg mb-3">
+                  📘 Video Knowledge Database
+                </h3>
+                <p class="text-gray-300 text-sm">
+                  Preserve and scale academic content digitally for reuse
+                </p>
+              </div>
+
+              <!-- Branding Platform -->
+              <div class="glass-panel-strong rounded-xl p-6 text-center">
+                <div
+                  class="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center mx-auto mb-4"
+                >
+                  <i class="fas fa-bullhorn text-white text-2xl"></i>
+                </div>
+                <h3 class="text-red-500 font-bold text-lg mb-3">
+                  📣 Digital Branding & Outreach
+                </h3>
+                <p class="text-gray-300 text-sm">
+                  Increase institutional visibility and reputation
+                </p>
+              </div>
+
+              <!-- Revenue Asset -->
+              <div class="glass-panel-strong rounded-xl p-6 text-center">
+                <div
+                  class="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center mx-auto mb-4"
+                >
+                  <i class="fas fa-dollar-sign text-white text-2xl"></i>
+                </div>
+                <h3 class="text-red-500 font-bold text-lg mb-3">
+                  💰 Revenue-Generating Asset
+                </h3>
+                <p class="text-gray-300 text-sm">
+                  Sustainable monetization through YouTube ads
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+          class="relative z-10 w-full px-16 py-4 border-t border-gray-800 bg-[#161b22] flex justify-between items-center text-xs text-gray-500 font-mono"
+        >
+          <p>VIET // Solution Overview</p>
+          <p>Slide 03/13</p>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 4: VISION & OBJECTIVES ================= -->
+      <section class="slide relative flex flex-col justify-between">
+        <!-- Header -->
+        <div
+          class="relative z-10 w-full px-16 py-6 flex justify-between items-center border-b border-gray-800 bg-[#0d1117]"
+        >
+          <div class="flex items-center space-x-4">
+            <div
+              class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center"
+            >
+              <i class="fas fa-bullseye text-white text-xl"></i>
+            </div>
+            <div class="flex flex-col">
+              <h1 class="text-white font-bold tracking-tight text-xl">
+                Vision & Objectives
+              </h1>
+              <p
+                class="text-xs text-gray-500 font-mono uppercase tracking-wider"
+              >
+                Our Goals
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div
+          class="relative z-10 flex-1 px-16 py-8 flex items-center justify-center"
+        >
+          <div class="max-w-5xl w-full">
+            <!-- Vision -->
+            <div class="glass-panel-strong rounded-xl p-8 mb-8">
+              <h3
+                class="text-red-500 font-bold text-2xl mb-4 flex items-center"
+              >
+                <i class="fas fa-eye mr-3"></i> Vision
+              </h3>
+              <p class="text-white text-xl">
+                Position the college as a
+                <span class="text-red-500 font-bold"
+                  >recognized digital knowledge hub</span
+                >
+              </p>
+            </div>
+
+            <!-- Objectives -->
+            <div class="glass-panel-strong rounded-xl p-8">
+              <h3 class="text-white font-bold text-2xl mb-6">Key Objectives</h3>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-check-circle text-red-500 text-xl mt-1"></i>
+                  <div>
+                    <h4 class="text-white font-semibold mb-1">
+                      Improve Learning Accessibility
+                    </h4>
+                    <p class="text-gray-400 text-sm">
+                      On-demand video access for students
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-check-circle text-red-500 text-xl mt-1"></i>
+                  <div>
+                    <h4 class="text-white font-semibold mb-1">
+                      Reduce Faculty Repetition
+                    </h4>
+                    <p class="text-gray-400 text-sm">
+                      Reusable teaching content
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-check-circle text-red-500 text-xl mt-1"></i>
+                  <div>
+                    <h4 class="text-white font-semibold mb-1">
+                      Increase Visibility
+                    </h4>
+                    <p class="text-gray-400 text-sm">
+                      Digital presence & reputation
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-check-circle text-red-500 text-xl mt-1"></i>
+                  <div>
+                    <h4 class="text-white font-semibold mb-1">
+                      Generate Revenue
+                    </h4>
+                    <p class="text-gray-400 text-sm">
+                      Sustainable monetization
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-check-circle text-red-500 text-xl mt-1"></i>
+                  <div>
+                    <h4 class="text-white font-semibold mb-1">
+                      Create Digital Assets
+                    </h4>
+                    <p class="text-gray-400 text-sm">
+                      Long-term reusable resources
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+          class="relative z-10 w-full px-16 py-4 border-t border-gray-800 bg-[#161b22] flex justify-between items-center text-xs text-gray-500 font-mono"
+        >
+          <p>VIET // Vision & Goals</p>
+          <p>Slide 04/13</p>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 5: BENEFITS TO STAKEHOLDERS ================= -->
+      <section class="slide relative flex flex-col justify-between">
+        <!-- Header -->
+        <div
+          class="relative z-10 w-full px-16 py-6 flex justify-between items-center border-b border-gray-800 bg-[#0d1117]"
+        >
+          <div class="flex items-center space-x-4">
+            <div
+              class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center"
+            >
+              <i class="fas fa-users text-white text-xl"></i>
+            </div>
+            <div class="flex flex-col">
+              <h1 class="text-white font-bold tracking-tight text-xl">
+                Benefits to Stakeholders
+              </h1>
+              <p
+                class="text-xs text-gray-500 font-mono uppercase tracking-wider"
+              >
+                Value for Everyone
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div
+          class="relative z-10 flex-1 px-16 py-6 flex items-center justify-center overflow-y-auto"
+        >
+          <div class="max-w-6xl w-full">
+            <div class="grid grid-cols-4 gap-4">
+              <!-- Students -->
+              <div class="glass-panel-strong rounded-xl p-5">
+                <div
+                  class="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center mb-3"
+                >
+                  <i class="fas fa-graduation-cap text-white text-xl"></i>
+                </div>
+                <h3 class="text-white font-bold text-base mb-3">Students</h3>
+                <ul class="space-y-2 text-gray-300 text-xs">
+                  <li class="flex items-start">
+                    <i
+                      class="fas fa-check text-red-500 mr-2 mt-0.5 shrink-0 text-xs"
+                    ></i>
+                    <span>Learn through engaging video formats</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i
+                      class="fas fa-check text-red-500 mr-2 mt-0.5 shrink-0 text-xs"
+                    ></i>
+                    <span>Build public portfolios & confidence</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i
+                      class="fas fa-check text-red-500 mr-2 mt-0.5 shrink-0 text-xs"
+                    ></i>
+                    <span>Gain communication & content skills</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i
+                      class="fas fa-star text-red-500 mr-2 mt-0.5 shrink-0 text-xs"
+                    ></i>
+                    <span
+                      ><strong>Add weight to resume</strong> with published
+                      content</span
+                    >
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Faculty -->
+              <div class="glass-panel-strong rounded-xl p-5">
+                <div
+                  class="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center mb-3"
+                >
+                  <i class="fas fa-chalkboard-user text-white text-xl"></i>
+                </div>
+                <h3 class="text-white font-bold text-base mb-3">Faculty</h3>
+                <ul class="space-y-2 text-gray-300 text-xs">
+                  <li class="flex items-start">
+                    <i
+                      class="fas fa-check text-red-500 mr-2 mt-0.5 shrink-0 text-xs"
+                    ></i>
+                    <span>Reusable teaching content</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i
+                      class="fas fa-check text-red-500 mr-2 mt-0.5 shrink-0 text-xs"
+                    ></i>
+                    <span>Reduced repetition</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i
+                      class="fas fa-check text-red-500 mr-2 mt-0.5 shrink-0 text-xs"
+                    ></i>
+                    <span>Academic digital presence</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- College -->
+              <div class="glass-panel-strong rounded-xl p-5">
+                <div
+                  class="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center mb-3"
+                >
+                  <i class="fas fa-building text-white text-xl"></i>
+                </div>
+                <h3 class="text-white font-bold text-base mb-3">College</h3>
+                <ul class="space-y-2 text-gray-300 text-xs">
+                  <li class="flex items-start">
+                    <i
+                      class="fas fa-check text-red-500 mr-2 mt-0.5 shrink-0 text-xs"
+                    ></i>
+                    <span>Strong mouth publicity</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i
+                      class="fas fa-check text-red-500 mr-2 mt-0.5 shrink-0 text-xs"
+                    ></i>
+                    <span>Improved admissions reach</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i
+                      class="fas fa-check text-red-500 mr-2 mt-0.5 shrink-0 text-xs"
+                    ></i>
+                    <span>Additional revenue stream</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Long-term -->
+              <div class="glass-panel-strong rounded-xl p-5">
+                <div
+                  class="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center mb-3"
+                >
+                  <i class="fas fa-infinity text-white text-xl"></i>
+                </div>
+                <h3 class="text-white font-bold text-base mb-3">Long-term</h3>
+                <ul class="space-y-2 text-gray-300 text-xs">
+                  <li class="flex items-start">
+                    <i
+                      class="fas fa-check text-red-500 mr-2 mt-0.5 shrink-0 text-xs"
+                    ></i>
+                    <span>Reusable academic resources</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i
+                      class="fas fa-check text-red-500 mr-2 mt-0.5 shrink-0 text-xs"
+                    ></i>
+                    <span>Cumulative growth over years</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i
+                      class="fas fa-check text-red-500 mr-2 mt-0.5 shrink-0 text-xs"
+                    ></i>
+                    <span>Institutional knowledge preservation</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+          class="relative z-10 w-full px-16 py-4 border-t border-gray-800 bg-[#161b22] flex justify-between items-center text-xs text-gray-500 font-mono"
+        >
+          <p>VIET // Stakeholder Benefits</p>
+          <p>Slide 05/13</p>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 6: WHY THIS WILL WORK ================= -->
+      <section class="slide relative flex flex-col justify-between">
+        <!-- Header -->
+        <div
+          class="relative z-10 w-full px-16 py-6 flex justify-between items-center border-b border-gray-800 bg-[#0d1117]"
+        >
+          <div class="flex items-center space-x-4">
+            <div
+              class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center"
+            >
+              <i class="fas fa-rocket text-white text-xl"></i>
+            </div>
+            <div class="flex flex-col">
+              <h1 class="text-white font-bold tracking-tight text-xl">
+                Why This Will Work
+              </h1>
+              <p
+                class="text-xs text-gray-500 font-mono uppercase tracking-wider"
+              >
+                Our Competitive Advantage
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div
+          class="relative z-10 flex-1 px-16 py-8 flex items-center justify-center"
+        >
+          <div class="max-w-5xl w-full">
+            <h2 class="text-3xl font-bold text-white mb-8">
+              Key Differentiators
+            </h2>
+
+            <div class="grid grid-cols-2 gap-6 mb-8">
+              <div class="glass-panel-strong rounded-xl p-6">
+                <div class="flex items-start space-x-4">
+                  <i class="fas fa-users-gear text-red-500 text-3xl"></i>
+                  <div>
+                    <h3 class="text-white font-bold text-lg mb-2">
+                      Large Student & Faculty Manpower
+                    </h3>
+                    <p class="text-gray-300 text-sm">
+                      Hundreds of contributors ready to create content
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="glass-panel-strong rounded-xl p-6">
+                <div class="flex items-start space-x-4">
+                  <i class="fas fa-repeat text-red-500 text-3xl"></i>
+                  <div>
+                    <h3 class="text-white font-bold text-lg mb-2">
+                      Continuous Content Pipeline
+                    </h3>
+                    <p class="text-gray-300 text-sm">
+                      Regular academic activities generate fresh content
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="glass-panel-strong rounded-xl p-6">
+                <div class="flex items-start space-x-4">
+                  <i class="fas fa-layer-group text-red-500 text-3xl"></i>
+                  <div>
+                    <h3 class="text-white font-bold text-lg mb-2">
+                      Multiple Departments & Domains
+                    </h3>
+                    <p class="text-gray-300 text-sm">
+                      Diverse topics across all engineering branches
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="glass-panel-strong rounded-xl p-6">
+                <div class="flex items-start space-x-4">
+                  <i class="fas fa-share-nodes text-red-500 text-3xl"></i>
+                  <div>
+                    <h3 class="text-white font-bold text-lg mb-2">
+                      Peer-Driven Publicity
+                    </h3>
+                    <p class="text-gray-300 text-sm">
+                      Students naturally share content with their networks
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="glass-panel-strong rounded-xl p-6">
+                <div class="flex items-start space-x-4">
+                  <i class="fas fa-shield-halved text-red-500 text-3xl"></i>
+                  <div>
+                    <h3 class="text-white font-bold text-lg mb-2">
+                      Institutional Governance
+                    </h3>
+                    <p class="text-gray-300 text-sm">
+                      Official oversight ensures quality & consistency
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-gradient-to-r from-red-900/20 to-red-600/10 border border-red-700 rounded-lg p-6 text-center"
+            >
+              <p class="text-white text-xl font-semibold">
+                <i class="fas fa-trophy text-red-500 mr-2"></i>
+                Most channels fail due to lack of manpower...<br />
+                <span class="text-red-500"
+                  >our college's strength is <b>manpower</b></span
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+          class="relative z-10 w-full px-16 py-4 border-t border-gray-800 bg-[#161b22] flex justify-between items-center text-xs text-gray-500 font-mono"
+        >
+          <p>VIET // Competitive Advantage</p>
+          <p>Slide 06/13</p>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 7: CONTENT DATABASE STRUCTURE ================= -->
+      <section class="slide relative flex flex-col justify-between">
+        <!-- Header -->
+        <div
+          class="relative z-10 w-full px-16 py-6 flex justify-between items-center border-b border-gray-800 bg-[#0d1117]"
+        >
+          <div class="flex items-center space-x-4">
+            <div
+              class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center"
+            >
+              <i class="fas fa-database text-white text-xl"></i>
+            </div>
+            <div class="flex flex-col">
+              <h1 class="text-white font-bold tracking-tight text-xl">
+                Content Database Structure
+              </h1>
+              <p
+                class="text-xs text-gray-500 font-mono uppercase tracking-wider"
+              >
+                Organized by Branches & Categories
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="relative z-10 flex-1 px-16 py-6 overflow-y-auto">
+          <div class="max-w-5xl">
+            <!-- By Branch -->
+            <h3 class="text-white font-bold text-xl mb-4">
+              Content Organized by Branch
+            </h3>
+            <div class="grid grid-cols-5 gap-4 mb-8">
+              <div class="glass-panel-strong rounded-lg p-4 text-center">
+                <i class="fas fa-industry text-red-500 text-2xl mb-2 block"></i>
+                <p class="text-white font-semibold text-sm">Civil</p>
+              </div>
+              <div class="glass-panel-strong rounded-lg p-4 text-center">
+                <i
+                  class="fas fa-laptop-code text-red-500 text-2xl mb-2 block"
+                ></i>
+                <p class="text-white font-semibold text-sm">CSE</p>
+              </div>
+              <div class="glass-panel-strong rounded-lg p-4 text-center">
+                <i
+                  class="fas fa-microchip text-red-500 text-2xl mb-2 block"
+                ></i>
+                <p class="text-white font-semibold text-sm">ECE</p>
+              </div>
+              <div class="glass-panel-strong rounded-lg p-4 text-center">
+                <i class="fas fa-flask text-red-500 text-2xl mb-2 block"></i>
+                <p class="text-white font-semibold text-sm">EEE</p>
+              </div>
+              <div class="glass-panel-strong rounded-lg p-4 text-center">
+                <i class="fas fa-cogs text-red-500 text-2xl mb-2 block"></i>
+                <p class="text-white font-semibold text-sm">Mechanical</p>
+              </div>
+            </div>
+
+            <!-- By Content Type -->
+            <h3 class="text-white font-bold text-xl mb-4">
+              Content Categories
+            </h3>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="glass-panel-strong rounded-lg p-4">
+                <h4 class="text-red-500 font-bold mb-3">Regular Content</h4>
+                <ul class="text-gray-300 text-sm space-y-2">
+                  <li>
+                    <i class="fas fa-check text-red-500 mr-2"></i>Lecture Series
+                    (Branch-wise)
+                  </li>
+                  <li>
+                    <i class="fas fa-check text-red-500 mr-2"></i>Lab
+                    Demonstrations
+                  </li>
+                  <li>
+                    <i class="fas fa-check text-red-500 mr-2"></i>Project
+                    Showcases
+                  </li>
+                  <li>
+                    <i class="fas fa-check text-red-500 mr-2"></i>Study
+                    Materials
+                  </li>
+                </ul>
+              </div>
+              <div class="glass-panel-strong rounded-lg p-4">
+                <h4 class="text-red-500 font-bold mb-3">Special Events</h4>
+                <ul class="text-gray-300 text-sm space-y-2">
+                  <li>
+                    <i class="fas fa-check text-red-500 mr-2"></i>Alumni
+                    Podcasts
+                  </li>
+                  <li>
+                    <i class="fas fa-check text-red-500 mr-2"></i>Sports Live
+                    Streams
+                  </li>
+                  <li>
+                    <i class="fas fa-check text-red-500 mr-2"></i>Festival Live
+                    Events
+                  </li>
+                  <li>
+                    <i class="fas fa-check text-red-500 mr-2"></i>Seminars &
+                    Talks
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+          class="relative z-10 w-full px-16 py-4 border-t border-gray-800 bg-[#161b22] flex justify-between items-center text-xs text-gray-500 font-mono"
+        >
+          <p>VIET // Content Database</p>
+          <p>Slide 07/13</p>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 8: MONETIZATION & ANALYTICS ================= -->
+      <section class="slide relative flex flex-col justify-between">
+        <!-- Header -->
+        <div
+          class="relative z-10 w-full px-16 py-6 flex justify-between items-center border-b border-gray-800 bg-[#0d1117]"
+        >
+          <div class="flex items-center space-x-4">
+            <div
+              class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center"
+            >
+              <i class="fas fa-chart-line text-white text-xl"></i>
+            </div>
+            <div class="flex flex-col">
+              <h1 class="text-white font-bold tracking-tight text-xl">
+                Monetization & Analytics
+              </h1>
+              <p
+                class="text-xs text-gray-500 font-mono uppercase tracking-wider"
+              >
+                How YouTube Revenue Works
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div
+          class="relative z-10 flex-1 px-16 py-8 flex items-center justify-center"
+        >
+          <div class="max-w-5xl w-full">
+            <h2 class="text-3xl font-bold text-white mb-8">
+              How YouTube Revenue Works
+            </h2>
+
+            <div class="grid grid-cols-2 gap-8 mb-8">
+              <!-- Left: Explanation -->
+              <div class="glass-panel-strong rounded-xl p-6">
+                <h3 class="text-red-500 font-bold text-xl mb-4">
+                  Revenue Model
+                </h3>
+                <ul class="space-y-4 text-gray-300">
+                  <li class="flex items-start">
+                    <i class="fas fa-angle-right text-red-500 mr-3 mt-1"></i>
+                    <span
+                      >Monetization through
+                      <span class="text-white font-semibold"
+                        >advertisements</span
+                      ></span
+                    >
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-angle-right text-red-500 mr-3 mt-1"></i>
+                    <span
+                      >Revenue is based on
+                      <span class="text-white font-semibold"
+                        >RPM (Revenue per 1,000 views)</span
+                      ></span
+                    >
+                  </li>
+                </ul>
+
+                <div class="bg-[#0d1117] rounded-lg p-4 mt-6">
+                  <p class="text-gray-400 text-sm mb-2">Formula:</p>
+                  <p class="text-white text-lg font-mono">
+                    Revenue =
+                    <span class="text-red-500">(Total Views ÷ 1,000)</span> ×
+                    <span class="text-green-500">RPM</span>
+                  </p>
+                </div>
+              </div>
+
+              <!-- Right: RPM Range -->
+              <div class="glass-panel-strong rounded-xl p-6">
+                <h3 class="text-red-500 font-bold text-xl mb-4">
+                  India – Education / Tech Category
+                </h3>
+                <div
+                  class="bg-gradient-to-r from-green-900/20 to-green-600/10 border border-green-700 rounded-lg p-6 text-center"
+                >
+                  <p class="text-gray-300 text-sm mb-3">Average RPM</p>
+                  <p class="text-green-500 text-5xl font-bold mb-2">
+                    ₹30 – ₹150
+                  </p>
+                  <p class="text-gray-400 text-xs">per 1,000 views</p>
+                </div>
+
+                <div class="mt-6 space-y-2 text-sm text-gray-400">
+                  <p>
+                    <i class="fas fa-info-circle text-red-500 mr-2"></i>Depends
+                    on viewer demographics
+                  </p>
+                  <p>
+                    <i class="fas fa-info-circle text-red-500 mr-2"></i>Content
+                    engagement quality
+                  </p>
+                  <p>
+                    <i class="fas fa-info-circle text-red-500 mr-2"></i>Ad
+                    placement & type
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+          class="relative z-10 w-full px-16 py-4 border-t border-gray-800 bg-[#161b22] flex justify-between items-center text-xs text-gray-500 font-mono"
+        >
+          <p>VIET // Monetization Model</p>
+          <p>Slide 08/13</p>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 9: REVENUE ANALYTICS BY VIDEO LENGTH ================= -->
+      <section class="slide relative flex flex-col justify-between">
+        <!-- Header -->
+        <div
+          class="relative z-10 w-full px-16 py-6 flex justify-between items-center border-b border-gray-800 bg-[#0d1117]"
+        >
+          <div class="flex items-center space-x-4">
+            <div
+              class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center"
+            >
+              <i class="fas fa-chart-bar text-white text-xl"></i>
+            </div>
+            <div class="flex flex-col">
+              <h1 class="text-white font-bold tracking-tight text-xl">
+                Revenue Analytics by Video Length
+              </h1>
+              <p
+                class="text-xs text-gray-500 font-mono uppercase tracking-wider"
+              >
+                Different Content Formats
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div
+          class="relative z-10 flex-1 px-16 py-6 flex items-center justify-center overflow-y-auto"
+        >
+          <div class="max-w-6xl w-full">
+            <h2 class="text-3xl font-bold text-white mb-6">
+              Projected Revenue by Content Type
+            </h2>
+
+            <div class="grid grid-cols-4 gap-6">
+              <!-- Shorts -->
+              <div class="glass-panel-strong rounded-xl p-6">
+                <div class="flex items-center justify-between mb-4">
+                  <h3 class="text-red-500 font-bold text-xl flex items-center">
+                    <i class="fas fa-bolt mr-2"></i> Shorts
+                  </h3>
+                  <span class="text-gray-400 text-sm">< 60 sec</span>
+                </div>
+
+                <div class="space-y-3 mb-4">
+                  <div>
+                    <p class="text-gray-400 text-xs mb-1">Typical Views</p>
+                    <p class="text-white text-2xl font-bold">50K - 200K</p>
+                  </div>
+                  <div>
+                    <p class="text-gray-400 text-xs mb-1">RPM Range</p>
+                    <p class="text-yellow-500 text-xl font-semibold">
+                      ₹10 - ₹40
+                    </p>
+                  </div>
+                  <div class="bg-[#0d1117] rounded p-3">
+                    <p class="text-gray-400 text-xs mb-1">Monthly Revenue</p>
+                    <p class="text-green-500 text-2xl font-bold">
+                      ₹500 - ₹8,000
+                    </p>
+                    <p class="text-gray-500 text-xs mt-1">per short</p>
+                  </div>
+                </div>
+
+                <div class="border-t border-gray-700 pt-3">
+                  <p class="text-gray-300 text-xs">
+                    <i class="fas fa-check text-red-500 mr-1"></i> High volume
+                    potential<br />
+                    <i class="fas fa-check text-red-500 mr-1"></i> Quick
+                    consumption<br />
+                    <i class="fas fa-check text-red-500 mr-1"></i> Viral reach
+                  </p>
+                </div>
+              </div>
+
+              <!-- 15-20 Min Videos -->
+              <div class="glass-panel-strong rounded-xl p-6">
+                <div class="flex items-center justify-between mb-4">
+                  <h3 class="text-red-500 font-bold text-xl flex items-center">
+                    <i class="fas fa-play-circle mr-2"></i> Standard
+                  </h3>
+                  <span class="text-gray-400 text-sm">15-20 min</span>
+                </div>
+
+                <div class="space-y-3 mb-4">
+                  <div>
+                    <p class="text-gray-400 text-xs mb-1">Typical Views</p>
+                    <p class="text-white text-2xl font-bold">10K - 50K</p>
+                  </div>
+                  <div>
+                    <p class="text-gray-400 text-xs mb-1">RPM Range</p>
+                    <p class="text-yellow-500 text-xl font-semibold">
+                      ₹50 - ₹100
+                    </p>
+                  </div>
+                  <div class="bg-[#0d1117] rounded p-3">
+                    <p class="text-gray-400 text-xs mb-1">Monthly Revenue</p>
+                    <p class="text-green-500 text-2xl font-bold">
+                      ₹500 - ₹5,000
+                    </p>
+                    <p class="text-gray-500 text-xs mt-1">per video</p>
+                  </div>
+                </div>
+
+                <div class="border-t border-gray-700 pt-3">
+                  <p class="text-gray-300 text-xs">
+                    <i class="fas fa-check text-red-500 mr-1"></i> Best for
+                    tutorials<br />
+                    <i class="fas fa-check text-red-500 mr-1"></i> Higher
+                    engagement<br />
+                    <i class="fas fa-check text-red-500 mr-1"></i> More ad
+                    placements
+                  </p>
+                </div>
+              </div>
+
+              <!-- 1 Hour Videos -->
+              <div class="glass-panel-strong rounded-xl p-6">
+                <div class="flex items-center justify-between mb-4">
+                  <h3 class="text-red-500 font-bold text-xl flex items-center">
+                    <i class="fas fa-film mr-2"></i> Long-Form
+                  </h3>
+                  <span class="text-gray-400 text-sm">1+ hour</span>
+                </div>
+
+                <div class="space-y-3 mb-4">
+                  <div>
+                    <p class="text-gray-400 text-xs mb-1">Typical Views</p>
+                    <p class="text-white text-2xl font-bold">5K - 25K</p>
+                  </div>
+                  <div>
+                    <p class="text-gray-400 text-xs mb-1">RPM Range</p>
+                    <p class="text-yellow-500 text-xl font-semibold">
+                      ₹80 - ₹150
+                    </p>
+                  </div>
+                  <div class="bg-[#0d1117] rounded p-3">
+                    <p class="text-gray-400 text-xs mb-1">Monthly Revenue</p>
+                    <p class="text-green-500 text-2xl font-bold">
+                      ₹400 - ₹3,750
+                    </p>
+                    <p class="text-gray-500 text-xs mt-1">per video</p>
+                  </div>
+                </div>
+
+                <div class="border-t border-gray-700 pt-3">
+                  <p class="text-gray-300 text-xs">
+                    <i class="fas fa-check text-red-500 mr-1"></i> In-depth
+                    content<br />
+                    <i class="fas fa-check text-red-500 mr-1"></i> Multiple ad
+                    breaks<br />
+                    <i class="fas fa-check text-red-500 mr-1"></i> Higher watch
+                    time
+                  </p>
+                </div>
+              </div>
+
+              <!-- Live Stream -->
+              <div class="glass-panel-strong rounded-xl p-6">
+                <div class="flex items-center justify-between mb-4">
+                  <h3 class="text-red-500 font-bold text-xl flex items-center">
+                    <i class="fas fa-tower-broadcast mr-2"></i> Live Stream
+                  </h3>
+                  <span class="text-gray-400 text-sm">60-180 min</span>
+                </div>
+
+                <div class="space-y-3 mb-4">
+                  <div>
+                    <p class="text-gray-400 text-xs mb-1">Concurrent Viewers</p>
+                    <p class="text-white text-2xl font-bold">200 - 2,000</p>
+                  </div>
+                  <div>
+                    <p class="text-gray-400 text-xs mb-1">RPM Range</p>
+                    <p class="text-yellow-500 text-xl font-semibold">
+                      ₹40 - ₹120
+                    </p>
+                  </div>
+                  <div class="bg-[#0d1117] rounded p-3">
+                    <p class="text-gray-400 text-xs mb-1">Revenue per Stream</p>
+                    <p class="text-green-500 text-2xl font-bold">
+                      ₹400 - ₹6,000
+                    </p>
+                    <p class="text-gray-500 text-xs mt-1">per live session</p>
+                  </div>
+                </div>
+
+                <div class="border-t border-gray-700 pt-3">
+                  <p class="text-gray-300 text-xs">
+                    <i class="fas fa-check text-red-500 mr-1"></i> Real-time
+                    engagement<br />
+                    <i class="fas fa-check text-red-500 mr-1"></i> Higher watch
+                    time<br />
+                    <i class="fas fa-check text-red-500 mr-1"></i> Event
+                    visibility
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Strategic Note -->
+            <div
+              class="bg-gradient-to-r from-blue-900/20 to-blue-600/10 border border-blue-700 rounded-lg p-5 mt-6"
+            >
+              <p class="text-white text-center text-base">
+                <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                <strong>Strategy:</strong> Mix all formats for
+                <span class="text-blue-400 font-semibold"
+                  >diverse audience reach</span
+                >
+                and
+                <span class="text-blue-400 font-semibold"
+                  >optimized revenue</span
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+          class="relative z-10 w-full px-16 py-4 border-t border-gray-800 bg-[#161b22] flex justify-between items-center text-xs text-gray-500 font-mono"
+        >
+          <p>VIET // Video Analytics</p>
+          <p>Slide 09/13</p>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 10: TECHNICAL SETUP ================= -->
+      <section class="slide relative flex flex-col justify-between">
+        <!-- Header -->
+        <div
+          class="relative z-10 w-full px-16 py-6 flex justify-between items-center border-b border-gray-800 bg-[#0d1117]"
+        >
+          <div class="flex items-center space-x-4">
+            <div
+              class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center"
+            >
+              <i class="fas fa-video text-white text-xl"></i>
+            </div>
+            <div class="flex flex-col">
+              <h1 class="text-white font-bold tracking-tight text-xl">
+                Technical Setup
+              </h1>
+              <p
+                class="text-xs text-gray-500 font-mono uppercase tracking-wider"
+              >
+                Recording Infrastructure
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div
+          class="relative z-10 flex-1 px-16 py-8 flex items-center justify-center"
+        >
+          <div class="max-w-5xl w-full">
+            <h2 class="text-3xl font-bold text-white mb-8">
+              Basic Recording Infrastructure
+            </h2>
+
+            <div class="grid grid-cols-2 gap-6">
+              <!-- OBS Studio -->
+              <div class="glass-panel-strong rounded-xl p-6">
+                <h3
+                  class="text-red-500 font-bold text-xl mb-4 flex items-center"
+                >
+                  <i class="fas fa-desktop mr-3"></i> OBS Studio
+                </h3>
+                <p class="text-gray-300 text-sm mb-4">
+                  Free, professional-grade streaming & recording software
+                </p>
+                <ul class="space-y-2 text-gray-300 text-sm">
+                  <li>
+                    <i class="fas fa-check text-red-500 mr-2"></i>Screen
+                    recording for lectures
+                  </li>
+                  <li>
+                    <i class="fas fa-check text-red-500 mr-2"></i>Multi-camera
+                    setup
+                  </li>
+                  <li>
+                    <i class="fas fa-check text-red-500 mr-2"></i>Live streaming
+                    capability
+                  </li>
+                  <li>
+                    <i class="fas fa-check text-red-500 mr-2"></i>Graphics
+                    overlay
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Basic Equipment -->
+              <div class="glass-panel-strong rounded-xl p-6">
+                <h3
+                  class="text-red-500 font-bold text-xl mb-4 flex items-center"
+                >
+                  <i class="fas fa-camera mr-3"></i> Basic Equipment
+                </h3>
+                <ul class="space-y-3 text-gray-300 text-sm">
+                  <li class="flex items-start">
+                    <i class="fas fa-angle-right text-red-500 mr-2 mt-1"></i>
+                    <span
+                      ><strong>Camera:</strong> Smartphone or basic webcam</span
+                    >
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-angle-right text-red-500 mr-2 mt-1"></i>
+                    <span
+                      ><strong>Microphone:</strong> USB mic for clear
+                      audio</span
+                    >
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-angle-right text-red-500 mr-2 mt-1"></i>
+                    <span
+                      ><strong>Lighting:</strong> Natural light or desk
+                      lamp</span
+                    >
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-angle-right text-red-500 mr-2 mt-1"></i>
+                    <span
+                      ><strong>Computer:</strong> Basic laptop for editing</span
+                    >
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Student-Led Production -->
+              <div class="glass-panel-strong rounded-xl p-6 col-span-2">
+                <h3 class="text-white font-bold text-lg mb-3 flex items-center">
+                  <i class="fas fa-users text-red-500 mr-3"></i> Student-Led
+                  Production
+                </h3>
+                <p class="text-gray-300 text-sm">
+                  Many students already have video editing skills and
+                  smartphones with good cameras. The college provides guidance
+                  and approval — students handle production.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+          class="relative z-10 w-full px-16 py-4 border-t border-gray-800 bg-[#161b22] flex justify-between items-center text-xs text-gray-500 font-mono"
+        >
+          <p>VIET // Technical Setup</p>
+          <p>Slide 10/13</p>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 11: GOVERNANCE & QUALITY CONTROL ================= -->
+      <section class="slide relative flex flex-col justify-between">
+        <!-- Header -->
+        <div
+          class="relative z-10 w-full px-16 py-6 flex justify-between items-center border-b border-gray-800 bg-[#0d1117]"
+        >
+          <div class="flex items-center space-x-4">
+            <div
+              class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center"
+            >
+              <i class="fas fa-shield-halved text-white text-xl"></i>
+            </div>
+            <div class="flex flex-col">
+              <h1 class="text-white font-bold tracking-tight text-xl">
+                Governance & Quality Control
+              </h1>
+              <p
+                class="text-xs text-gray-500 font-mono uppercase tracking-wider"
+              >
+                Oversight & Transparency
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div
+          class="relative z-10 flex-1 px-16 py-8 flex items-center justify-center"
+        >
+          <div class="max-w-5xl w-full">
+            <div class="grid grid-cols-2 gap-8">
+              <!-- Content Approval Framework -->
+              <div class="glass-panel-strong rounded-xl p-6">
+                <h3
+                  class="text-red-500 font-bold text-xl mb-6 flex items-center"
+                >
+                  <i class="fas fa-check-double mr-3"></i> Content Approval
+                  Framework
+                </h3>
+                <ul class="space-y-4 text-gray-300">
+                  <li class="flex items-start">
+                    <i
+                      class="fas fa-user-tie text-red-500 mr-3 mt-1 text-xl"
+                    ></i>
+                    <div>
+                      <p class="font-semibold text-white">
+                        Faculty Review Committee
+                      </p>
+                      <p class="text-sm text-gray-400">
+                        Final approval on all content
+                      </p>
+                    </div>
+                  </li>
+                  <li class="flex items-start">
+                    <i
+                      class="fas fa-users-cog text-red-500 mr-3 mt-1 text-xl"
+                    ></i>
+                    <div>
+                      <p class="font-semibold text-white">
+                        Department Coordinators
+                      </p>
+                      <p class="text-sm text-gray-400">
+                        Branch-wise content management
+                      </p>
+                    </div>
+                  </li>
+                  <li class="flex items-start">
+                    <i
+                      class="fas fa-clipboard-check text-red-500 mr-3 mt-1 text-xl"
+                    ></i>
+                    <div>
+                      <p class="font-semibold text-white">
+                        Academic & Branding Standards
+                      </p>
+                      <p class="text-sm text-gray-400">
+                        Maintain quality & consistency
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Transparency -->
+              <div class="glass-panel-strong rounded-xl p-6">
+                <h3
+                  class="text-red-500 font-bold text-xl mb-6 flex items-center"
+                >
+                  <i class="fas fa-chart-pie mr-3"></i> Transparency
+                </h3>
+                <ul class="space-y-4 text-gray-300">
+                  <li class="flex items-start">
+                    <i
+                      class="fas fa-chart-bar text-red-500 mr-3 mt-1 text-xl"
+                    ></i>
+                    <div>
+                      <p class="font-semibold text-white">
+                        YouTube Analytics Dashboard
+                      </p>
+                      <p class="text-sm text-gray-400">
+                        Real-time performance tracking
+                      </p>
+                    </div>
+                  </li>
+                  <li class="flex items-start">
+                    <i
+                      class="fas fa-file-invoice-dollar text-red-500 mr-3 mt-1 text-xl"
+                    ></i>
+                    <div>
+                      <p class="font-semibold text-white">
+                        Monthly Performance & Revenue Reports
+                      </p>
+                      <p class="text-sm text-gray-400">
+                        Regular stakeholder updates
+                      </p>
+                    </div>
+                  </li>
+                  <li class="flex items-start">
+                    <i
+                      class="fas fa-building-columns text-red-500 mr-3 mt-1 text-xl"
+                    ></i>
+                    <div>
+                      <p class="font-semibold text-white">
+                        College-Owned AdSense Account
+                      </p>
+                      <p class="text-sm text-gray-400">
+                        Full institutional control
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+          class="relative z-10 w-full px-16 py-4 border-t border-gray-800 bg-[#161b22] flex justify-between items-center text-xs text-gray-500 font-mono"
+        >
+          <p>VIET // Governance</p>
+          <p>Slide 11/13</p>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 12: IMPLEMENTATION ROADMAP ================= -->
+      <section class="slide relative flex flex-col justify-between">
+        <!-- Header -->
+        <div
+          class="relative z-10 w-full px-16 py-6 flex justify-between items-center border-b border-gray-800 bg-[#0d1117]"
+        >
+          <div class="flex items-center space-x-4">
+            <div
+              class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center"
+            >
+              <i class="fas fa-road text-white text-xl"></i>
+            </div>
+            <div class="flex flex-col">
+              <h1 class="text-white font-bold tracking-tight text-xl">
+                Implementation Roadmap
+              </h1>
+              <p
+                class="text-xs text-gray-500 font-mono uppercase tracking-wider"
+              >
+                Three-Phase Launch
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div
+          class="relative z-10 flex-1 px-16 py-8 flex items-center justify-center"
+        >
+          <div class="max-w-5xl w-full">
+            <div class="space-y-6">
+              <!-- Phase 1 -->
+              <div class="glass-panel-strong rounded-xl p-6">
+                <div class="flex items-start space-x-4">
+                  <div
+                    class="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center shrink-0"
+                  >
+                    <span class="text-white font-bold text-2xl">1</span>
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="text-red-500 font-bold text-xl mb-2">
+                      Phase 1 – Pilot
+                    </h3>
+                    <ul class="text-gray-300 text-sm space-y-2">
+                      <li>
+                        <i class="fas fa-check text-red-500 mr-2"></i>Channel
+                        setup & branding
+                      </li>
+                      <li>
+                        <i class="fas fa-check text-red-500 mr-2"></i>Initial
+                        content from 2–3 departments
+                      </li>
+                      <li>
+                        <i class="fas fa-check text-red-500 mr-2"></i>Faculty
+                        training & guidelines
+                      </li>
+                      <li>
+                        <i class="fas fa-check text-red-500 mr-2"></i>Test
+                        upload & quality review process
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="text-right">
+                    <p class="text-gray-400 text-sm">Timeline</p>
+                    <p class="text-white font-bold">2-4 weeks</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Phase 2 -->
+              <div class="glass-panel-strong rounded-xl p-6">
+                <div class="flex items-start space-x-4">
+                  <div
+                    class="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center shrink-0"
+                  >
+                    <span class="text-white font-bold text-2xl">2</span>
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="text-red-500 font-bold text-xl mb-2">
+                      Phase 2 – Scale
+                    </h3>
+                    <ul class="text-gray-300 text-sm space-y-2">
+                      <li>
+                        <i class="fas fa-check text-red-500 mr-2"></i>Student
+                        onboarding across all branches
+                      </li>
+                      <li>
+                        <i class="fas fa-check text-red-500 mr-2"></i>Regular
+                        upload schedule established
+                      </li>
+                      <li>
+                        <i class="fas fa-check text-red-500 mr-2"></i>Content
+                        variety expansion
+                      </li>
+                      <li>
+                        <i class="fas fa-check text-red-500 mr-2"></i>Build
+                        subscriber base to 1,000
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="text-right">
+                    <p class="text-gray-400 text-sm">Timeline</p>
+                    <p class="text-white font-bold">3-6 months</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Phase 3 -->
+              <div class="glass-panel-strong rounded-xl p-6">
+                <div class="flex items-start space-x-4">
+                  <div
+                    class="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center shrink-0"
+                  >
+                    <span class="text-white font-bold text-2xl">3</span>
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="text-red-500 font-bold text-xl mb-2">
+                      Phase 3 – Expansion
+                    </h3>
+                    <ul class="text-gray-300 text-sm space-y-2">
+                      <li>
+                        <i class="fas fa-check text-red-500 mr-2"></i>Apply for
+                        YouTube Partner Program (monetization)
+                      </li>
+                      <li>
+                        <i class="fas fa-check text-red-500 mr-2"></i>Industry &
+                        alumni collaboration content
+                      </li>
+                      <li>
+                        <i class="fas fa-check text-red-500 mr-2"></i>Live
+                        streaming of major events
+                      </li>
+                      <li>
+                        <i class="fas fa-check text-red-500 mr-2"></i>Explore
+                        local tech sponsorships
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="text-right">
+                    <p class="text-gray-400 text-sm">Timeline</p>
+                    <p class="text-white font-bold">6+ months</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+          class="relative z-10 w-full px-16 py-4 border-t border-gray-800 bg-[#161b22] flex justify-between items-center text-xs text-gray-500 font-mono"
+        >
+          <p>VIET // Implementation</p>
+          <p>Slide 12/13</p>
+        </div>
+      </section>
+
+      <!-- ================= SLIDE 13: APPROVAL & Q&A ================= -->
+      <section class="slide relative flex flex-col justify-between">
+        <div
+          class="absolute inset-0 z-0 opacity-20"
+          style="
+            background-image: url(&quot;data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%2330363d'/%3E%3C/svg%3E&quot;);
+          "
+        ></div>
+        <div
+          class="absolute top-[-120px] right-[-80px] w-[520px] h-[520px] bg-red-600 opacity-10 rounded-full blur-3xl z-0"
+        ></div>
+        <div
+          class="absolute bottom-[-80px] left-[-80px] w-[360px] h-[360px] bg-red-500 opacity-10 rounded-full blur-3xl z-0"
+        ></div>
+
+        <!-- Header -->
+        <div
+          class="relative z-10 w-full px-16 py-6 flex justify-between items-center border-b border-gray-800 bg-[#0d1117]"
+        >
+          <div class="flex items-center space-x-4">
+            <div
+              class="w-10 h-10 bg-white text-[#0d1117] rounded-full flex items-center justify-center border border-gray-600"
+            >
+              <i class="fas fa-comments text-xl"></i>
+            </div>
+            <div class="flex flex-col">
+              <h1 class="text-white font-bold tracking-tight text-xl">
+                Management Approval & Q&A
+              </h1>
+              <p
+                class="text-xs text-gray-500 font-mono uppercase tracking-wider"
+              >
+                What We Need
+              </p>
+            </div>
+          </div>
+          <div
+            class="flex items-center space-x-2 bg-red-600 bg-opacity-20 border border-red-600 px-3 py-1 rounded-full"
+          >
+            <span class="w-2 h-2 rounded-full bg-red-500"></span>
+            <span class="text-red-500 text-xs font-bold uppercase"
+              >Ready to Launch</span
+            >
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div
+          class="relative z-10 flex-1 px-16 py-8 flex items-center justify-center"
+        >
+          <div class="max-w-6xl w-full">
+            <div class="grid grid-cols-3 gap-6">
+              <!-- Left Column: Approval Requirements -->
+              <div class="col-span-2">
+                <div class="glass-panel-strong rounded-xl p-6 mb-6">
+                  <h2 class="text-xl font-bold text-white mb-4">
+                    We Request Approval For:
+                  </h2>
+                  <ul class="space-y-3 text-gray-300 text-base">
+                    <li class="flex items-start">
+                      <i
+                        class="fas fa-check-circle text-red-500 mr-3 mt-1 text-lg"
+                      ></i>
+                      <span>Official YouTube channel under college name</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i
+                        class="fas fa-check-circle text-red-500 mr-3 mt-1 text-lg"
+                      ></i>
+                      <span>Content governance committee formation</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i
+                        class="fas fa-check-circle text-red-500 mr-3 mt-1 text-lg"
+                      ></i>
+                      <span>Basic recording infrastructure support</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Closing Statement -->
+                <div
+                  class="bg-gradient-to-r from-red-900/30 to-red-600/20 border-2 border-red-600 rounded-xl p-6 text-center"
+                >
+                  <i
+                    class="fas fa-quote-left text-red-500 text-xl mb-3 block"
+                  ></i>
+                  <p
+                    class="text-white text-lg font-semibold leading-relaxed mb-3"
+                  >
+                    We already have the students, faculty, and knowledge.<br />
+                    This platform converts it into
+                    <span class="text-red-500">learning</span>,
+                    <span class="text-red-500">visibility</span>, and
+                    <span class="text-red-500">long-term value</span>.
+                  </p>
+                  <i
+                    class="fas fa-quote-right text-red-500 text-xl mt-3 block"
+                  ></i>
+                </div>
+              </div>
+
+              <!-- Right Column: QR Code -->
+              <div class="col-span-1">
+                <div class="flex items-center justify-center">
+                  <div
+                    class="glass-panel-strong rounded-2xl p-8 border border-gray-700 text-center"
+                  >
+                    <p class="text-gray-300 text-sm mb-4 font-mono uppercase">
+                      Scan for Feedback
+                    </p>
+                    <div
+                      class="w-56 h-56 bg-white rounded-xl p-3 mx-auto flex items-center justify-center"
+                    >
+                      <img
+                        src="assets/feedback-qr/youtube_channel.png"
+                        alt="Feedback QR Code"
+                        class="w-full h-full object-contain"
+                      />
+                    </div>
+                    <p class="text-gray-400 text-xs mt-4">
+                      Your feedback helps us improve and tailor the program to
+                      better serve our students and faculty. Thank you for your
+                      input!
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+          class="relative z-10 w-full px-16 py-4 border-t border-gray-800 bg-[#161b22] flex justify-between items-center text-xs text-gray-500 font-mono"
+        >
+          <p>VIET // Approval & Q&A</p>
+          <p>Slide 13/13</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Progress Dots -->
+    <div class="progress">
+      <div class="dot active" data-slide="0"></div>
+      <div class="dot" data-slide="1"></div>
+      <div class="dot" data-slide="2"></div>
+      <div class="dot" data-slide="3"></div>
+      <div class="dot" data-slide="4"></div>
+      <div class="dot" data-slide="5"></div>
+      <div class="dot" data-slide="6"></div>
+      <div class="dot" data-slide="7"></div>
+      <div class="dot" data-slide="8"></div>
+      <div class="dot" data-slide="9"></div>
+      <div class="dot" data-slide="10"></div>
+      <div class="dot" data-slide="11"></div>
+      <div class="dot" data-slide="12"></div>
+    </div>
+
+    <script>
+      const slides = document.querySelectorAll(".slide");
+      const dots = document.querySelectorAll(".dot");
+
+      function setActive(index) {
+        slides.forEach((s, i) => {
+          s.classList.toggle("active", i === index);
+          dots[i].classList.toggle("active", i === index);
+        });
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActive([...slides].indexOf(entry.target));
+            }
+          });
+        },
+        { threshold: 0.6 },
+      );
+
+      slides.forEach((s) => observer.observe(s));
+
+      window.addEventListener("keydown", (e) => {
+        const current = [...slides].findIndex((s) =>
+          s.classList.contains("active"),
+        );
+        if (e.key === "ArrowDown" && current < slides.length - 1) {
+          slides[current + 1].scrollIntoView();
+        }
+        if (e.key === "ArrowUp" && current > 0) {
+          slides[current - 1].scrollIntoView();
+        }
+      });
+    </script>
+  </body>
+</html>

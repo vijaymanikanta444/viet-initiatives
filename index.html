@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VIET Tech Initiative Presentations</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      body {
+        background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+        overflow-x: hidden;
+      }
+
+      .card {
+        transition: all 0.3s ease;
+        background: linear-gradient(135deg, #161b22 0%, #1c2128 100%);
+      }
+
+      .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .card:hover .card-icon {
+        transform: scale(1.1) rotate(5deg);
+      }
+
+      .card-icon {
+        transition: transform 0.3s ease;
+      }
+
+      .status-badge {
+        background: linear-gradient(135deg, #238636 0%, #2ea043 100%);
+        box-shadow: 0 0 20px rgba(35, 134, 54, 0.3);
+      }
+
+      .status-badge.coming-soon {
+        background: linear-gradient(135deg, #6e7681 0%, #8b949e 100%);
+        box-shadow: 0 0 20px rgba(110, 118, 129, 0.3);
+      }
+
+      .glow-text {
+        text-shadow: 0 0 20px rgba(88, 166, 255, 0.5);
+      }
+
+      .stats-card {
+        background: linear-gradient(135deg, #1c2128 0%, #22272e 100%);
+        border: 1px solid #30363d;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .floating {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .grid-pattern {
+        background-image:
+          linear-gradient(rgba(88, 166, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(88, 166, 255, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen text-gray-100 grid-pattern">
+    <!-- Header -->
+    <header class="py-8 px-6 border-b border-gray-800 bg-[#0d1117] mb-12">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-4">
+            <img
+              src="https://viet.edu.in/img/footer-imgs/viet-logo.png"
+              alt="VIET Logo"
+              class="h-20 w-20 rounded-full p-1"
+            />
+            <div>
+              <h1 class="text-3xl font-bold text-white">
+                VIET Tech Initiatives
+              </h1>
+              <p class="text-gray-300 mt-1">
+                Comprehensive Technology Partnership Presentations
+              </p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="text-sm text-gray-300">
+              Visakha Institute of Engineering & Technology
+            </p>
+            <p class="text-xs text-gray-400 mt-1">
+              Department of Computer Science & Engineering
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-6 py-12">
+      <!-- Stats Section -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div class="stats-card p-6 rounded-xl text-center">
+          <div class="text-4xl font-bold text-green-400 mb-2" id="active-count">
+            0
+          </div>
+          <div class="text-gray-400">Active Presentations</div>
+        </div>
+        <div class="stats-card p-6 rounded-xl text-center">
+          <div
+            class="text-4xl font-bold text-blue-400 mb-2"
+            id="coming-soon-count"
+          >
+            0
+          </div>
+          <div class="text-gray-400">Coming Soon</div>
+        </div>
+        <div class="stats-card p-6 rounded-xl text-center">
+          <div class="text-4xl font-bold text-purple-400 mb-2" id="total-count">
+            0
+          </div>
+          <div class="text-gray-400">Total Initiatives</div>
+        </div>
+      </div>
+
+      <!-- Presentations Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- GitHub Campus Program - Active -->
+        <a
+          href="./campus-program.html"
+          class="card p-8 rounded-2xl border border-gray-700 hover:border-blue-500 block"
+        >
+          <div class="flex items-start justify-between mb-6">
+            <div class="card-icon text-5xl">
+              <i class="fab fa-github text-white"></i>
+            </div>
+            <span
+              class="status-badge text-xs px-3 py-1 rounded-full text-white font-semibold"
+            >
+              Ready
+            </span>
+          </div>
+          <h3 class="text-2xl font-bold mb-3 text-white">
+            GitHub Campus Program
+          </h3>
+          <p class="text-gray-400 mb-4 leading-relaxed">
+            Comprehensive partnership proposal for GitHub Education benefits
+            including Copilot, Codespaces, and enterprise features.
+          </p>
+          <div class="flex items-center text-blue-400 font-semibold">
+            <span>View Presentation</span>
+            <i class="fas fa-arrow-right ml-2"></i>
+          </div>
+        </a>
+
+        <!-- YouTube Channel - Active -->
+        <a
+          href="./youtube-channel.html"
+          class="card p-8 rounded-2xl border border-gray-700 hover:border-red-500 block"
+        >
+          <div class="flex items-start justify-between mb-6">
+            <div class="card-icon text-5xl">
+              <i class="fab fa-youtube text-white"></i>
+            </div>
+            <span
+              class="status-badge text-xs px-3 py-1 rounded-full text-white font-semibold"
+              style="
+                background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+                box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+              "
+            >
+              Ready
+            </span>
+          </div>
+          <h3 class="text-2xl font-bold mb-3 text-white">YouTube Channel</h3>
+          <p class="text-gray-400 mb-4 leading-relaxed">
+            Professional content hub for academic lectures, alumni podcasts,
+            sports live streams, and festival events with monetization.
+          </p>
+          <div class="flex items-center text-red-400 font-semibold">
+            <span>View Presentation</span>
+            <i class="fas fa-arrow-right ml-2"></i>
+          </div>
+        </a>
+
+        <!-- NPM Organization - Coming Soon -->
+        <div
+          class="card p-8 rounded-2xl border border-gray-700 opacity-60 pointer-events-none"
+        >
+          <div class="flex items-start justify-between mb-6">
+            <div class="card-icon text-5xl">
+              <i class="fab fa-npm text-red-600"></i>
+            </div>
+            <span
+              class="status-badge coming-soon text-xs px-3 py-1 rounded-full text-white font-semibold"
+            >
+              Coming Soon
+            </span>
+          </div>
+          <h3 class="text-2xl font-bold mb-3 text-white">NPM Organization</h3>
+          <p class="text-gray-400 mb-4 leading-relaxed">
+            Package management infrastructure for publishing and sharing
+            JavaScript libraries developed by students.
+          </p>
+          <div class="flex items-center text-gray-500 font-semibold">
+            <span>In Development</span>
+            <i class="fas fa-clock ml-2"></i>
+          </div>
+        </div>
+
+        <!-- Chrome Extensions - Coming Soon -->
+        <div
+          class="card p-8 rounded-2xl border border-gray-700 opacity-60 pointer-events-none"
+        >
+          <div class="flex items-start justify-between mb-6">
+            <div class="card-icon text-5xl">
+              <i class="fab fa-chrome text-yellow-500"></i>
+            </div>
+            <span
+              class="status-badge coming-soon text-xs px-3 py-1 rounded-full text-white font-semibold"
+            >
+              Coming Soon
+            </span>
+          </div>
+          <h3 class="text-2xl font-bold mb-3 text-white">Chrome Extensions</h3>
+          <p class="text-gray-400 mb-4 leading-relaxed">
+            Browser extension development program for creating productivity
+            tools and learning resources for students.
+          </p>
+          <div class="flex items-center text-gray-500 font-semibold">
+            <span>In Development</span>
+            <i class="fas fa-clock ml-2"></i>
+          </div>
+        </div>
+
+        <!-- VS Code Extensions - Coming Soon -->
+        <div
+          class="card p-8 rounded-2xl border border-gray-700 opacity-60 pointer-events-none"
+        >
+          <div class="flex items-start justify-between mb-6">
+            <div class="card-icon text-5xl">
+              <i class="fas fa-code text-blue-500"></i>
+            </div>
+            <span
+              class="status-badge coming-soon text-xs px-3 py-1 rounded-full text-white font-semibold"
+            >
+              Coming Soon
+            </span>
+          </div>
+          <h3 class="text-2xl font-bold mb-3 text-white">VS Code Extensions</h3>
+          <p class="text-gray-400 mb-4 leading-relaxed">
+            IDE extension development initiative for enhancing developer
+            experience with custom tools and snippets.
+          </p>
+          <div class="flex items-center text-gray-500 font-semibold">
+            <span>In Development</span>
+            <i class="fas fa-clock ml-2"></i>
+          </div>
+        </div>
+
+        <!-- Open Source Labs - Coming Soon -->
+        <div
+          class="card p-8 rounded-2xl border border-gray-700 opacity-60 pointer-events-none"
+        >
+          <div class="flex items-start justify-between mb-6">
+            <div class="card-icon text-5xl">
+              <i class="fas fa-flask text-purple-500"></i>
+            </div>
+            <span
+              class="status-badge coming-soon text-xs px-3 py-1 rounded-full text-white font-semibold"
+            >
+              Coming Soon
+            </span>
+          </div>
+          <h3 class="text-2xl font-bold mb-3 text-white">Open Source Labs</h3>
+          <p class="text-gray-400 mb-4 leading-relaxed">
+            Dedicated spaces and programs for contributing to open source
+            projects and building a culture of collaboration.
+          </p>
+          <div class="flex items-center text-gray-500 font-semibold">
+            <span>In Development</span>
+            <i class="fas fa-clock ml-2"></i>
+          </div>
+        </div>
+
+        <!-- Docker Hub Organization - Coming Soon -->
+        <div
+          class="card p-8 rounded-2xl border border-gray-700 opacity-60 pointer-events-none"
+        >
+          <div class="flex items-start justify-between mb-6">
+            <div class="card-icon text-5xl">
+              <i class="fab fa-docker text-blue-400"></i>
+            </div>
+            <span
+              class="status-badge coming-soon text-xs px-3 py-1 rounded-full text-white font-semibold"
+            >
+              Coming Soon
+            </span>
+          </div>
+          <h3 class="text-2xl font-bold mb-3 text-white">
+            Docker Hub Organization
+          </h3>
+          <p class="text-gray-400 mb-4 leading-relaxed">
+            Container registry for sharing containerized applications and
+            microservices built during coursework.
+          </p>
+          <div class="flex items-center text-gray-500 font-semibold">
+            <span>In Development</span>
+            <i class="fas fa-clock ml-2"></i>
+          </div>
+        </div>
+
+        <!-- PyPI Packages - Coming Soon -->
+        <div
+          class="card p-8 rounded-2xl border border-gray-700 opacity-60 pointer-events-none"
+        >
+          <div class="flex items-start justify-between mb-6">
+            <div class="card-icon text-5xl">
+              <i class="fab fa-python text-yellow-400"></i>
+            </div>
+            <span
+              class="status-badge coming-soon text-xs px-3 py-1 rounded-full text-white font-semibold"
+            >
+              Coming Soon
+            </span>
+          </div>
+          <h3 class="text-2xl font-bold mb-3 text-white">PyPI Packages</h3>
+          <p class="text-gray-400 mb-4 leading-relaxed">
+            Python package distribution initiative for publishing machine
+            learning models and utility libraries.
+          </p>
+          <div class="flex items-center text-gray-500 font-semibold">
+            <span>In Development</span>
+            <i class="fas fa-clock ml-2"></i>
+          </div>
+        </div>
+
+        <!-- Technical Blog Platform - Coming Soon -->
+        <div
+          class="card p-8 rounded-2xl border border-gray-700 opacity-60 pointer-events-none"
+        >
+          <div class="flex items-start justify-between mb-6">
+            <div class="card-icon text-5xl">
+              <i class="fas fa-blog text-green-500"></i>
+            </div>
+            <span
+              class="status-badge coming-soon text-xs px-3 py-1 rounded-full text-white font-semibold"
+            >
+              Coming Soon
+            </span>
+          </div>
+          <h3 class="text-2xl font-bold mb-3 text-white">
+            Technical Blog Platform
+          </h3>
+          <p class="text-gray-400 mb-4 leading-relaxed">
+            Knowledge sharing platform for students to publish technical
+            articles, research findings, and project insights.
+          </p>
+          <div class="flex items-center text-gray-500 font-semibold">
+            <span>In Development</span>
+            <i class="fas fa-clock ml-2"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Info -->
+      <div class="mt-16 text-center text-gray-500">
+        <p class="mb-2">
+          <i class="fas fa-envelope mr-2"></i>
+          Contact: cse@viet.edu.in
+        </p>
+        <p class="text-sm">
+          © 2026 Visakha Institute of Engineering and Technology - All Rights
+          Reserved
+        </p>
+      </div>
+    </main>
+
+    <script>
+      // Dynamically count presentations and update stats
+      document.addEventListener("DOMContentLoaded", function () {
+        // Count active presentations (those with "Ready" badge)
+        const activeCount = document.querySelectorAll(
+          ".status-badge:not(.coming-soon)",
+        ).length;
+
+        // Count coming soon presentations
+        const comingSoonCount = document.querySelectorAll(
+          ".status-badge.coming-soon",
+        ).length;
+
+        // Calculate total
+        const totalCount = activeCount + comingSoonCount;
+
+        // Update the stats
+        document.getElementById("active-count").textContent = activeCount;
+        document.getElementById("coming-soon-count").textContent =
+          comingSoonCount;
+        document.getElementById("total-count").textContent = totalCount;
+      });
+    </script>
+  </body>
+</html>
