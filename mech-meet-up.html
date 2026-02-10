@@ -1,0 +1,3807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mechanical to Tech Journey | VIET</title>
+    <link rel="icon" href="https://viet.edu.in/img/footer-imgs/viet-logo.png" type="image/png">
+    
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Open+Sans:wght@400;600&family=Roboto+Mono:wght@400;500&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* Base Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            background: #0f172a;
+            color: #ffffff;
+            overflow: hidden;
+            overflow-x: hidden;
+        }
+
+        /* Scroll Container */
+        .slides {
+            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        /* Individual Slide */
+        .slide {
+            width: 100%;
+            height: 100vh;
+            scroll-snap-align: start;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Progress Dots */
+        .progress {
+            position: fixed;
+            right: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #1e293b;
+            border: 2px solid #3b82f6;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dot:hover {
+            background: #3b82f6;
+            transform: scale(1.2);
+        }
+
+        .dot.active {
+            background: #3b82f6;
+            transform: scale(1.4);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.8);
+        }
+
+        /* Background Patterns */
+        .bg-pattern-1 {
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 500px;
+            height: 500px;
+            background-color: #1e293b;
+            border-radius: 50%;
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .bg-pattern-2 {
+            position: absolute;
+            bottom: -50px;
+            left: -50px;
+            width: 300px;
+            height: 300px;
+            border: 2px solid #3b82f6;
+            opacity: 0.2;
+            border-radius: 20px;
+            transform: rotate(15deg);
+            z-index: 0;
+        }
+
+        .bg-pattern-3 {
+            position: absolute;
+            top: 20%;
+            left: 10%;
+            font-size: 400px;
+            color: #1e293b;
+            opacity: 0.1;
+            z-index: 0;
+            transform: rotate(-10deg);
+        }
+
+        /* Content Wrapper */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 80px;
+        }
+
+        /* Typography */
+        .tagline-box {
+            border-left: 4px solid #3b82f6;
+            padding-left: 20px;
+            margin-bottom: 40px;
+        }
+
+        .main-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 64px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .highlight-text {
+            color: #60a5fa;
+        }
+
+        .quote-icon {
+            font-size: 40px;
+            color: #3b82f6;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        /* Speaker Card */
+        .speaker-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 12px;
+            display: inline-flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 600px;
+        }
+
+        .speaker-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .speaker-role {
+            font-size: 18px;
+            color: #cbd5e1;
+            font-weight: 400;
+        }
+
+        .company-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #93c5fd;
+        }
+
+        /* Utility Classes */
+        .transition-arrow {
+            display: inline-block;
+            margin: 0 15px;
+            color: #3b82f6;
+        }
+
+        /* Scrollbar Styling */
+        .slides::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .slides::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+
+        .slides::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 4px;
+        }
+
+        .slides::-webkit-scrollbar-thumb:hover {
+            background: #60a5fa;
+        }
+
+        /* Slide 2 Specific Styles */
+        .accent-circle-top {
+            position: absolute;
+            top: -150px;
+            left: -150px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            border: 2px solid rgba(59, 130, 246, 0.1);
+            z-index: 0;
+        }
+
+        .accent-circle-bottom {
+            position: absolute;
+            bottom: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background-color: rgba(30, 41, 59, 0.5);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .main-content {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            padding: 60px 80px;
+        }
+
+        .left-panel {
+            flex: 0 0 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 40px;
+        }
+
+        .right-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 40px;
+            top: 10%;
+            bottom: 25%;
+            width: 2px;
+            background-color: #334155;
+            z-index: 0;
+        }
+
+        .title-large {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 56px;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+
+        .quote-container {
+            border-left: 6px solid #3b82f6;
+            padding-left: 30px;
+            margin-top: 20px;
+        }
+
+        .quote-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            color: #94a3b8;
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        .quote-highlight {
+            color: #ffffff;
+            font-weight: 600;
+            display: block;
+            margin-top: 10px;
+            font-style: normal;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 35px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .icon-wrapper {
+            width: 60px;
+            height: 60px;
+            background-color: #1e293b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 25px;
+            border: 2px solid #3b82f6;
+            flex-shrink: 0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+
+        .timeline-text {
+            font-size: 20px;
+            color: #e2e8f0;
+            font-weight: 500;
+        }
+
+        .highlight-box {
+            background-color: #2563eb;
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 10px;
+            position: relative;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            border: 1px solid #60a5fa;
+            transform: translateX(-20px);
+            width: fit-content;
+            border-bottom: 2px solid #60a5fa !important;
+        }
+
+        .highlight-box::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 80px;
+            font-family: serif;
+            color: #93c5fd;
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        .question-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.3;
+        }
+
+        .sub-question {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #bfdbfe;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        /* Slide 3 Specific Styles */
+        .bg-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(#1e293b 1px, transparent 1px), linear-gradient(90deg, #1e293b 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .bg-circle {
+            position: absolute;
+            right: -100px;
+            top: -100px;
+            width: 400px;
+            height: 400px;
+            border: 2px solid #3b82f6;
+            border-radius: 50%;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .header-section {
+            z-index: 10;
+            margin-bottom: 50px;
+        }
+
+        .title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 48px;
+            color: #ffffff;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: #3b82f6;
+        }
+
+        .subtitle {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 18px;
+            color: #94a3b8;
+            margin-top: 15px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .journey-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 10;
+            margin-bottom: 60px;
+            padding: 0 20px;
+        }
+
+        .journey-line {
+            position: absolute;
+            top: 50%;
+            left: 100px;
+            right: 100px;
+            height: 2px;
+            background-color: #334155;
+            z-index: -1;
+            transform: translateY(-50%);
+        }
+
+        .journey-card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 25px;
+            width: 320px;
+            height: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease;
+            position: relative;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        .journey-card.highlight {
+            background-color: #1e3a8a;
+            border-color: #3b82f6;
+            transform: scale(1.05);
+            box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.3);
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background-color: #0f172a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            border: 2px solid #475569;
+            font-size: 24px;
+            color: #94a3b8;
+            position: relative;
+            z-index: 2;
+        }
+
+        .highlight .icon-box {
+            border-color: #60a5fa;
+            color: #60a5fa;
+            background-color: #172554;
+        }
+
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #e2e8f0;
+        }
+
+        .card-desc {
+            font-size: 14px;
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+
+        .highlight .card-title {
+            color: #ffffff;
+            font-size: 20px;
+        }
+
+        .highlight .card-desc {
+            color: #bfdbfe;
+            font-weight: 500;
+        }
+
+        .step-badge {
+            position: absolute;
+            top: -12px;
+            background-color: #0f172a;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #64748b;
+            border: 1px solid #334155;
+            text-transform: uppercase;
+        }
+
+        .highlight .step-badge {
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+
+        .quote-wrapper {
+            background-color: rgba(59, 130, 246, 0.1);
+            border-left: 8px solid #3b82f6;
+            padding: 30px 40px;
+            border-radius: 0 12px 12px 0;
+            position: relative;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .quote-icon-large {
+            font-size: 32px;
+            color: #3b82f6;
+            opacity: 0.6;
+        }
+
+        .main-quote {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 300;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+
+        .quote-emphasis {
+            font-weight: 800;
+            color: #60a5fa;
+            text-decoration: underline;
+            text-decoration-color: rgba(96, 165, 250, 0.3);
+            text-underline-offset: 6px;
+        }
+
+        .arrow-connector {
+            color: #475569;
+            font-size: 20px;
+        }
+
+        /* Slide 4 Specific Styles */
+        .bg-dots {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 200px;
+            height: 200px;
+            background-image: radial-gradient(#334155 2px, transparent 2px);
+            background-size: 20px 20px;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .content-area {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 40px;
+            margin-bottom: 40px;
+            z-index: 10;
+        }
+
+        .pillar-card {
+            flex: 1;
+            background-color: #1e293b;
+            border-radius: 20px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            border: 1px solid #334155;
+            transition: transform 0.3s ease;
+            max-width: 450px;
+        }
+
+        .pillar-card.left {
+            border-top: 6px solid #f59e0b;
+        }
+
+        .pillar-card.right {
+            border-top: 6px solid #ef4444;
+        }
+
+        .icon-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin-bottom: 30px;
+            border: 2px solid;
+        }
+
+        .left .icon-circle {
+            border-color: #f59e0b;
+            color: #f59e0b;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
+        }
+
+        .right .icon-circle {
+            border-color: #ef4444;
+            color: #ef4444;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
+        }
+
+        .card-heading {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #e2e8f0;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 24px;
+        }
+
+        .left .status-badge {
+            background-color: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .right .status-badge {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .impact-text {
+            font-size: 28px;
+            font-weight: 600;
+            color: white;
+            margin-top: auto;
+        }
+
+        .sub-impact {
+            font-size: 16px;
+            color: #94a3b8;
+            margin-top: 8px;
+        }
+
+        .conclusion-banner {
+            background-color: #1d4ed8;
+            border-radius: 16px;
+            padding: 24px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 10px 25px -5px rgba(29, 78, 216, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .divider {
+            height: 40px;
+            width: 2px;
+            background-color: rgba(255,255,255,0.3);
+            margin: 0 10px;
+        }
+
+        .highlight-skill {
+            color: #fbbf24;
+        }
+
+        /* Slide 5 Specific Styles */
+        .bg-hand {
+            position: absolute;
+            right: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 400px;
+            color: #1e293b;
+            opacity: 0.2;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .hand-emoji {
+            font-size: 56px;
+            animation: wave 2s infinite;
+            display: inline-block;
+            transform-origin: 70% 70%;
+        }
+
+        @keyframes wave {
+            0% { transform: rotate(0deg); }
+            10% { transform: rotate(14deg); }
+            20% { transform: rotate(-8deg); }
+            30% { transform: rotate(14deg); }
+            40% { transform: rotate(-4deg); }
+            50% { transform: rotate(10deg); }
+            60% { transform: rotate(0deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        .poll-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 25px;
+            z-index: 10;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .poll-item {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 24px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .poll-item:hover {
+            border-color: #3b82f6;
+            background-color: #1e3a8a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        .question-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 26px;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-left: 20px;
+        }
+
+        .hand-icon-box {
+            width: 56px;
+            height: 56px;
+            background-color: rgba(59, 130, 246, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #60a5fa;
+            font-size: 24px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            flex-shrink: 0;
+        }
+
+        .checkbox-fake {
+            width: 32px;
+            height: 32px;
+            border: 3px solid #64748b;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .poll-item:hover .checkbox-fake {
+            border-color: #60a5fa;
+        }
+
+        .message-box {
+            margin-top: auto;
+            background-color: #064e3b;
+            border: 1px solid #059669;
+            border-radius: 12px;
+            padding: 20px 40px;
+            text-align: center;
+            z-index: 10;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+
+        .message-text {
+            font-size: 20px;
+            color: #d1fae5;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .message-icon {
+            color: #34d399;
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .counter-badge {
+            background-color: #0f172a;
+            color: #94a3b8;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-right: 20px;
+            border: 1px solid #334155;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .poll-item:hover .counter-badge {
+            color: #60a5fa;
+            border-color: #3b82f6;
+        }
+
+        /* Slide 6 Specific Styles */
+        .bg-shape-1 {
+            position: absolute;
+            top: -100px;
+            left: 20%;
+            width: 300px;
+            height: 300px;
+            background-color: #1e293b;
+            border-radius: 50%;
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .bg-shape-2 {
+            position: absolute;
+            bottom: -50px;
+            right: 10%;
+            width: 400px;
+            height: 400px;
+            border: 2px solid #334155;
+            border-radius: 50%;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .content-grid {
+            display: flex;
+            flex: 1;
+            gap: 40px;
+            z-index: 10;
+            height: 100%;
+        }
+
+        .category-panel {
+            flex: 1;
+            background-color: #1e293b;
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #334155;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        .category-panel.tech {
+            border-top: 6px solid #3b82f6;
+        }
+
+        .category-panel.social {
+            border-top: 6px solid #ec4899;
+        }
+
+        .panel-bg-icon {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            font-size: 200px;
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .tech .icon-box {
+            background-color: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+        }
+
+        .social .icon-box {
+            background-color: rgba(236, 72, 153, 0.2);
+            color: #f472b6;
+        }
+
+        .category-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .list-item {
+            background-color: rgba(15, 23, 42, 0.6);
+            padding: 15px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            transition: transform 0.2s;
+            border: 1px solid transparent;
+            list-style: none;
+        }
+
+        .list-item:hover {
+            transform: translateX(5px);
+            background-color: rgba(15, 23, 42, 0.9);
+        }
+
+        .tech .list-item:hover {
+            border-color: #3b82f6;
+        }
+
+        .social .list-item:hover {
+            border-color: #ec4899;
+        }
+
+        .item-text {
+            font-size: 18px;
+            color: #e2e8f0;
+            font-weight: 500;
+        }
+
+        .check-icon {
+            margin-right: 15px;
+            font-size: 16px;
+        }
+
+        .tech .check-icon { color: #60a5fa; }
+        .social .check-icon { color: #f472b6; }
+
+        .center-connector {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -20%);
+            z-index: 20;
+            background-color: #0f172a;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid #334155;
+            color: #94a3b8;
+            font-weight: 800;
+            font-size: 24px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .message-pill {
+            display: inline-flex;
+            align-items: center;
+            background-color: #1e293b;
+            padding: 12px 30px;
+            border-radius: 50px;
+            border: 1px solid #334155;
+            gap: 12px;
+        }
+
+        .hand-emoji {
+            font-size: 32px;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+
+        /* Slide 7 Specific Styles */
+        .bg-element-1 {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 250px;
+            height: 250px;
+            background-color: #1e293b;
+            border-radius: 40px;
+            transform: rotate(12deg);
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        .bg-element-2 {
+            position: absolute;
+            bottom: 50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            border: 4px solid #1e293b;
+            border-radius: 50%;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        .quote-box {
+            background-color: rgba(30, 41, 59, 0.5);
+            border-left: 6px solid #60a5fa;
+            padding: 20px 30px;
+            margin-bottom: 40px;
+            border-radius: 0 12px 12px 0;
+            z-index: 10;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .skills-grid {
+            display: flex;
+            gap: 24px;
+            z-index: 10;
+            flex: 1;
+            align-items: flex-start;
+        }
+
+        .skill-card {
+            flex: 1;
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            height: 260px;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.4);
+            background-color: #233248;
+        }
+
+        .card-comm:hover { border-color: #60a5fa; }
+        .card-team:hover { border-color: #34d399; }
+        .card-lead:hover { border-color: #fbbf24; }
+        .card-conf:hover { border-color: #f472b6; }
+
+        .card-comm .icon-circle { border-color: #60a5fa; color: #60a5fa; box-shadow: 0 0 15px rgba(96, 165, 250, 0.1); }
+        .card-team .icon-circle { border-color: #34d399; color: #34d399; box-shadow: 0 0 15px rgba(52, 211, 153, 0.1); }
+        .card-lead .icon-circle { border-color: #fbbf24; color: #fbbf24; box-shadow: 0 0 15px rgba(251, 191, 36, 0.1); }
+        .card-conf .icon-circle { border-color: #f472b6; color: #f472b6; box-shadow: 0 0 15px rgba(244, 114, 182, 0.1); }
+
+        .action-banner {
+            margin-top: auto;
+            background-color: #172554;
+            border: 1px solid #1e40af;
+            border-radius: 12px;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            z-index: 10;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .action-banner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 6px; height: 100%;
+            background-color: #3b82f6;
+        }
+
+        .banner-icon {
+            font-size: 24px;
+            color: #60a5fa;
+            background-color: rgba(59, 130, 246, 0.15);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .highlight-text {
+            color: #ffffff;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #3b82f6;
+        }
+
+        /* Slide 8 & 9 Specific Styles */
+        .bg-circle-1 {
+            position: absolute;
+            top: -100px;
+            right: -50px;
+            width: 400px;
+            height: 400px;
+            border: 2px solid #1e293b;
+            border-radius: 50%;
+            z-index: 0;
+            opacity: 0.5;
+        }
+
+        .bg-circle-2 {
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 300px;
+            height: 300px;
+            background-color: #1e293b;
+            border-radius: 50%;
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        .content-wrapper {
+            display: flex;
+            flex: 1;
+            gap: 50px;
+            z-index: 10;
+            height: 100%;
+            align-items: flex-start;
+        }
+
+        .prompt-column {
+            flex: 0 0 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .prompt-card {
+            background-color: #1e293b;
+            border-radius: 20px;
+            padding: 30px;
+            border-left: 6px solid #3b82f6;
+            margin-bottom: 20px;
+            position: relative;
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.3);
+        }
+
+        .prompt-icon {
+            font-size: 32px;
+            color: #3b82f6;
+            margin-bottom: 15px;
+        }
+
+        .prompt-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #e2e8f0;
+            line-height: 1.4;
+        }
+
+        .prompt-sub {
+            margin-top: 10px;
+            color: #94a3b8;
+            font-size: 16px;
+        }
+
+        .options-grid {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            align-content: center;
+            height: 100%;
+        }
+
+        .option-card {
+            width: 220px;
+            height: 160px;
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: default;
+        }
+
+        .option-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            background-color: #26354f;
+            box-shadow: 0 15px 25px -5px rgba(0,0,0,0.4);
+        }
+
+        .card-icon {
+            font-size: 36px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .option-card:hover .card-icon {
+            transform: scale(1.1);
+        }
+
+        .card-label {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: #f1f5f9;
+            margin-bottom: 5px;
+        }
+
+        .card-tags {
+            font-size: 12px;
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        .opt-software { border-bottom: 4px solid #3b82f6; }
+        .opt-software .card-icon { color: #3b82f6; }
+
+        .opt-mech { border-bottom: 4px solid #f97316; }
+        .opt-mech .card-icon { color: #f97316; }
+
+        .opt-business { border-bottom: 4px solid #a855f7; }
+        .opt-business .card-icon { color: #a855f7; }
+
+        .opt-data { border-bottom: 4px solid #10b981; }
+        .opt-data .card-icon { color: #10b981; }
+
+        .opt-design { border-bottom: 4px solid #ec4899; }
+        .opt-design .card-icon { color: #ec4899; }
+
+        /* Slide 9 Specific Styles */
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(#1e293b 2px, transparent 2px);
+            background-size: 30px 30px;
+            opacity: 0.3;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .content-area {
+            display: flex;
+            flex: 1;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            z-index: 10;
+            padding-bottom: 20px;
+        }
+
+        .jd-mockup {
+            width: 500px;
+            background-color: #1e293b;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
+            border: 1px solid #334155;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .jd-header {
+            background-color: #334155;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .window-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background-color: #ef4444; }
+        .dot-yellow { background-color: #f59e0b; }
+        .dot-green { background-color: #10b981; }
+
+        .jd-body {
+            padding: 30px;
+        }
+
+        .company-logo-placeholder {
+            width: 50px;
+            height: 50px;
+            background-color: #475569;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #94a3b8;
+        }
+
+        .job-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .job-meta {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 25px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .job-section-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #64748b;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .job-text {
+            font-size: 16px;
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .highlight-box {
+            background-color: rgba(245, 158, 11, 0.2);
+            border: 2px dashed #f59e0b;
+            color: #fbbf24;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        .magnify-icon {
+            position: absolute;
+            top: -25px;
+            right: -25px;
+            font-size: 40px;
+            color: #f59e0b;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .arrow-connector {
+            flex: 0 0 50px;
+            display: flex;
+            justify-content: center;
+            color: #64748b;
+            font-size: 40px;
+        }
+
+        .revelation-card {
+            flex: 1;
+            background-color: #0f172a;
+            border-left: 6px solid #3b82f6;
+            padding: 0 0 0 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .question-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #94a3b8;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .answer-box {
+            background-color: #1e3a8a;
+            padding: 30px;
+            border-radius: 0 20px 20px 20px;
+            position: relative;
+            box-shadow: 0 10px 25px -5px rgba(30, 58, 138, 0.4);
+            border: 1px solid #3b82f6;
+        }
+
+        .answer-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.3;
+        }
+
+        .answer-icon {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 50px;
+            height: 50px;
+            background-color: #3b82f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .misconception-tag {
+            margin-top: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #ef4444;
+            background-color: rgba(239, 68, 68, 0.1);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* Slide 10 Specific Styles */
+        .bg-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background-color: #1e3a8a;
+            filter: blur(120px);
+            opacity: 0.2;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .quote-pill {
+            display: inline-block;
+            background-color: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 8px 24px;
+            border-radius: 30px;
+        }
+
+        .pathways-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+            z-index: 10;
+            margin-bottom: 20px;
+        }
+
+        .pathway-row {
+            display: flex;
+            align-items: center;
+            background-color: rgba(30, 41, 59, 0.6);
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 15px 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .pathway-row:hover {
+            transform: translateX(10px);
+            background-color: rgba(30, 41, 59, 0.9);
+            border-color: #475569;
+        }
+
+        .node-start {
+            width: 280px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .text-group p:first-child {
+            font-weight: 700;
+            color: #e2e8f0;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+        }
+
+        .text-group p:last-child {
+            font-size: 12px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .connector {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .connector-line {
+            width: 100%;
+            height: 2px;
+            background-color: #334155;
+            position: relative;
+        }
+
+        .connector-arrow {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #334155;
+        }
+
+        .transform-pill {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            color: #94a3b8;
+            white-space: nowrap;
+        }
+
+        .node-end {
+            width: 280px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            justify-content: flex-end;
+            text-align: right;
+        }
+
+        .node-end .text-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .row-mech:hover .node-end .icon-box { background-color: rgba(59, 130, 246, 0.2); color: #60a5fa; border-color: #3b82f6; }
+        .row-mech:hover .node-end p:first-child { color: #60a5fa; }
+
+        .row-civil:hover .node-end .icon-box { background-color: rgba(16, 185, 129, 0.2); color: #34d399; border-color: #10b981; }
+        .row-civil:hover .node-end p:first-child { color: #34d399; }
+
+        .row-eee:hover .node-end .icon-box { background-color: rgba(168, 85, 247, 0.2); color: #c084fc; border-color: #a855f7; }
+        .row-eee:hover .node-end p:first-child { color: #c084fc; }
+
+        .footer-cards {
+            display: flex;
+            gap: 30px;
+            z-index: 10;
+        }
+
+        .info-card {
+            flex: 1;
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: 1px solid;
+        }
+
+        .card-positive {
+            background-color: rgba(16, 185, 129, 0.1);
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .card-neutral {
+            background-color: rgba(100, 116, 139, 0.1);
+            border-color: rgba(100, 116, 139, 0.3);
+        }
+
+        .info-icon {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .positive-icon { background-color: rgba(16, 185, 129, 0.2); color: #34d399; }
+        .neutral-icon { background-color: rgba(148, 163, 184, 0.2); color: #94a3b8; }
+
+        .info-text p:first-child {
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 2px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .info-text p:last-child {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .text-green { color: #d1fae5; }
+        .text-slate { color: #e2e8f0; }
+
+        /* Slide 11 Styles */
+        .stories-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            z-index: 10;
+            margin-bottom: 40px;
+            flex: 1;
+        }
+
+        .story-card {
+            flex: 1;
+            max-width: 450px;
+            min-height: 280px;
+            height: fit-content;
+            background-color: #1e293b;
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            border: 1px solid #334155;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .story-card:hover {
+            transform: translateY(-5px);
+            border-color: #475569;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #334155;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #94a3b8;
+        }
+
+        .avatar-circle {
+            width: 100px;
+            height: 100px;
+            background-color: #0f172a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            border: 4px solid;
+            font-size: 40px;
+        }
+
+        .card-1 .avatar-circle { border-color: #60a5fa; color: #60a5fa; }
+        .card-2 .avatar-circle { border-color: #f472b6; color: #f472b6; }
+
+        .story-content {
+            text-align: center;
+        }
+
+        .story-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .story-desc {
+            font-size: 18px;
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+
+        .highlight-blue { color: #60a5fa; font-weight: 600; }
+        .highlight-pink { color: #f472b6; font-weight: 600; }
+
+        .logic-section {
+            background-color: #1e3a8a;
+            border-radius: 16px;
+            padding: 25px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 10;
+            border: 1px solid #2563eb;
+            box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.3);
+            margin-top: auto;
+        }
+
+        .question-part {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-right: 2px solid rgba(255,255,255,0.2);
+            padding-right: 40px;
+            flex: 1;
+        }
+
+        .answer-part {
+            padding-left: 40px;
+            flex: 1.2;
+        }
+
+        .q-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 20px;
+            color: #bfdbfe;
+        }
+
+        .q-icon {
+            font-size: 32px;
+            color: #ef4444;
+            background-color: rgba(239, 68, 68, 0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .a-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .check-icon {
+            color: #10b981;
+        }
+
+        /* Slide 12 Styles */
+        .bg-stripe {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background-color: #1e293b;
+            z-index: 0;
+        }
+
+        .bg-circle-left {
+            position: absolute;
+            top: 200px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            border: 30px solid #1e293b;
+            border-radius: 50%;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .bg-circle-right {
+            position: absolute;
+            bottom: 50px;
+            right: -50px;
+            width: 300px;
+            height: 300px;
+            background-color: #1e293b;
+            border-radius: 50%;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .profiles-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex: 1;
+            z-index: 10;
+            align-items: center;
+        }
+
+        .profile-card {
+            width: 420px;
+            background-color: #1e293b;
+            border-radius: 24px;
+            padding: 0;
+            position: relative;
+            border: 1px solid #334155;
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.4);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .profile-header {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid #334155;
+            background-color: #25334d;
+        }
+
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+        }
+
+        .profile-info h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            margin: 0;
+            color: white;
+        }
+
+        .profile-info p {
+            font-size: 14px;
+            color: #94a3b8;
+            margin: 2px 0 0 0;
+        }
+
+        .journey-body {
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .milestone {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            background-color: #0f172a;
+            border: 1px solid #334155;
+        }
+
+        .milestone-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            border-radius: 8px;
+            color: #94a3b8;
+            background-color: #1e293b;
+        }
+
+        .milestone-text h4 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: #e2e8f0;
+        }
+
+        .milestone-text p {
+            margin: 2px 0 0 0;
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .arrow-down {
+            text-align: center;
+            color: #64748b;
+            font-size: 20px;
+            margin: -10px 0;
+        }
+
+        .card-sister .avatar { background-color: #db2777; }
+        .card-sister .milestone.final { border-color: #db2777; background-color: rgba(219, 39, 119, 0.1); }
+        .card-sister .milestone.final .milestone-icon { background-color: #db2777; color: white; }
+        .card-sister .milestone.final h4 { color: #fbcfe8; }
+
+        .card-brother .avatar { background-color: #0284c7; }
+        .card-brother .milestone.final { border-color: #0284c7; background-color: rgba(2, 132, 199, 0.1); }
+        .card-brother .milestone.final .milestone-icon { background-color: #0284c7; color: white; }
+        .card-brother .milestone.final h4 { color: #bae6fd; }
+
+        .equation-bar {
+            margin-top: 20px;
+            background-color: #1e293b;
+            border-radius: 16px;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            z-index: 10;
+            border: 1px solid #334155;
+            align-self: center;
+            width: 90%;
+        }
+
+        .eq-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: #cbd5e1;
+            font-size: 18px;
+        }
+
+        .eq-icon {
+            color: #94a3b8;
+        }
+        
+        .eq-plus {
+            color: #64748b;
+            font-size: 20px;
+        }
+
+        .eq-highlight {
+            color: #ffffff;
+            font-weight: 800;
+            background-color: #3b82f6;
+            padding: 5px 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.5);
+        }
+
+        /* Slide 13 Styles */
+        .bg-oval-1 {
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background-color: #1e293b;
+            opacity: 0.4;
+            z-index: 0;
+        }
+        
+        .bg-oval-2 {
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            border: 2px solid #334155;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .clarity-grid {
+            display: flex;
+            flex: 1;
+            gap: 40px;
+            z-index: 10;
+            align-items: stretch;
+            justify-content: center;
+            padding-bottom: 20px;
+        }
+
+        .clarity-card {
+            flex: 1;
+            border-radius: 20px;
+            padding: 30px 40px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            padding-bottom: 20px;
+        }
+
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 28px;
+            text-transform: uppercase;
+        }
+
+        .card-icon {
+            font-size: 32px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+        }
+
+        .card-negative {
+            background-color: rgba(30, 41, 59, 0.4);
+            border: 1px solid #334155;
+        }
+
+        .card-negative .card-title { color: #cbd5e1; }
+        .card-negative .card-icon { background-color: rgba(239, 68, 68, 0.1); color: #ef4444; }
+        
+        .list-item-negative {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 25px;
+            color: #94a3b8;
+            font-size: 20px;
+            transition: opacity 0.3s;
+        }
+
+        .list-item-negative:hover {
+            opacity: 0.7;
+        }
+
+        .icon-negative {
+            color: #ef4444;
+            margin-top: 5px;
+            font-size: 18px;
+        }
+
+        .text-negative {
+            text-decoration: line-through;
+            text-decoration-color: #ef4444;
+            text-decoration-thickness: 2px;
+        }
+
+        .card-positive {
+            background-color: rgba(30, 58, 138, 0.2);
+            border: 1px solid #3b82f6;
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.1);
+        }
+
+        .card-positive .card-title { color: #ffffff; }
+        .card-positive .card-icon { background-color: #3b82f6; color: white; }
+
+        .list-item-positive {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: 600;
+            background-color: rgba(59, 130, 246, 0.1);
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .icon-positive {
+            color: #3b82f6;
+            font-size: 24px;
+        }
+
+        .highlight-green {
+            color: #34d399;
+        }
+
+        .vs-badge {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #0f172a;
+            border: 2px solid #334155;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+            color: #64748b;
+            z-index: 20;
+            font-size: 20px;
+        }
+
+        .bottom-note {
+            text-align: center;
+            font-size: 16px;
+            color: #64748b;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* Slide 14 Styles */
+        .bg-dots {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(#334155 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .timeline-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            position: relative;
+            z-index: 10;
+            padding: 0 20px;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 50%;
+            left: 50px;
+            right: 50px;
+            height: 4px;
+            background-color: #334155;
+            transform: translateY(-50%);
+            z-index: 0;
+            border-radius: 2px;
+        }
+
+        .step-card {
+            width: 340px;
+            background-color: #1e293b;
+            border-radius: 16px;
+            padding: 25px;
+            position: relative;
+            z-index: 10;
+            border: 1px solid #334155;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px -5px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+            height: 360px;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .step-badge {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            white-space: nowrap;
+        }
+
+        .step-icon-wrapper {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 15px auto 15px auto;
+            border: 2px solid;
+            background-color: #0f172a;
+        }
+
+        .step-title {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .action-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .action-item {
+            display: flex;
+            align-items: start;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+
+        .action-bullet {
+            margin-top: 5px;
+            font-size: 10px;
+        }
+
+        .card-2nd { border-top: 4px solid #3b82f6; }
+        .badge-2nd { background-color: #3b82f6; color: white; }
+        .icon-2nd { color: #3b82f6; border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.2); }
+        .bullet-2nd { color: #3b82f6; }
+
+        .card-3rd { border-top: 4px solid #a855f7; }
+        .badge-3rd { background-color: #a855f7; color: white; }
+        .icon-3rd { color: #a855f7; border-color: #a855f7; box-shadow: 0 0 15px rgba(168, 85, 247, 0.2); }
+        .bullet-3rd { color: #a855f7; }
+
+        .card-final { border-top: 4px solid #10b981; }
+        .badge-final { background-color: #10b981; color: white; }
+        .icon-final { color: #10b981; border-color: #10b981; box-shadow: 0 0 15px rgba(16, 185, 129, 0.2); }
+        .bullet-final { color: #10b981; }
+
+        .habit-bar {
+            margin-top: 30px;
+            background-color: #1e293b;
+            border: 1px dashed #f59e0b;
+            border-radius: 12px;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            z-index: 10;
+            width: 60%;
+            align-self: center;
+            background-color: rgba(245, 158, 11, 0.05);
+        }
+
+        .habit-icon {
+            font-size: 24px;
+            color: #f59e0b;
+            animation: pulse-habit 2s infinite;
+        }
+
+        @keyframes pulse-habit {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .habit-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #fbbf24;
+        }
+        
+        .habit-sub {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-left: 10px;
+            font-weight: 400;
+        }
+
+        /* Slide 15 Styles */
+        .bg-spotlight {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background-color: #1e3a8a;
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .bg-accents-top {
+            position: absolute;
+            top: 50px;
+            left: 100px;
+            font-size: 200px;
+            color: #1e293b;
+            opacity: 0.3;
+            z-index: 0;
+            font-family: serif;
+        }
+
+        .bg-accents-bottom {
+            position: absolute;
+            bottom: 50px;
+            right: 100px;
+            font-size: 200px;
+            color: #1e293b;
+            opacity: 0.3;
+            z-index: 0;
+            font-family: serif;
+            transform: rotate(180deg);
+        }
+
+        .quote-icon-top {
+            font-size: 60px;
+            color: #3b82f6;
+            margin-bottom: -20px;
+            opacity: 0.8;
+        }
+
+        .text-reflection {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            font-weight: 300;
+            color: #cbd5e1;
+            line-height: 1.4;
+            font-style: italic;
+        }
+
+        .separator-line {
+            width: 120px;
+            height: 4px;
+            background-color: #3b82f6;
+            border-radius: 2px;
+            margin: 10px 0;
+            opacity: 0.6;
+        }
+
+        .text-impact {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            display: inline-block;
+            position: relative;
+            color: #60a5fa;
+            text-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+        }
+
+        
+
+        .speaker-note {
+            margin-top: 40px;
+            font-size: 16px;
+            color: #64748b;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .speaker-line {
+            width: 40px;
+            height: 1px;
+            background-color: #475569;
+        }
+
+        /* Slide 16 Styles */
+        .bg-ring-1 {
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            border: 40px solid #1e293b;
+            border-radius: 50%;
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .bg-ring-2 {
+            position: absolute;
+            bottom: -150px;
+            left: -150px;
+            width: 600px;
+            height: 600px;
+            border: 2px solid #334155;
+            border-radius: 50%;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .bg-dot-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(#334155 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .thank-you-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 72px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: white;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            margin: 0;
+            position: relative;
+        }
+
+        .thank-you-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 6px;
+            background-color: #3b82f6;
+            border-radius: 3px;
+        }
+
+        .message-card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 24px;
+            padding: 40px 60px;
+            text-align: center;
+            box-shadow: 0 20px 50px -10px rgba(0,0,0,0.5);
+            max-width: 900px;
+            position: relative;
+        }
+
+        .message-card::before {
+            content: '"';
+            position: absolute;
+            top: -30px;
+            left: 40px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 80px;
+            color: #3b82f6;
+            background-color: #0f172a;
+            padding: 0 10px;
+            height: 40px;
+            line-height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .message-text-1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 400;
+            color: #cbd5e1;
+            margin-bottom: 15px;
+        }
+
+        .message-text-2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: white;
+            display: block;
+        }
+
+        .highlight-text {
+            color: #60a5fa;
+        }
+
+        .qa-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .qa-icon-wrapper {
+            width: 70px;
+            height: 70px;
+            background-color: #3b82f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: white;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .qa-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: white;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .contact-pill {
+            margin-top: auto;
+            background-color: rgba(30, 41, 59, 0.8);
+            border: 1px solid #475569;
+            padding: 12px 30px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-pill:hover {
+            border-color: #3b82f6;
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+
+        .contact-icon {
+            font-size: 24px;
+            color: #0ea5e9;
+        }
+
+        .contact-text {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            color: #94a3b8;
+            font-weight: 600;
+        }
+
+        .contact-text span {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Dots -->
+    <div class="progress">
+        <div class="dot" onclick="goToSlide(0)"></div>
+        <div class="dot" onclick="goToSlide(1)"></div>
+        <div class="dot" onclick="goToSlide(2)"></div>
+        <div class="dot" onclick="goToSlide(3)"></div>
+        <div class="dot" onclick="goToSlide(4)"></div>
+        <div class="dot" onclick="goToSlide(5)"></div>
+        <div class="dot" onclick="goToSlide(6)"></div>
+        <div class="dot" onclick="goToSlide(7)"></div>
+        <div class="dot" onclick="goToSlide(8)"></div>
+        <div class="dot" onclick="goToSlide(9)"></div>
+        <div class="dot" onclick="goToSlide(10)"></div>
+        <div class="dot" onclick="goToSlide(11)"></div>
+        <div class="dot" onclick="goToSlide(12)"></div>
+        <div class="dot" onclick="goToSlide(13)"></div>
+        <div class="dot" onclick="goToSlide(14)"></div>
+        <div class="dot" onclick="goToSlide(15)"></div>
+    </div>
+
+    <!-- Slides Container -->
+    <div class="slides" id="slides">
+        
+        <!-- SLIDE 1: Title Cover -->
+        <section class="slide">
+            <!-- Background Elements -->
+            <div class="bg-pattern-1"></div>
+            <div class="bg-pattern-2"></div>
+            <div class="bg-pattern-3">
+                <i class="fas fa-rocket"></i>
+            </div>
+
+            <!-- Main Content -->
+            <div class="content-wrapper">
+                <div class="tagline-box">
+                    <i class="fas fa-quote-left quote-icon"></i>
+                    <p class="text-2xl font-light text-gray-300 italic font-serif">
+                        "Degree Is the Gate Pass. <span class="text-white font-medium not-italic">Skills Decide the Journey.</span>"
+                    </p>
+                </div>
+
+                <h1 class="main-title">
+                    From <span class="text-gray-400">Mechanical Engineering</span><br>
+                    To <span class="highlight-text">Technology Leadership</span>
+                </h1>
+
+                <div class="flex items-end justify-between mt-auto" style="width:100%">
+                    <div class="speaker-card">
+                        <p class="speaker-name">Vijaya Manikanta Thikkani</p>
+                        <p class="speaker-role text-sm text-gray-400 uppercase tracking-wider mb-1">Alumni – ViET</p>
+                        <div class="w-12 h-1 bg-blue-500 my-2"></div>
+                        <p class="speaker-role">Associate Vice President – Technology</p>
+                        <div class="company-badge">
+                            <i class="fas fa-building"></i>
+                            <span>JPMorgan Chase & Co.</span>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; align-items: flex-end; opacity: 0.6; margin-left: auto;">
+                        <div style="display: flex; gap: 1rem; font-size: 2.5rem; color: #6b7280; align-items: center;">
+                            <i class="fas fa-cogs"></i>
+                            <i class="fas fa-arrow-right" style="color: #3b82f6; font-size: 1.5rem;"></i>
+                            <i class="fas fa-laptop-code" style="color: #60a5fa;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: Let Me Introduce Myself -->
+        <section class="slide">
+            <div class="accent-circle-top"></div>
+            <div class="accent-circle-bottom"></div>
+            
+            <div class="main-content">
+                <!-- Left Panel: Introduction & Hook -->
+                <div class="left-panel">
+                    <div class="flex items-center gap-3 mb-4 opacity-70">
+                        <div class="h-0.5 w-10 bg-blue-500"></div>
+                        <p class="text-blue-400 uppercase tracking-widest font-semibold text-sm">Introduction</p>
+                    </div>
+                    
+                    <h1 class="title-large">
+                        Let Me <br>
+                        <span class="text-blue-500">Introduce</span> <br>
+                        Myself
+                    </h1>
+                    
+                    <div class="quote-container">
+                        <p class="quote-text">
+                            "Before I talk about you...
+                            <span class="quote-highlight">Let me talk about me."</span>
+                        </p>
+                    </div>
+                    
+                    <!-- Relatability subtle cue -->
+                    <div class="mt-auto flex items-center gap-3 text-gray-500 text-sm">
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+                
+                <!-- Right Panel: The Journey Points -->
+                <div class="right-panel">
+                    <div class="timeline-line"></div>
+                    
+                    <div class="timeline-item">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-graduation-cap text-2xl text-blue-400"></i>
+                        </div>
+                        <p class="timeline-text">Mechanical Engineering graduate</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-chair text-2xl text-blue-400"></i>
+                        </div>
+                        <p class="timeline-text">Sat in the same classrooms</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-cloud-question text-2xl text-blue-400"></i>
+                        </div>
+                        <p class="timeline-text">Had the same confusion</p>
+                    </div>
+                    
+                    <div class="highlight-box" style="background-color: rgba(30, 58, 138, 0.3); padding: 30px; border-radius: 16px; border: 1px solid rgba(59, 130, 246, 0.3);">
+                        <p class="sub-question">I asked the same question:</p>
+                        <p class="question-text">"How can I be successful with Mechanical Engineering?"</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: Where I Am Today -->
+        <section class="slide">
+            <div class="bg-grid"></div>
+            <div class="bg-circle"></div>
+            
+            <div style="padding: 60px 80px; height: 100%; display: flex; flex-direction: column;">
+                <!-- Header -->
+                <div class="header-section">
+                    <h1 class="title">Where I Am Today</h1>
+                    <p class="subtitle">A Journey of Transformation</p>
+                </div>
+                
+                <!-- Main Journey Path -->
+                <div class="journey-container">
+                    <div class="journey-line"></div>
+                    
+                    <!-- Stage 1 -->
+                    <div class="journey-card">
+                        <div class="step-badge">The Start</div>
+                        <div class="icon-box">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <p class="card-title">Mechanical Graduate</p>
+                        <p class="card-desc">Started with core engineering fundamentals and a traditional degree path.</p>
+                    </div>
+                    
+                    <i class="fas fa-chevron-right arrow-connector"></i>
+                    
+                    <!-- Stage 2 -->
+                    <div class="journey-card">
+                        <div class="step-badge">The Pivot</div>
+                        <div class="icon-box">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <p class="card-title">Transitioned to Software</p>
+                        <p class="card-desc">Learned coding, algorithms, and development through self-study and projects.</p>
+                    </div>
+                    
+                    <i class="fas fa-chevron-right arrow-connector"></i>
+                    
+                    <!-- Stage 3 (Current) -->
+                    <div class="journey-card highlight">
+                        <div class="step-badge">The Present</div>
+                        <div class="icon-box">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <p class="card-title">Associate Vice President</p>
+                        <p class="card-desc">Leading Technology at<br/><strong>JPMorgan Chase & Co.</strong></p>
+                    </div>
+                </div>
+                
+                <!-- Bottom Quote -->
+                <div class="quote-wrapper mt-auto">
+                    <i class="fas fa-quote-left quote-icon-large"></i>
+                    <div>
+                        <p class="main-quote">
+                            "I didn't change my degree.<br/>
+                            I changed my <span class="quote-emphasis">skill set</span>."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: The Realization -->
+        <section class="slide">
+            <div class="bg-dots"></div>
+            
+            <div style="padding: 50px 80px; height: 100%; display: flex; flex-direction: column;">
+                <!-- Header -->
+                <div class="header-section" style="text-align: center; margin-bottom: 40px;">
+                    <h1 class="title" style="font-size: 48px; display: block;">The Realization</h1>
+                    <p class="subtitle" style="font-size: 20px; font-family: 'Montserrat', sans-serif;">"Through my journey, I understood one truth."</p>
+                </div>
+                
+                <!-- Comparison Pillars -->
+                <div class="content-area">
+                    <!-- Left Pillar -->
+                    <div class="pillar-card left">
+                        <div class="icon-circle">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h2 class="card-heading">Degree</h2>
+                        <div class="status-badge">
+                            <i class="fas fa-exclamation-circle" style="margin-right: 8px;"></i> Needed
+                        </div>
+                        <div style="margin-top: auto; margin-bottom: 16px;">
+                            <p class="impact-text">Entry Ticket</p>
+                            <p class="sub-impact">Opens the gate</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Center Connector -->
+                    <div class="flex flex-col justify-center items-center text-gray-500 font-bold text-xl opacity-50">
+                        <span>VS</span>
+                    </div>
+                    
+                    <!-- Right Pillar -->
+                    <div class="pillar-card right">
+                        <div class="icon-circle">
+                            <i class="fas fa-ban"></i>
+                        </div>
+                        <h2 class="card-heading">Without Skills</h2>
+                        <div class="status-badge">
+                            <i class="fas fa-times-circle" style="margin-right: 8px;"></i> Not Useful
+                        </div>
+                        <div style="margin-top: auto; margin-bottom: 16px;">
+                            <p class="impact-text">No Growth</p>
+                            <p class="sub-impact">Stuck at the entry</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bottom Conclusion -->
+                <div class="conclusion-banner">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-white bg-opacity-20 p-3 rounded-full">
+                            <i class="fas fa-lightbulb text-yellow-300 text-2xl"></i>
+                        </div>
+                        <p class="font-semibold text-blue-100 text-lg">The Core Message:</p>
+                    </div>
+                    <div class="flex items-center flex-1 justify-end">
+                        <p class="banner-text">
+                            <span class="font-light opacity-90">Degree = Entry Ticket</span>
+                            <span class="divider"></span>
+                            <span class="highlight-skill"><i class="fas fa-rocket" style="margin-right: 8px;"></i>Skills = Career Growth</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 5: Let's Be Honest -->
+        <section class="slide">
+            <div class="bg-hand">
+                <i class="fas fa-hand-paper"></i>
+            </div>
+            
+            <div style="padding: 50px 80px; height: 100%; display: flex; flex-direction: column;">
+                <!-- Header -->
+                <div class="header-section" style="text-align: center; margin-bottom: 40px;">
+                    <h1 class="title" style="font-size: 56px; display: inline-flex; align-items: center; gap: 20px;">
+                        Let's Be Honest <span class="hand-emoji">👋</span>
+                    </h1>
+                    <p class="text-xl text-blue-300 font-light mt-2 tracking-widest uppercase">Quick Show of Hands</p>
+                </div>
+                
+                <!-- Poll Questions -->
+                <div class="poll-container">
+                    <!-- Q1 -->
+                    <div class="poll-item">
+                        <div class="flex items-center flex-1">
+                            <div class="counter-badge">01</div>
+                            <div class="checkbox-fake"></div>
+                            <p class="question-text">How many have your <span class="text-white">resume ready?</span></p>
+                        </div>
+                        <div class="hand-icon-box">
+                            <i class="fas fa-hand-paper"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Q2 -->
+                    <div class="poll-item">
+                        <div class="flex items-center flex-1">
+                            <div class="counter-badge">02</div>
+                            <div class="checkbox-fake"></div>
+                            <p class="question-text">How many have a <span class="text-white">LinkedIn profile?</span></p>
+                        </div>
+                        <div class="hand-icon-box">
+                            <i class="fas fa-hand-paper"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Q3 -->
+                    <div class="poll-item" style="border-left: 6px solid #f59e0b;">
+                        <div class="flex items-center flex-1">
+                            <div class="counter-badge" style="color: #fcd34d; border-color: #f59e0b;">03</div>
+                            <div class="checkbox-fake" style="border-color: #f59e0b;"></div>
+                            <p class="question-text">Have you <span style="color: #fbbf24;">updated it in the last 3 months?</span></p>
+                        </div>
+                        <div class="hand-icon-box" style="color: #fcd34d; border-color: rgba(245, 158, 11, 0.4); background-color: rgba(245, 158, 11, 0.1);">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Reassurance Footer -->
+                <div class="message-box">
+                    <div class="flex items-center justify-center">
+                        <i class="fas fa-heart message-icon"></i>
+                        <p class="message-text">
+                            "This is not to judge. This is to understand where we are."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 6: Another Honest Question -->
+        <section class="slide">
+            <div class="bg-shape-1"></div>
+            <div class="bg-shape-2"></div>
+            
+            <div style="padding: 40px 60px; height: 100%; display: flex; flex-direction: column;">
+                <div class="header-section" style="text-align: center; margin-bottom: 30px;">
+                    <h1 class="main-title" style="font-size: 42px;">Another Honest Question <span class="hand-emoji">🙋</span></h1>
+                    <p class="subtitle">How many of you are part of...</p>
+                </div>
+                
+                <div class="content-grid">
+                    <div class="category-panel tech">
+                        <i class="fas fa-microchip panel-bg-icon"></i>
+                        <div class="panel-header">
+                            <div class="icon-box" style="width: 50px; height: 50px; font-size: 24px; margin-right: 15px;">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div>
+                                <p class="category-title">Technical Involvement</p>
+                                <p class="text-xs text-blue-300 uppercase tracking-widest mt-1">Hard Skills</p>
+                            </div>
+                        </div>
+                        <div class="list-container">
+                            <div class="list-item">
+                                <i class="fas fa-calendar-check check-icon"></i>
+                                <p class="item-text">Technical Events</p>
+                            </div>
+                            <div class="list-item">
+                                <i class="fas fa-laptop-code check-icon"></i>
+                                <p class="item-text">Hackathons</p>
+                            </div>
+                            <div class="list-item">
+                                <i class="fas fa-chalkboard-teacher check-icon"></i>
+                                <p class="item-text">Workshops</p>
+                            </div>
+                            <div class="list-item">
+                                <i class="fas fa-users-cog check-icon"></i>
+                                <p class="item-text">College Clubs</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="center-connector">&</div>
+                    
+                    <div class="category-panel social">
+                        <i class="fas fa-users panel-bg-icon"></i>
+                        <div class="panel-header">
+                            <div class="icon-box" style="width: 50px; height: 50px; font-size: 24px; margin-right: 15px;">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div>
+                                <p class="category-title">Beyond Tech</p>
+                                <p class="text-xs text-pink-300 uppercase tracking-widest mt-1">Holistic Growth</p>
+                            </div>
+                        </div>
+                        <div class="list-container">
+                            <div class="list-item">
+                                <i class="fas fa-music check-icon"></i>
+                                <p class="item-text">Cultural Events</p>
+                            </div>
+                            <div class="list-item">
+                                <i class="fas fa-comments check-icon"></i>
+                                <p class="item-text">Social Activities</p>
+                            </div>
+                            <div class="list-item">
+                                <i class="fas fa-hands-helping check-icon"></i>
+                                <p class="item-text">Volunteering</p>
+                            </div>
+                            <div class="list-item" style="opacity: 0; pointer-events: none;">
+                                <p class="item-text">Spacer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bottom-message" style="margin-top: 30px; text-align: center; z-index: 10;">
+                    <div class="message-pill">
+                        <i class="fas fa-info-circle text-gray-400"></i>
+                        <p class="message-text">Both are critical. <span class="text-white font-bold">Acknowledge everything you do.</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 7: Why These Things Matter -->
+        <section class="slide">
+            <div class="bg-element-1"></div>
+            <div class="bg-element-2"></div>
+            
+            <div style="padding: 50px 80px; height: 100%; display: flex; flex-direction: column;">
+                <div class="header-section" style="margin-bottom: 20px;">
+                    <h1 class="main-title" style="font-size: 42px;">Why These Things Matter</h1>
+                </div>
+                
+                <div class="quote-box">
+                    <p class="quote-text" style="font-size: 32px;">
+                        "Companies don't hire <span class="text-gray-400 line-through decoration-red-500 decoration-2">marksheets</span>. 
+                        They hire <span class="quote-highlight">people</span>."
+                    </p>
+                </div>
+                
+                <div class="skills-grid">
+                    <div class="skill-card card-comm">
+                        <div class="icon-circle">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3 class="card-title">Communication</h3>
+                        <p class="card-desc">
+                            Articulating your thoughts clearly in meetings and interviews.
+                        </p>
+                    </div>
+                    
+                    <div class="skill-card card-team">
+                        <div class="icon-circle">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="card-title">Teamwork</h3>
+                        <p class="card-desc">
+                            Collaborating effectively with diverse groups to solve problems.
+                        </p>
+                    </div>
+                    
+                    <div class="skill-card card-lead">
+                        <div class="icon-circle">
+                            <i class="fas fa-flag"></i>
+                        </div>
+                        <h3 class="card-title">Leadership</h3>
+                        <p class="card-desc">
+                            Taking initiative and guiding others towards a common goal.
+                        </p>
+                    </div>
+                    
+                    <div class="skill-card card-conf">
+                        <div class="icon-circle">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3 class="card-title">Confidence</h3>
+                        <p class="card-desc">
+                            Presenting yourself and your ideas with conviction.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="action-banner">
+                    <div class="banner-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <p class="banner-text" style="font-size: 20px; font-weight: 600; color: #dbeafe;">
+                        The shift in perspective: These are <span class="highlight-text">Interview Skills</span>, not just extracurriculars.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 8: Now I Want to Know YOU -->
+        <section class="slide">
+            <div class="bg-circle-1"></div>
+            <div class="bg-circle-2"></div>
+            
+            <div style="padding: 40px 60px; height: 100%; display: flex; flex-direction: column;">
+                <div class="header-section" style="text-align: center; margin-bottom: 30px;">
+                    <h1 class="main-title" style="font-size: 42px;">Now I Want to Know</h1>
+                    <p class="subtitle"><em>where you are</em>.</p>
+                </div>
+                
+                <div style="display: flex; gap: 40px; height: 100%; align-items: center;">
+                    <div class="prompt-column">
+                        <div class="prompt-card">
+                            <i class="fas fa-bullseye prompt-icon"></i>
+                            <p class="prompt-text">What skills are you learning right now?</p>
+                        </div>
+                        <div class="prompt-card" style="border-left-color: #10b981;">
+                            <i class="fas fa-heart prompt-icon" style="color: #10b981;"></i>
+                            <p class="prompt-text">What are your genuine interests?</p>
+                            <p class="prompt-sub">Be honest. No judgment.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="options-grid">
+                        <div class="option-card opt-software">
+                            <i class="fas fa-laptop-code card-icon"></i>
+                            <p class="card-label">Software</p>
+                            <p class="card-tags">Coding, App Dev, Web</p>
+                        </div>
+                        
+                        <div class="option-card opt-mech">
+                            <i class="fas fa-cogs card-icon"></i>
+                            <p class="card-label">Core Mechanical</p>
+                            <p class="card-tags">CAD, Auto, Thermo</p>
+                        </div>
+                        
+                        <div class="option-card opt-business">
+                            <i class="fas fa-briefcase card-icon"></i>
+                            <p class="card-label">Business</p>
+                            <p class="card-tags">MBA, Management, Finance</p>
+                        </div>
+                        
+                        <div class="option-card opt-data">
+                            <i class="fas fa-database card-icon"></i>
+                            <p class="card-label">Data</p>
+                            <p class="card-tags">Analytics, AI/ML, Science</p>
+                        </div>
+                        
+                        <div class="option-card opt-design">
+                            <i class="fas fa-pen-nib card-icon"></i>
+                            <p class="card-label">Design</p>
+                            <p class="card-tags">UI/UX, Product, Graphics</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 9: Reality of Job Descriptions -->
+        <section class="slide">
+            <div class="bg-pattern"></div>
+            
+            <div style="padding: 40px 60px; height: 100%; display: flex; flex-direction: column;">
+                <div class="header-section" style="text-align: center; margin-bottom: 40px;">
+                    <h1 class="main-title" style="font-size: 42px;">Reality of Job Descriptions</h1>
+                </div>
+                
+                <div class="content-area">
+                    <div class="jd-mockup">
+                        <div class="jd-header">
+                            <div class="window-dot dot-yellow"></div>
+                            <div class="window-dot dot-green"></div>
+                            <div class="ml-auto text-xs text-gray-400 font-mono">job_post.html</div>
+                        </div>
+                        <div class="jd-body">
+                            <div class="company-logo-placeholder">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <h2 class="job-title">Software Engineer I</h2>
+                            <div class="job-meta">
+                                <span><i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i>Bangalore</span>
+                                <span><i class="fas fa-briefcase" style="margin-right: 8px;"></i>Full-time</span>
+                            </div>
+                            <div style="margin-bottom: 16px;">
+                                <p class="job-section-title">About the Role</p>
+                                <p class="text-sm text-gray-400" style="margin-bottom: 16px;">We are looking for a passionate developer to join our backend team...</p>
+                            </div>
+                            <div>
+                                <p class="job-section-title">Eligibility Criteria</p>
+                                <p class="job-text">
+                                    - Strong problem solving skills<br>
+                                    - Knowledge of Data Structures<br>
+                                    - B.Tech / B.E in CSE or <span class="highlight-box" style="display: inline-flex; align-items: center; gap: 5px; margin-left: 15px">Equivalent Degree <i class="fas fa-search magnify-icon"></i></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="arrow-connector">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    
+                    <div class="revelation-card">
+                        <p class="question-label">
+                            What does <span style="color: #fbbf24;">"Equivalent Degree"</span> actually mean?
+                        </p>
+                        <div class="answer-box">
+                            <div class="answer-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <p class="answer-text">
+                                "Any degree with the required skills."
+                            </p>
+                        </div>
+                        <div class="misconception-tag">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <p>Clears a massive misconception</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 10: Industry Truth -->
+        <section class="slide">
+            <div class="bg-grid"></div>
+            <div class="bg-glow"></div>
+            
+            <div style="padding: 40px 60px; height: 100%; display: flex; flex-direction: column;">
+                <div class="header-section" style="text-align: center; margin-bottom: 30px;">
+                    <h1 class="main-title" style="font-size: 42px;">Industry Truth</h1>
+                    <div class="quote-pill">
+                        <p class="quote-text" style="font-size: 20px;">"Industry needs <span class="text-white font-bold">skills</span>, not branch labels."</p>
+                    </div>
+                </div>
+                
+                <div class="pathways-container">
+                    <div class="pathway-row row-mech">
+                        <div class="node-start">
+                            <div class="icon-box" style="width: 48px; height: 48px;">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <div class="text-group">
+                                <p>Mechanical</p>
+                                <p>Degree</p>
+                            </div>
+                        </div>
+                        <div class="connector">
+                            <div class="connector-line"></div>
+                            <i class="fas fa-chevron-right connector-arrow"></i>
+                            <div class="transform-pill">Upskill</div>
+                        </div>
+                        <div class="node-end">
+                            <div class="text-group">
+                                <p>Software Engineer</p>
+                                <p>Career</p>
+                            </div>
+                            <div class="icon-box" style="width: 48px; height: 48px;">
+                                <i class="fas fa-code"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pathway-row row-civil">
+                        <div class="node-start">
+                            <div class="icon-box" style="width: 48px; height: 48px;">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div class="text-group">
+                                <p>Civil</p>
+                                <p>Degree</p>
+                            </div>
+                        </div>
+                        <div class="connector">
+                            <div class="connector-line"></div>
+                            <i class="fas fa-chevron-right connector-arrow"></i>
+                            <div class="transform-pill">Upskill</div>
+                        </div>
+                        <div class="node-end">
+                            <div class="text-group">
+                                <p>Data Scientist</p>
+                                <p>Career</p>
+                            </div>
+                            <div class="icon-box" style="width: 48px; height: 48px;">
+                                <i class="fas fa-chart-network"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pathway-row row-eee">
+                        <div class="node-start">
+                            <div class="icon-box" style="width: 48px; height: 48px;">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div class="text-group">
+                                <p>EEE / ECE</p>
+                                <p>Degree</p>
+                            </div>
+                        </div>
+                        <div class="connector">
+                            <div class="connector-line"></div>
+                            <i class="fas fa-chevron-right connector-arrow"></i>
+                            <div class="transform-pill">Upskill</div>
+                        </div>
+                        <div class="node-end">
+                            <div class="text-group">
+                                <p>Cloud / DevOps</p>
+                                <p>Career</p>
+                            </div>
+                            <div class="icon-box" style="width: 48px; height: 48px;">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-cards">
+                    <div class="info-card card-positive">
+                        <div class="info-icon positive-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="info-text text-green">
+                            <p>Skills can be learned</p>
+                            <p>Open for everyone, anytime.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card card-neutral">
+                        <div class="info-icon neutral-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="info-text text-slate">
+                            <p>Degree cannot be changed</p>
+                            <p>It is your entry ticket. Respect it, but don't limit yourself to it.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 11: Anyone Can Learn Anything Today -->
+        <section class="slide">
+            <div class="bg-shape-1"></div>
+            <div class="bg-shape-2"></div>
+
+            <div class="header-section">
+                <h1 class="main-title">Anyone Can Learn Anything Today</h1>
+                <p class="subtitle">The barrier to entry has never been lower</p>
+            </div>
+
+            <div class="stories-container">
+                <div class="story-card card-1">
+                    <div class="card-badge">Story 01</div>
+                    <div class="avatar-circle">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <div class="story-content">
+                        <h3 class="story-title">9 Years Kid</h3>
+                        <p class="story-desc">
+                            Already learning logic building and <span class="highlight-blue">coding basics</span> online.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="story-card card-2">
+                    <div class="card-badge">Story 02</div>
+                    <div class="avatar-circle">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="story-content">
+                        <h3 class="story-title">8th Class Student</h3>
+                        <p class="story-desc">
+                            Running a YouTube channel and <span class="highlight-pink">teaching Python</span> to others.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="logic-section">
+                <div class="question-part">
+                    <div class="q-icon">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <p class="q-text">Does that mean they are engineers?</p>
+                </div>
+                <div class="answer-part">
+                    <p class="a-text">
+                        <i class="fas fa-check-circle check-icon"></i>
+                        It means: Learning has <span style="color: #fbbf24;">no age or branch restriction</span>.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 12: My Real-Life Example -->
+        <section class="slide">
+            <div class="bg-stripe"></div>
+            <div class="bg-circle-left"></div>
+            <div class="bg-circle-right"></div>
+
+            <div class="header-section">
+                <h1 class="main-title">My Real-Life Example</h1>
+                <p class="subtitle">"Let me make this very real."</p>
+            </div>
+
+            <div class="profiles-wrapper">
+                <div class="profile-card card-sister">
+                    <div class="profile-header">
+                        <div class="avatar" style="background: linear-gradient(135deg, #db2777 0%, #be185d 100%); overflow: hidden;">
+                            <img src="" alt="Sister" style="width: 100%; height: 100%; object-fit: cover; display: none;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <i class="fas fa-female" style="display: flex;"></i>
+                        </div>
+                        <div class="profile-info">
+                            <h3>My Sister</h3>
+                            <p>The Transformation</p>
+                        </div>
+                    </div>
+                    <div class="journey-body">
+                        <div class="milestone">
+                            <div class="milestone-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="milestone-text">
+                                <h4>Mechanical Graduate</h4>
+                                <p>Bachelor of Technology</p>
+                            </div>
+                        </div>
+                        <div class="arrow-down">
+                            <i class="fas fa-arrow-down"></i>
+                        </div>
+                        <div class="milestone final">
+                            <div class="milestone-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <div class="milestone-text">
+                                <h4>Software Engineer</h4>
+                                <p>Upskilled &amp; Hired</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-card card-brother">
+                    <div class="profile-header">
+                        <div class="avatar" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); overflow: hidden;">
+                            <img src="" alt="Brother" style="width: 100%; height: 100%; object-fit: cover; display: none;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <i class="fas fa-male" style="display: flex;"></i>
+                        </div>
+                        <div class="profile-info">
+                            <h3>My Brother</h3>
+                            <p>The Transformation</p>
+                        </div>
+                    </div>
+                    <div class="journey-body">
+                        <div class="milestone">
+                            <div class="milestone-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="milestone-text">
+                                <h4>Mechanical Graduate</h4>
+                                <p>Bachelor of Technology</p>
+                            </div>
+                        </div>
+                        <div class="arrow-down">
+                            <i class="fas fa-arrow-down"></i>
+                        </div>
+                        <div class="milestone final">
+                            <div class="milestone-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <div class="milestone-text">
+                                <h4>Software Engineer</h4>
+                                <p>Upskilled &amp; Hired</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="equation-bar">
+                <div class="eq-item">
+                    <i class="fas fa-check-circle eq-icon"></i>
+                    <p>Same Background</p>
+                </div>
+                <div class="eq-plus">+</div>
+                <div class="eq-item">
+                    <i class="fas fa-check-circle eq-icon"></i>
+                    <p>Same Degree</p>
+                </div>
+                <div class="eq-plus">=</div>
+                <div class="eq-item">
+                    <p class="eq-highlight">Different Skills</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 13: What This Means for You -->
+        <section class="slide">
+            <div class="bg-oval-1"></div>
+            <div class="bg-oval-2"></div>
+
+            <div class="header-section">
+                <h1 class="main-title">What This Means for You</h1>
+                <p class="subtitle">Clarity over Confusion</p>
+            </div>
+
+            <div class="clarity-grid">
+                <div class="clarity-card card-negative">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-ban"></i>
+                        </div>
+                        <h3 class="card-title">You Don't Need</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-item-negative">
+                            <i class="fas fa-times icon-negative"></i>
+                            <p>To <span class="text-negative">change your branch</span></p>
+                        </div>
+                        <div class="list-item-negative">
+                            <i class="fas fa-times icon-negative"></i>
+                            <p>To <span class="text-negative">regret mechanical</span></p>
+                        </div>
+                        <div class="list-item-negative">
+                            <i class="fas fa-times icon-negative"></i>
+                            <p>To <span class="text-negative">feel inferior</span></p>
+                        </div>
+                        <div style="margin-top: auto; padding-top: 1rem; font-size: 0.875rem; color: #6b7280;">
+                            <p>These are just mental blocks.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vs-badge">VS</div>
+
+                <div class="clarity-card card-positive">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="card-title">You DO Need</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-item-positive">
+                            <i class="fas fa-compass icon-positive"></i>
+                            <p>Clear <span style="color: #bfdbfe;">Direction</span></p>
+                        </div>
+                        <div class="list-item-positive">
+                            <i class="fas fa-redo icon-positive"></i>
+                            <p>Ruthless <span style="color: #bfdbfe;">Consistency</span></p>
+                        </div>
+                        <div class="list-item-positive">
+                            <i class="fas fa-crosshairs icon-positive"></i>
+                            <p>Sharp <span style="color: #bfdbfe;">Skill Focus</span></p>
+                        </div>
+                        <div style="margin-top: auto; padding-top: 1rem; color: #93c5fd; font-size: 0.875rem; font-weight: 600;">
+                            <p><i class="fas fa-check" style="margin-right: 0.5rem;"></i> This is your roadmap.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-note">
+                <p>Shift your energy from worrying about the past to building the future.</p>
+            </div>
+        </section>
+
+        <!-- Slide 14: Start From Today -->
+        <section class="slide">
+            <div class="bg-dots"></div>
+
+            <div class="header-section">
+                <h1 class="main-title">Start From Today</h1>
+                <p class="subtitle">It's never too late, but starting early helps</p>
+            </div>
+
+            <div class="timeline-wrapper">
+                <div class="timeline-line"></div>
+
+                <div class="step-card card-2nd">
+                    <div class="step-badge badge-2nd">2nd Year</div>
+                    <div class="step-icon-wrapper icon-2nd">
+                        <i class="fas fa-compass"></i>
+                    </div>
+                    <h3 class="step-title">Explore &amp; Learn Basics</h3>
+                    <ul class="action-list">
+                        <li class="action-item">
+                            <i class="fas fa-circle action-bullet bullet-2nd"></i>
+                            <p>Pick one language (Python/C++)</p>
+                        </li>
+                        <li class="action-item">
+                            <i class="fas fa-circle action-bullet bullet-2nd"></i>
+                            <p>Understand loops, logic, arrays</p>
+                        </li>
+                        <li class="action-item">
+                            <i class="fas fa-circle action-bullet bullet-2nd"></i>
+                            <p>Solve 1-2 easy problems daily</p>
+                        </li>
+                        <li class="action-item">
+                            <i class="fas fa-circle action-bullet bullet-2nd"></i>
+                            <p>Explore domains (Web vs Data)</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="step-card card-3rd">
+                    <div class="step-badge badge-3rd">3rd Year</div>
+                    <div class="step-icon-wrapper icon-3rd">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3 class="step-title">Build &amp; Profile</h3>
+                    <ul class="action-list">
+                        <li class="action-item">
+                            <i class="fas fa-circle action-bullet bullet-3rd"></i>
+                            <p>Build 2 good mini-projects</p>
+                        </li>
+                        <li class="action-item">
+                            <i class="fas fa-circle action-bullet bullet-3rd"></i>
+                            <p>Participate in Hackathons</p>
+                        </li>
+                        <li class="action-item">
+                            <i class="fas fa-circle action-bullet bullet-3rd"></i>
+                            <p>Learn Data Structures (DSA)</p>
+                        </li>
+                        <li class="action-item">
+                            <i class="fas fa-circle action-bullet bullet-3rd"></i>
+                            <p>Create a professional LinkedIn</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="step-card card-final">
+                    <div class="step-badge badge-final">Final Year</div>
+                    <div class="step-icon-wrapper icon-final">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="step-title">Apply &amp; Interview</h3>
+                    <ul class="action-list">
+                        <li class="action-item">
+                            <i class="fas fa-circle action-bullet bullet-final"></i>
+                            <p>Polish Resume &amp; Portfolio</p>
+                        </li>
+                        <li class="action-item">
+                            <i class="fas fa-circle action-bullet bullet-final"></i>
+                            <p>Practice Mock Interviews</p>
+                        </li>
+                        <li class="action-item">
+                            <i class="fas fa-circle action-bullet bullet-final"></i>
+                            <p>Brush up Aptitude &amp; Core CS</p>
+                        </li>
+                        <li class="action-item">
+                            <i class="fas fa-circle action-bullet bullet-final"></i>
+                            <p>Apply aggressively</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="habit-bar">
+                <i class="fas fa-clock habit-icon"></i>
+                <div>
+                    <span class="habit-text">The Golden Rule: Start with 30–60 Minutes / Day</span>
+                    <span class="habit-sub">(Consistency &gt; Intensity)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 15: My Final Message -->
+        <section class="slide">
+            <div class="bg-spotlight"></div>
+            <div class="bg-accents-top">"</div>
+            <div class="bg-accents-bottom">"</div>
+
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; text-align: center; padding: 80px;">
+                <div class="quote-icon-top">
+                    <i class="fas fa-quote-left"></i>
+                </div>
+                <div class="text-reflection">
+                    <p>"I was once sitting where you are.<br>I was confused. I was unsure."</p>
+                </div>
+                <div class="separator-line" style="margin: 30px auto;"></div>
+                <div class="text-impact">
+                    <p>The difference now : I choose <span class="highlight-box" style="margin-left: 15px">SKILLS</span> over <span style="color: #94a3b8; text-decoration: line-through; text-decoration-color: #ef4444; text-decoration-thickness: 3px;">EXCUSES</span>.</p>
+                </div>
+                <div class="speaker-note" style="margin-top: 50px;">
+                    <div class="speaker-line"></div>
+                    <p>tHInk</p>
+                    <div class="speaker-line"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 16: Thank You -->
+        <section class="slide">
+            <div class="bg-dot-pattern"></div>
+            <div class="bg-ring-1"></div>
+            <div class="bg-ring-2"></div>
+
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; text-align: center; padding: 60px; gap: 40px;">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <h1 class="thank-you-title">Thank You</h1>
+                </div>
+
+                <div class="message-card">
+                    <p class="message-text-1">Your degree opens the gate.</p>
+                    <p class="message-text-2">Your <span class="highlight-text">skills</span> decide how far you go.</p>
+                </div>
+
+                <div class="qa-container">
+                    <div class="qa-icon-wrapper">
+                        <i class="fas fa-question"></i>
+                    </div>
+                    <h2 class="qa-text">Questions? <span style="margin-left: 10px;">🙋‍♂️</span></h2>
+                </div>
+            </div>
+        </section>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function setActive(index) {
+            slides.forEach((s, i) => {
+                s.classList.toggle('active', i === index);
+                dots[i].classList.toggle('active', i === index);
+            });
+        }
+
+        function goToSlide(index) {
+            slides[index].scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Intersection Observer for scroll-based activation
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setActive([...slides].indexOf(entry.target));
+                    }
+                });
+            },
+            { threshold: 0.6 }
+        );
+
+        slides.forEach((s) => observer.observe(s));
+
+        // Keyboard navigation
+        window.addEventListener('keydown', (e) => {
+            const current = [...slides].findIndex((s) => s.classList.contains('active'));
+            if (e.key === 'ArrowDown' && current < slides.length - 1) {
+                slides[current + 1].scrollIntoView({ behavior: 'smooth' });
+            }
+            if (e.key === 'ArrowUp' && current > 0) {
+                slides[current - 1].scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    </script>
+</body>
+</html>
