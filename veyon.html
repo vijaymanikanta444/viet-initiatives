@@ -1,0 +1,1271 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Veyon Lab Management | VIET</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="assets/icons/favicon.ico" />
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #2d3748;
+        overflow-x: hidden;
+      }
+
+      /* Smooth scroll */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Animated gradient background */
+      .hero-gradient {
+        background: linear-gradient(
+          135deg,
+          #667eea 0%,
+          #764ba2 50%,
+          #f093fb 100%
+        );
+        background-size: 200% 200%;
+        animation: gradientShift 10s ease infinite;
+      }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Floating animation */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      .float {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      /* Card styles */
+      .modern-card {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .modern-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Feature card with icon */
+      .feature-card {
+        background: white;
+        border-radius: 16px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+      }
+
+      .feature-card:hover {
+        border-color: #667eea;
+        transform: scale(1.05);
+        box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+      }
+
+      /* Section styling */
+      section {
+        padding: 5rem 2rem;
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Progress bar */
+      .progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        z-index: 1001;
+        transition: width 0.3s ease;
+      }
+
+      /* Timeline */
+      .timeline-item {
+        position: relative;
+        padding-left: 3rem;
+        padding-bottom: 3rem;
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 3px;
+        height: 100%;
+        background: linear-gradient(180deg, #667eea, #764ba2);
+      }
+
+      .timeline-dot {
+        position: absolute;
+        left: -0.65rem;
+        top: 0;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+        background: white;
+        border: 4px solid #667eea;
+      }
+
+      /* Stats counter */
+      .stat-number {
+        font-size: 3rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Button styles */
+      .btn-primary {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+      }
+
+      /* Icon container */
+      .icon-container {
+        width: 80px;
+        height: 80px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-center: center;
+        font-size: 2.5rem;
+        margin: 0 auto 1.5rem;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+      }
+
+      /* Section title */
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Benefit badge */
+      .benefit-badge {
+        display: inline-block;
+        padding: 0.5rem 1.5rem;
+        border-radius: 50px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Navigation -->
+    <nav class="py-4 px-8">
+      <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center space-x-4">
+          <a href="/">
+            <img
+              src="https://viet.edu.in/img/footer-imgs/viet-logo.png"
+              alt="VIET Logo"
+              class="h-12 w-12 rounded-full"
+            />
+          </a>
+          <div>
+            <h2 class="text-xl font-bold text-gray-800">VIET</h2>
+            <p class="text-xs text-gray-600">Tech Initiatives</p>
+          </div>
+        </div>
+        <a href="/" class="text-gray-600 hover:text-purple-600 transition">
+          <i class="fas fa-arrow-left mr-2"></i>Back to Home
+        </a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      class="hero-gradient min-h-screen flex items-center justify-center relative overflow-hidden"
+      style="margin-top: 80px"
+    >
+      <!-- Decorative circles -->
+      <div
+        class="absolute top-20 right-20 w-64 h-64 bg-white opacity-10 rounded-full blur-3xl"
+      ></div>
+      <div
+        class="absolute bottom-20 left-20 w-96 h-96 bg-white opacity-10 rounded-full blur-3xl"
+      ></div>
+
+      <div class="max-w-6xl mx-auto px-8 text-center relative z-10">
+        <div class="mb-6">
+          <span class="benefit-badge">
+            <i class="fas fa-desktop mr-2"></i>Lab Management Solution
+          </span>
+        </div>
+
+        <h1
+          class="text-6xl md:text-7xl font-extrabold text-white mb-6 leading-tight"
+        >
+          Transform Computer Labs with
+          <span class="block mt-2">Veyon</span>
+        </h1>
+
+        <p
+          class="text-xl md:text-2xl text-white opacity-90 mb-10 max-w-3xl mx-auto"
+        >
+          Open-source software to monitor, control, and manage 600+ computers
+          across 12 labs at VIET
+        </p>
+
+        <!-- <div class="flex justify-center space-x-4 mb-16 flex-wrap gap-4">
+          <button class="btn-primary">
+            <i class="fas fa-rocket mr-2"></i>Get Started
+          </button>
+          <button
+            class="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold hover:shadow-xl transition"
+          >
+            Learn More
+          </button>
+        </div> -->
+
+        <!-- Floating laptop illustration -->
+        <div class="relative float">
+          <div class="modern-card p-8 max-w-3xl mx-auto">
+            <div
+              class="bg-gradient-to-r from-purple-500 to-indigo-600 rounded-lg p-8 text-white"
+            >
+              <div class="flex items-center justify-between mb-6">
+                <h3 class="text-2xl font-bold">Lab Overview</h3>
+                <div class="flex space-x-2">
+                  <div class="w-3 h-3 bg-red-400 rounded-full"></div>
+                  <div class="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                  <div class="w-3 h-3 bg-green-400 rounded-full"></div>
+                </div>
+              </div>
+              <div class="grid grid-cols-3 gap-4 text-center">
+                <div>
+                  <div class="text-4xl font-bold mb-1">600+</div>
+                  <div class="text-sm opacity-80">Computers</div>
+                </div>
+                <div>
+                  <div class="text-4xl font-bold mb-1">12</div>
+                  <div class="text-sm opacity-80">Labs</div>
+                </div>
+                <div>
+                  <div class="text-4xl font-bold mb-1">100%</div>
+                  <div class="text-sm opacity-80">Free</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Challenge Section -->
+    <section class="bg-white py-20">
+      <div class="max-w-6xl mx-auto px-8">
+        <div class="text-center mb-16">
+          <span
+            class="text-purple-600 font-semibold uppercase tracking-wide text-sm"
+          >
+            The Problem
+          </span>
+          <h2 class="section-title text-4xl md:text-5xl mt-2">
+            Current Lab Management Challenges
+          </h2>
+          <p class="text-gray-600 text-lg mt-4 max-w-2xl mx-auto">
+            Faculty and IT staff face significant obstacles in managing large
+            computer labs
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Challenge 1 -->
+          <div class="modern-card p-8 border-l-4 border-red-500">
+            <div class="text-4xl mb-4 text-red-500">
+              <i class="fas fa-eye-slash"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">No Visibility</h3>
+            <p class="text-gray-600">
+              Instructors cannot see what students are doing on their screens,
+              making it difficult to ensure engagement and provide timely
+              assistance.
+            </p>
+          </div>
+
+          <!-- Challenge 2 -->
+          <div class="modern-card p-8 border-l-4 border-orange-500">
+            <div class="text-4xl mb-4 text-orange-500">
+              <i class="fas fa-walking"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Physical Movement
+            </h3>
+            <p class="text-gray-600">
+              Faculty must physically walk to each computer to help students,
+              which is time-consuming in large labs with 60+ students.
+            </p>
+          </div>
+
+          <!-- Challenge 3 -->
+          <div class="modern-card p-8 border-l-4 border-yellow-500">
+            <div class="text-4xl mb-4 text-yellow-500">
+              <i class="fas fa-broadcast-tower"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Limited Broadcasting
+            </h3>
+            <p class="text-gray-600">
+              Difficult to demonstrate software and broadcast to all student
+              computers simultaneously for effective teaching.
+            </p>
+          </div>
+
+          <!-- Challenge 4 -->
+          <div class="modern-card p-8 border-l-4 border-blue-500">
+            <div class="text-4xl mb-4 text-blue-500">
+              <i class="fas fa-tools"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Software Management
+            </h3>
+            <p class="text-gray-600">
+              Ensuring all computers have the same software versions and updates
+              is a manual, time-consuming process.
+            </p>
+          </div>
+
+          <!-- Challenge 5 -->
+          <div class="modern-card p-8 border-l-4 border-purple-500">
+            <div class="text-4xl mb-4 text-purple-500">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Security Concerns
+            </h3>
+            <p class="text-gray-600">
+              No way to lock student screens during lectures or prevent access
+              to unauthorized websites and applications.
+            </p>
+          </div>
+
+          <!-- Challenge 6 -->
+          <div class="modern-card p-8 border-l-4 border-pink-500">
+            <div class="text-4xl mb-4 text-pink-500">
+              <i class="fas fa-power-off"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              Power Management
+            </h3>
+            <p class="text-gray-600">
+              No centralized way to power on, restart, or shut down multiple
+              computers at once across the lab.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What is Veyon Section -->
+    <section class="bg-gradient-to-br from-purple-50 to-indigo-50 py-20">
+      <div class="max-w-6xl mx-auto px-8">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <span
+              class="text-purple-600 font-semibold uppercase tracking-wide text-sm"
+            >
+              The Solution
+            </span>
+            <h2 class="section-title text-4xl md:text-5xl mt-2 mb-6">
+              What is Veyon?
+            </h2>
+            <p class="text-gray-600 text-lg mb-6">
+              Veyon is a powerful, free, and open-source computer lab management
+              software that enables instructors to monitor and control all
+              student computers from a single master computer.
+            </p>
+
+            <div class="space-y-4">
+              <div class="flex items-start space-x-3">
+                <div
+                  class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
+                >
+                  <i class="fas fa-check text-white text-xs"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-800">
+                    100% Free & Open Source
+                  </h4>
+                  <p class="text-gray-600 text-sm">
+                    No licensing fees or recurring costs ever
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-3">
+                <div
+                  class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
+                >
+                  <i class="fas fa-check text-white text-xs"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-800">Cross-Platform</h4>
+                  <p class="text-gray-600 text-sm">
+                    Works on Windows, Linux, and macOS
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-3">
+                <div
+                  class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
+                >
+                  <i class="fas fa-check text-white text-xs"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-800">Trusted Worldwide</h4>
+                  <p class="text-gray-600 text-sm">
+                    Used by thousands of educational institutions globally
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modern-card p-8">
+            <div class="grid grid-cols-2 gap-6">
+              <div
+                class="text-center p-6 bg-gradient-to-br from-purple-100 to-purple-50 rounded-xl"
+              >
+                <div class="text-5xl mb-2">
+                  <i class="fas fa-users text-purple-600"></i>
+                </div>
+                <div class="stat-number">600+</div>
+                <div class="text-gray-600 text-sm font-medium">
+                  Student Computers
+                </div>
+              </div>
+
+              <div
+                class="text-center p-6 bg-gradient-to-br from-indigo-100 to-indigo-50 rounded-xl"
+              >
+                <div class="text-5xl mb-2">
+                  <i class="fas fa-building text-indigo-600"></i>
+                </div>
+                <div class="stat-number">12</div>
+                <div class="text-gray-600 text-sm font-medium">
+                  Computer Labs
+                </div>
+              </div>
+
+              <div
+                class="text-center p-6 bg-gradient-to-br from-pink-100 to-pink-50 rounded-xl"
+              >
+                <div class="text-5xl mb-2">
+                  <i class="fas fa-chart-line text-pink-600"></i>
+                </div>
+                <div class="stat-number">100%</div>
+                <div class="text-gray-600 text-sm font-medium">Uptime</div>
+              </div>
+
+              <div
+                class="text-center p-6 bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl"
+              >
+                <div class="text-5xl mb-2">
+                  <i class="fas fa-dollar-sign text-blue-600"></i>
+                </div>
+                <div class="stat-number">$0</div>
+                <div class="text-gray-600 text-sm font-medium">Total Cost</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="bg-white py-20">
+      <div class="max-w-6xl mx-auto px-8">
+        <div class="text-center mb-16">
+          <span
+            class="text-purple-600 font-semibold uppercase tracking-wide text-sm"
+          >
+            Capabilities
+          </span>
+          <h2 class="section-title text-4xl md:text-5xl mt-2">
+            Powerful Features
+          </h2>
+          <p class="text-gray-600 text-lg mt-4 max-w-2xl mx-auto">
+            Everything you need to run efficient and productive computer lab
+            sessions
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Feature 1 -->
+          <div class="feature-card">
+            <div
+              class="icon-container"
+              style="background: linear-gradient(135deg, #667eea, #764ba2)"
+            >
+              <i class="fas fa-eye"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">
+              Real-time Monitoring
+            </h3>
+            <p class="text-gray-600 text-sm">
+              View all student screens simultaneously in a grid or thumbnail
+              view
+            </p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="feature-card">
+            <div
+              class="icon-container"
+              style="background: linear-gradient(135deg, #f093fb, #f5576c)"
+            >
+              <i class="fas fa-hand-pointer"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Remote Control</h3>
+            <p class="text-gray-600 text-sm">
+              Take control of any student computer to provide instant help
+            </p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="feature-card">
+            <div
+              class="icon-container"
+              style="background: linear-gradient(135deg, #4facfe, #00f2fe)"
+            >
+              <i class="fas fa-tv"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">
+              Screen Broadcasting
+            </h3>
+            <p class="text-gray-600 text-sm">
+              Broadcast your screen to all students for demonstrations
+            </p>
+          </div>
+
+          <!-- Feature 4 -->
+          <div class="feature-card">
+            <div
+              class="icon-container"
+              style="background: linear-gradient(135deg, #43e97b, #38f9d7)"
+            >
+              <i class="fas fa-lock"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Screen Locking</h3>
+            <p class="text-gray-600 text-sm">
+              Lock all student screens during lectures to ensure attention
+            </p>
+          </div>
+
+          <!-- Feature 5 -->
+          <div class="feature-card">
+            <div
+              class="icon-container"
+              style="background: linear-gradient(135deg, #fa709a, #fee140)"
+            >
+              <i class="fas fa-comment"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Text Messaging</h3>
+            <p class="text-gray-600 text-sm">
+              Send messages to individual students or broadcast to all
+            </p>
+          </div>
+
+          <!-- Feature 6 -->
+          <div class="feature-card">
+            <div
+              class="icon-container"
+              style="background: linear-gradient(135deg, #30cfd0, #330867)"
+            >
+              <i class="fas fa-power-off"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">
+              Power Management
+            </h3>
+            <p class="text-gray-600 text-sm">
+              Remotely power on, restart, or shut down computers
+            </p>
+          </div>
+
+          <!-- Feature 7 -->
+          <div class="feature-card">
+            <div
+              class="icon-container"
+              style="background: linear-gradient(135deg, #a8edea, #fed6e3)"
+            >
+              <i class="fas fa-share-alt"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">
+              Student Sharing
+            </h3>
+            <p class="text-gray-600 text-sm">
+              Let students share their screens with the entire class
+            </p>
+          </div>
+
+          <!-- Feature 8 -->
+          <div class="feature-card">
+            <div
+              class="icon-container"
+              style="background: linear-gradient(135deg, #ff9a9e, #fecfef)"
+            >
+              <i class="fas fa-file-alt"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">File Transfer</h3>
+            <p class="text-gray-600 text-sm">
+              Transfer files to all student computers simultaneously
+            </p>
+          </div>
+
+          <!-- Feature 9 -->
+          <div class="feature-card">
+            <div
+              class="icon-container"
+              style="background: linear-gradient(135deg, #ffecd2, #fcb69f)"
+            >
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">
+              Program Launcher
+            </h3>
+            <p class="text-gray-600 text-sm">
+              Launch applications on all computers with a single click
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section
+      class="bg-gradient-to-br from-purple-600 to-indigo-600 py-20 text-white"
+    >
+      <div class="max-w-6xl mx-auto px-8">
+        <div class="text-center mb-16">
+          <span
+            class="opacity-90 font-semibold uppercase tracking-wide text-sm"
+          >
+            Why Choose Veyon
+          </span>
+          <h2 class="text-4xl md:text-5xl font-extrabold mt-2 mb-4">
+            Benefits for VIET
+          </h2>
+          <p class="text-lg opacity-90 max-w-2xl mx-auto">
+            Transform teaching and learning experiences across all computer labs
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Benefit 1 -->
+          <div class="bg-white bg-opacity-10 backdrop-blur rounded-2xl p-8">
+            <div class="flex items-start space-x-4">
+              <div
+                class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center flex-shrink-0"
+              >
+                <i class="fas fa-dollar-sign text-2xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-2">Zero Cost Solution</h3>
+                <p class="opacity-90">
+                  Completely free and open source. No licensing fees, no
+                  recurring costs. Use across all 12 labs without any
+                  restrictions.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Benefit 2 -->
+          <div class="bg-white bg-opacity-10 backdrop-blur rounded-2xl p-8">
+            <div class="flex items-start space-x-4">
+              <div
+                class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center flex-shrink-0"
+              >
+                <i class="fas fa-clock text-2xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-2">Increased Efficiency</h3>
+                <p class="opacity-90">
+                  Faculty can assist students remotely, saving time and making
+                  lab sessions more productive. No more walking between
+                  computers.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Benefit 3 -->
+          <div class="bg-white bg-opacity-10 backdrop-blur rounded-2xl p-8">
+            <div class="flex items-start space-x-4">
+              <div
+                class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center flex-shrink-0"
+              >
+                <i class="fas fa-chalkboard-teacher text-2xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-2">
+                  Better Teaching Experience
+                </h3>
+                <p class="opacity-90">
+                  Improved demonstrations, instant help, and better engagement.
+                  Faculty can see when students need help immediately.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Benefit 4 -->
+          <div class="bg-white bg-opacity-10 backdrop-blur rounded-2xl p-8">
+            <div class="flex items-start space-x-4">
+              <div
+                class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center flex-shrink-0"
+              >
+                <i class="fas fa-users text-2xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-2">
+                  Enhanced Student Learning
+                </h3>
+                <p class="opacity-90">
+                  Students get faster help, clearer demonstrations, and more
+                  focused lab time. Better learning outcomes overall.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Benefit 5 -->
+          <div class="bg-white bg-opacity-10 backdrop-blur rounded-2xl p-8">
+            <div class="flex items-start space-x-4">
+              <div
+                class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center flex-shrink-0"
+              >
+                <i class="fas fa-shield-alt text-2xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-2">IT Management</h3>
+                <p class="opacity-90">
+                  IT staff can monitor and manage labs remotely, deploy updates,
+                  and troubleshoot issues without physical access.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Benefit 6 -->
+          <div class="bg-white bg-opacity-10 backdrop-blur rounded-2xl p-8">
+            <div class="flex items-start space-x-4">
+              <div
+                class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center flex-shrink-0"
+              >
+                <i class="fas fa-chart-bar text-2xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-2">Usage Analytics</h3>
+                <p class="opacity-90">
+                  Track lab usage, monitor student engagement, and generate
+                  reports for administrative purposes.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Specs Section -->
+    <section class="bg-white py-20">
+      <div class="max-w-6xl mx-auto px-8">
+        <div class="text-center mb-16">
+          <span
+            class="text-purple-600 font-semibold uppercase tracking-wide text-sm"
+          >
+            Requirements
+          </span>
+          <h2 class="section-title text-4xl md:text-5xl mt-2">
+            System Requirements
+          </h2>
+          <p class="text-gray-600 text-lg mt-4">
+            Simple setup with minimal requirements
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12">
+          <!-- Left Column -->
+          <div class="modern-card p-8">
+            <h3 class="text-2xl font-bold text-gray-800 mb-6">
+              Specifications
+            </h3>
+            <div class="space-y-6">
+              <div>
+                <div class="flex items-center mb-2">
+                  <div
+                    class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-3"
+                  >
+                    <i class="fas fa-laptop text-purple-600"></i>
+                  </div>
+                  <h4 class="font-semibold text-gray-800">Operating System</h4>
+                </div>
+                <p class="text-gray-600 text-sm ml-13">
+                  Windows 7/10/11, Linux (Ubuntu, Debian, Fedora), macOS
+                </p>
+              </div>
+
+              <div>
+                <div class="flex items-center mb-2">
+                  <div
+                    class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3"
+                  >
+                    <i class="fas fa-memory text-blue-600"></i>
+                  </div>
+                  <h4 class="font-semibold text-gray-800">RAM</h4>
+                </div>
+                <p class="text-gray-600 text-sm ml-13">
+                  Minimum 2GB (4GB recommended for master computer)
+                </p>
+              </div>
+
+              <div>
+                <div class="flex items-center mb-2">
+                  <div
+                    class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3"
+                  >
+                    <i class="fas fa-network-wired text-green-600"></i>
+                  </div>
+                  <h4 class="font-semibold text-gray-800">Network</h4>
+                </div>
+                <p class="text-gray-600 text-sm ml-13">
+                  Local network connectivity (LAN) with TCP ports 11100-11400
+                </p>
+              </div>
+
+              <div>
+                <div class="flex items-center mb-2">
+                  <div
+                    class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center mr-3"
+                  >
+                    <i class="fas fa-hdd text-yellow-600"></i>
+                  </div>
+                  <h4 class="font-semibold text-gray-800">Storage</h4>
+                </div>
+                <p class="text-gray-600 text-sm ml-13">
+                  Less than 100MB per installation
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div
+            class="modern-card p-8 bg-gradient-to-br from-purple-50 to-indigo-50"
+          >
+            <h3 class="text-2xl font-bold text-gray-800 mb-6">How It Works</h3>
+            <div class="space-y-6">
+              <div class="flex items-start space-x-4">
+                <div
+                  class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0"
+                >
+                  1
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-800 mb-1">
+                    Master Installation
+                  </h4>
+                  <p class="text-gray-600 text-sm">
+                    Install Veyon Master on the instructor's computer
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-4">
+                <div
+                  class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0"
+                >
+                  2
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-800 mb-1">
+                    Client Installation
+                  </h4>
+                  <p class="text-gray-600 text-sm">
+                    Install Veyon Service on all student computers
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-4">
+                <div
+                  class="w-10 h-10 bg-gradient-to-br from-pink-500 to-pink-600 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0"
+                >
+                  3
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-800 mb-1">
+                    Configuration
+                  </h4>
+                  <p class="text-gray-600 text-sm">
+                    Configure rooms, permissions, and authentication
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-4">
+                <div
+                  class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0"
+                >
+                  4
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-800 mb-1">Ready to Use</h4>
+                  <p class="text-gray-600 text-sm">
+                    Start monitoring and controlling computers
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-purple-200">
+              <a
+                href="https://veyon.io"
+                target="_blank"
+                class="text-purple-600 font-semibold hover:text-purple-700"
+              >
+                <i class="fas fa-download mr-2"></i>Download from veyon.io
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Implementation Section -->
+    <section class="bg-gradient-to-br from-gray-50 to-gray-100 py-20">
+      <div class="max-w-6xl mx-auto px-8">
+        <div class="text-center mb-16">
+          <span
+            class="text-purple-600 font-semibold uppercase tracking-wide text-sm"
+          >
+            Deployment Plan
+          </span>
+          <h2 class="section-title text-4xl md:text-5xl mt-2">
+            Implementation Roadmap
+          </h2>
+          <p class="text-gray-600 text-lg mt-4">
+            From pilot testing to full campus rollout
+          </p>
+        </div>
+
+        <div class="max-w-3xl mx-auto">
+          <!-- Timeline Item 1 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="modern-card p-6">
+              <div class="flex justify-between items-start mb-3">
+                <h3 class="text-xl font-bold text-gray-800">
+                  Phase 1: Pilot Testing
+                </h3>
+                <span class="text-sm text-gray-500 font-medium">Week 1-2</span>
+              </div>
+              <p class="text-gray-600 mb-3">
+                Install and test in 1-2 computer labs with volunteer faculty
+                members. Gather feedback and refine configuration.
+              </p>
+              <div class="flex items-center text-sm text-purple-600">
+                <i class="fas fa-flask mr-2"></i>
+                <span>Testing Phase</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 2 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="modern-card p-6">
+              <div class="flex justify-between items-start mb-3">
+                <h3 class="text-xl font-bold text-gray-800">
+                  Phase 2: Faculty Training
+                </h3>
+                <span class="text-sm text-gray-500 font-medium">Week 3</span>
+              </div>
+              <p class="text-gray-600 mb-3">
+                Conduct training sessions for all faculty members who use
+                computer labs. Provide documentation and quick reference guides.
+              </p>
+              <div class="flex items-center text-sm text-purple-600">
+                <i class="fas fa-graduation-cap mr-2"></i>
+                <span>Training Phase</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 3 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="modern-card p-6">
+              <div class="flex justify-between items-start mb-3">
+                <h3 class="text-xl font-bold text-gray-800">
+                  Phase 3: Campus Rollout
+                </h3>
+                <span class="text-sm text-gray-500 font-medium">Week 4-5</span>
+              </div>
+              <p class="text-gray-600 mb-3">
+                Deploy Veyon to all 12 computer labs across campus. Configure
+                rooms and set up master computers in each lab.
+              </p>
+              <div class="flex items-center text-sm text-purple-600">
+                <i class="fas fa-rocket mr-2"></i>
+                <span>Deployment Phase</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 4 -->
+          <div class="timeline-item" style="padding-bottom: 0">
+            <div class="timeline-dot"></div>
+            <div class="modern-card p-6">
+              <div class="flex justify-between items-start mb-3">
+                <h3 class="text-xl font-bold text-gray-800">
+                  Phase 4: Monitoring & Support
+                </h3>
+                <span class="text-sm text-gray-500 font-medium">Ongoing</span>
+              </div>
+              <p class="text-gray-600 mb-3">
+                Provide ongoing technical support, monitor usage, and collect
+                feedback for continuous improvement.
+              </p>
+              <div class="flex items-center text-sm text-purple-600">
+                <i class="fas fa-headset mr-2"></i>
+                <span>Support Phase</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stakeholders -->
+        <div class="mt-16 modern-card p-8">
+          <h3 class="text-2xl font-bold text-gray-800 text-center mb-8">
+            Key Stakeholders
+          </h3>
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="text-center">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4"
+              >
+                <i class="fas fa-user-tie text-2xl text-white"></i>
+              </div>
+              <h4 class="font-bold text-gray-800 mb-2">IT Department</h4>
+              <p class="text-gray-600 text-sm">Installation & maintenance</p>
+            </div>
+
+            <div class="text-center">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4"
+              >
+                <i class="fas fa-chalkboard-teacher text-2xl text-white"></i>
+              </div>
+              <h4 class="font-bold text-gray-800 mb-2">Faculty Members</h4>
+              <p class="text-gray-600 text-sm">Primary users</p>
+            </div>
+
+            <div class="text-center">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4"
+              >
+                <i class="fas fa-user-graduate text-2xl text-white"></i>
+              </div>
+              <h4 class="font-bold text-gray-800 mb-2">Students</h4>
+              <p class="text-gray-600 text-sm">Beneficiaries</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="hero-gradient py-20">
+      <div class="max-w-4xl mx-auto px-8 text-center">
+        <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6">
+          Ready to Transform Your Labs?
+        </h2>
+        <p class="text-xl text-white opacity-90 mb-10">
+          Let's discuss implementing Veyon at VIET and revolutionize computer
+          lab management
+        </p>
+        <div class="flex justify-center space-x-4 flex-wrap gap-4">
+          <a rel="noopener noreferrer" target="_blank" href="https://veyon.io">
+            <button
+              class="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold hover:shadow-xl transition"
+            >
+              <i class="fas fa-download mr-2"></i>Download Veyon
+            </button>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+      <div class="max-w-6xl mx-auto px-8">
+        <div class="grid md:grid-cols-3 gap-8 mb-8">
+          <div>
+            <div class="flex items-center space-x-3 mb-4">
+              <img
+                src="https://viet.edu.in/img/footer-imgs/viet-logo.png"
+                alt="VIET Logo"
+                class="h-12 w-12 rounded-full"
+              />
+              <div>
+                <h3 class="font-bold text-lg">VIET</h3>
+                <p class="text-sm text-gray-400">Tech Initiatives</p>
+              </div>
+            </div>
+            <p class="text-gray-400 text-sm">
+              Visakha Institute of Engineering & Technology
+            </p>
+          </div>
+
+          <div>
+            <h4 class="font-semibold mb-4">Quick Links</h4>
+            <ul class="space-y-2 text-gray-400 text-sm">
+              <li><a href="/" class="hover:text-white transition">Home</a></li>
+              <li>
+                <a
+                  href="https://veyon.io"
+                  target="_blank"
+                  class="hover:text-white transition"
+                  >Official Website</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://docs.veyon.io"
+                  target="_blank"
+                  class="hover:text-white transition"
+                  >Documentation</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-semibold mb-4">Presented By</h4>
+            <p class="text-gray-400 text-sm">
+              Vijaya Manikanta Thikkani<br />
+              Department of Computer Science & Engineering<br />
+              <span class="text-gray-500" id="footer-date"></span>
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm"
+        >
+          <p>&copy; 2026 VIET - All Rights Reserved</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Set current date
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = String(today.getMonth() + 1).padStart(2, "0");
+      const day = String(today.getDate()).padStart(2, "0");
+      document.getElementById("footer-date").textContent =
+        `${year}-${month}-${day}`;
+
+      // Progress bar on scroll
+      window.addEventListener("scroll", () => {
+        const winScroll =
+          document.body.scrollTop || document.documentElement.scrollTop;
+        const height =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById("progressBar").style.width = scrolled + "%";
+      });
+    </script>
+  </body>
+</html>
